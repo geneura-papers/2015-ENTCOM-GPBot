@@ -49,19 +49,25 @@ The design of the Artificial Intelligence (AI) engine for an autonomous agent (b
 This paper presents an approach for conducting this task by means of Genetic Programming (GP) application. 
 % ¿y eso qué tiene de original? - JJ
 % AntonioDEF - en este ámbito parece ser que es original. No se ha usado mucho (o nada)
-This algorithm is applied to design decision trees to be used as bot's AI in 1 vs 1 battles inside the RTS game Planet Wars. 
+% Me refiero a por qué debería GP funcionar mejor que otro tipo de sistema - JJ
+This algorithm is applied to design decision trees to be used as bot's AI in one vs one battles inside the RTS game Planet Wars. 
 % Este paper, como todos, resuelve un problema. ¿Qué problema resuelve? No me cuentes lo que has hecho, cuéntame primero lo que quieres hacer. 
 % Antonio - hecho. Creo que ha quedado bien. ;)
 %FERGU2: No sé si poner acrónimos en el abstract se estila... De todas maneras, como dice JJ, podemos enfocarlo a "Para hacer GP hace falta una función fitness buena, antes se han usado estas, pero eran regulares. En este paper comparamos 3 funciones distintas que tienen en cuenta más o menos información para ver cuál es mejor" ¿Cambiamos el título a "Comparing different fitness functions for the creation of bots using GP"?
 % Siempre el problema por delante: ya ha hecho la gente GP para esto, pero el diseño de funciones de fitness sigue sin ser trivial... - JJ
 % AntonioDEF - Se ha hecho GP para otras cosas, no para esto (al menos no se encuentra fácilmente si lo hay) y menos para Planet Wars. Es como una aplicación concreta. Resolver un problema concreto vaya, que también es aceptable. ;)
-Using this method it is possible to create rule-based systems defining decisions and actions, in an automatic way, completely different from a human designer doing them from scratch. These rules will be optimised along the algorithm run, considering the bot's performance during evaluation matches. As GP can generate and evolve behavioural rules not taken into account by an expert, the obtained bots could perform better than human-defined ones.  
+This method enables the creation of rule-based systems defining decisions and actions, in an automatic way, completely different from a human designer doing them from scratch. These rules will be optimised along the algorithm run, considering the bot's performance during evaluation matches. As GP can generate and evolve behavioural rules not taken into account by an expert, the obtained bots could perform better than human-defined ones.
 % No entiendo muy bien esta frase: "it is possible to create and rule-based systems"  ¿está bien escrita?   [pedro]
 %FERGU: pero también 'podría" ser peor... no?
 % Efectivamente. O tardar una eternidad. - JJ
 % Antonio - aro, pero eso no lo vamos a decir, no? Todos los métodos tienen sus puntos flacos, no veo por qué habría que destacarlos...
 % FERGU2: He reescrito la frase quitando en "eventually", mirala a ver
-Due to the difficulties when applying Computational Intelligence techniques in the videogames scope, such as noise factor in the evaluation functions, three different fitness approaches have been implemented and tested in this work. Two of them try to minimize this factor by considering additional dynamic information about the evaluation matches, rather than just the final result (the winner), as the other function does.
+Due to the difficulties when applying Computational Intelligence
+techniques in the videogames scope, such as uncertainty in the
+evaluation functions, three different fitness functions have been
+designed and tested in this work. Two of them try to reduce uncertainty by considering additional dynamic information about the
+evaluation matches, rather than just the final result (the winner), as
+the other function does. 
 % AntonioDEF - A ver si ahora está mejor
 %FERGU: qué dificultades?
 	% especificar esos detalles se podría dejar para la Introducción  [pedro]
@@ -71,7 +77,9 @@ Due to the difficulties when applying Computational Intelligence techniques in t
 % pero cuál es ese problema? definidlo de verdad - JJ
 % AntonioDEF:
 % - Problema 1: crear un bot para Planet Wars -> resuelto con GP
-% - Problema 2: paliar el ruido en la evaluación -> intentado resolver con nuevas funciones de fitness
+% - Problema 2: paliar el ruido en la evaluación -> intentado resolver
+% con nuevas funciones de fitness
+%Afú. ¡El problema del ruido en el fitness! -JJ
 In order to prove them, the best obtained agents have been compared with a previous bot, created by an expert player (from scratch) and then optimised by means of Genetic Algorithms. 
 %Three different fitness have been compared: a hierarchical fitness that does not takes into account the whole execution process and two that use information of the battle: slope and area. %FERGU2: explicarlos con una frase
 % AntonioDEF - esto ya no hace falta, se dice antes
@@ -82,7 +90,12 @@ In order to prove them, the best obtained agents have been compared with a previ
 % Antonio - tranquilo que no se cuela, lo revisaré yo mismo buscando el texto '***' que yo siempre pongo. Me gusta más resaltarlo así porque además me hago una idea de lo que ocupa en el texto. ;)
 %FERGU2: Posible frase abajo
 The experiments show that the three used fitness functions generate bots that outperform the optimized human-defined one, being the area-based fitness function the one that produces better results.
-% AntonioDEF - escribir la que realmente sea la mejor, de acuerdo a los resultados
+% AntonioDEF - escribir la que realmente sea la mejor, de acuerdo a
+% los resultados
+% Vamos a ver. ¿Cuál es el selling point del trabajo? ¿Los GPbots o
+% cómo enfocáis el problema del ruido? ¿Cómo probáis que los GPbots
+% son buenos? ¿Cómo probáis que lo es el abordar el problema del
+% ruido? - JJ
 \end{abstract}
 
 %

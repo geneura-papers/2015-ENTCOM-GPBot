@@ -664,7 +664,7 @@ Table \ref{tab:results3config} shows the obtained results after executing 21 tim
 Although these fitness are not comparable, as they obviously apply different metrics, the \textit{Victory-based} fitness achieves values near to the optimum (5) at the end of the run (look at the best individual and average population values). The \textit{Slope} and \textit{Area} fitness yield results under their theoretical optimum, 
 % AntonioDEF - ¿cuál es su óptimo teórico?
 as they depend on more information ranges (variation in the number of ships).
-\textit{Area} obtains slightly better values than \textit{Slope}. Fig.\ref{fig:evolutionFitness} shows how --TO DO COMENTADO EN ESPAÑOL-- %Básicamente quiero decir que en la figura 2 se muestra como el fitness del mejor individuo de la población mejora a medida que transcurren las generaciones, que es lo que debe suceder en un EA. De igual manera, la figura 3 muestra como el promedio de la población también mejora a medida que van transcurriendo las generaciones.
+\textit{Area} obtains slightly better values than \textit{Slope}. Fig.\ref{fig:evolutionFitness} shows how --TO DO COMENTADO-- %Básicamente quiero decir que en la figura 2 se muestra como el fitness del mejor individuo de la población mejora a medida que transcurren las generaciones, que es lo que debe suceder en un EA. De igual manera, la figura 3 muestra como el promedio de la población también mejora a medida que van transcurriendo las generaciones.
 
 %La figura 4 muestra el tamaño del árbol de los mejores individuos de cada generación. Los tres métodos de fitness estudiados producen árboles cada vez más grandes (o complejos) en las sucesivas generaciones. El fitness basado en victorias es el que menor crecimiento tiene, llegando a tener árboles de poco tamaño que aún así consiguen ser el mejor individuo de la población.
 
@@ -958,21 +958,42 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
 
 %Genetic programming is a method that can help to create competitive bots for RTS games. % ?Eso es una conclusi?? ?Lo hab?s concluido en el paper? Empezad las conclusiones por "en este trabajo nos propon?mos probar..." - JJ
 The objective of this work is to validate if using Genetic Programming
-can create competitive bots for RTS games, and study the behaviour of
+can create competitive bots for RTS games, %nobody has done it before?
+                                %- JJ
+ and study the behaviour of
 % study behavior or find whichs fitness function is better? - JJ
 different fitness functions, as they can affect directly to the
 creation of these bots. Three different fitness functions have been
 compared to generate bots for the Planet Wars game. A competitive bot
 available in the literature (GeneBot) has been used to evaluate the
-generated individuals (fighting against it). This bot was the best one
+generated individuals (fighting against it). %Is this the best way of
+                                %evaluating new bots? - JJ
+ This bot was the best one
 obtained in an evolutionary process which optimized different
 parameters inside a human-designed behavioural engine.  
 
 
-Different information of the run of the game is taken into account in these functions to obtain a metric to guide the evolution. %Although a turn-based fitness behaves more robustly than other methods, the area-based fitness achieves better percentage of victories in more produced robots. % robots o bots? - JJ
+Different game metrics are taken into account in these functions to
+obtain a metric to guide the evolution. %Although a turn-based fitness
+                                %behaves more robustly than other
+                                %methods, the area-based fitness
+                                %achieves better percentage of
+                                %victories in more produced robots. %
+                                %robots o bots? - JJ 
 %FERGU3: esto ultimo lo estoy escribiendo a las 3 de la mañana y no sé que pongo
 % Por lo que más queráis, revisad el inglés - JJ FERGU4: ya, vaya horror.
-The results show differences depending on the fitness used: a victory-based fitness that prioritizes the number of victories generate better bots in average than fitness that take into account the number of spaceships during all the run of the battle. This can be explained because this fitness exploits the individuals to generate more aggressive bots. However, their performance decreases confronting versus different types of bots.
+The results show differences depending on the fitness used: % hey, big
+                                % deal - JJ
+ a victory-based fitness that prioritizes the number of victories
+ generates better bots on average than fitness that take into account
+ the number of spaceships during all the run of the battle. % how
+                                % many? 
+This can
+ be explained because this fitness exploits the individuals to
+% exploits the individuals? really? - JJ
+ generate more aggressive bots. However, their performance decreases
+ confronting them versus different types of bots.  % so it is not so
+                                % good? What gives? - JJ
 
 % La conclusión tiene que estar relacionada con el título. ¿Qué habéis concluido con respecto a GP? ¿Qué tipo de GP? ¿Qué población? ¿No decís nada más que del fitness? - JJ FERGU
 
@@ -981,17 +1002,24 @@ The results show differences depending on the fitness used: a victory-based fitn
 %Results show that it is important to choose carefully the fitness that is going to be used to evaluate the evolved bots and to validate it using some kind of benchmark. % Some kind? Which kind? - JJ
 % ¿Eso es lo único que muestran? - JJ FERGU4: joer, menuda mierda de frase he escrito...
 
-In future work, other rules will be added to the proposed algorithm (for example, ones analysing the map) and more competitive enemies will be used. In addition, the approach could be implemented and tested in more complex RTS games, such as Starcraft, or even in different videogames like Unreal\texttrademark~ or Super Mario\texttrademark~.
+In future work, other rules will be added to the proposed algorithm
+(for example, ones analysing the map) and more competitive enemies
+will be used. In addition, the approach could be implemented and
+tested in more complex RTS games, such as Starcraft, or even in
+different videogames like Unreal\texttrademark~ or Super
+Mario\texttrademark~. We will also use other ways of taking into
+account the uncertainty in the fitness, such as using a Wilcoxon-based
+method to compare them \cite{merelo2016statistical}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ACKNOWLEDGEMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO: actualizar con los nuevos proyectos
 \section*{Acknowledgements}
 This work has been supported in part by projects 
-EPHEMECH (TIN2014-56494-C4-3-P, Spanish Ministerio de Economía y Competitividad), 
+EPHEMECH (TIN2014-56494-C4-3-P, Spanish Ministerio de Econom�a y Competitividad), 
 PROY-PP2015-06 (Plan Propio 2015 UGR), 
-PETRA (SPIP2014-01437, funded by Dirección General de Tráfico),
+PETRA (SPIP2014-01437, funded by Direcci�n General de Tr�fico),
 CEI2015-MP-V17 (awarded by CEI BioTIC Granada), and 
-PRY142/14 (funded by Fundación Pública Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigación).
+PRY142/14 (funded by Fundaci�n P�blica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigaci�n).
 
 \bibliographystyle{elsarticle-num}
 \bibliography{gpbot-fitness-entcom}

@@ -31,8 +31,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   TITLE   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Testing and Analysing Genetic Programming-based Bots for a Real-Time Strategy Game}
+\title{Analyzing the Influence of the Fitness Function on Genetic Programming-based Bots for a Real-Time Strategy Game}
 % What problem are we solving? Why do we need to test and analyse? - JJ
+% Antonio - Mejorado
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   AUTHORS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -46,60 +47,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ABSTRACT   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{abstract}
-The design of the Artificial Intelligence (AI) engine for an autonomous agent (bot) in a game is always a difficult task usually done by an expert human player, who has to transform his/her knowledge into a behavioural engine.
-This paper presents an approach for conducting this task by means of Genetic Programming (GP) application. 
-% ¿y eso qué tiene de original? - JJ
-% AntonioDEF - en este ámbito parece ser que es original. No se ha usado mucho (o nada)
-% Me refiero a por qué debería GP funcionar mejor que otro tipo de sistema - JJ
-This algorithm is applied to design decision trees to be used as bot's AI in one vs one battles inside the RTS game Planet Wars. 
-% Este paper, como todos, resuelve un problema. ¿Qué problema resuelve? No me cuentes lo que has hecho, cuéntame primero lo que quieres hacer. 
-% Antonio - hecho. Creo que ha quedado bien. ;)
-%FERGU2: No sé si poner acrónimos en el abstract se estila... De todas maneras, como dice JJ, podemos enfocarlo a "Para hacer GP hace falta una función fitness buena, antes se han usado estas, pero eran regulares. En este paper comparamos 3 funciones distintas que tienen en cuenta más o menos información para ver cuál es mejor" ¿Cambiamos el título a "Comparing different fitness functions for the creation of bots using GP"?
-% Siempre el problema por delante: ya ha hecho la gente GP para esto, pero el diseño de funciones de fitness sigue sin ser trivial... - JJ
-% AntonioDEF - Se ha hecho GP para otras cosas, no para esto (al menos no se encuentra fácilmente si lo hay) y menos para Planet Wars. Es como una aplicación concreta. Resolver un problema concreto vaya, que también es aceptable. ;)
-This method enables the creation of rule-based systems defining decisions and actions, in an automatic way, completely different from a human designer doing them from scratch. These rules will be optimised along the algorithm run, considering the bot's performance during evaluation matches. As GP can generate and evolve behavioural rules not taken into account by an expert, the obtained bots could perform better than human-defined ones.
-% No entiendo muy bien esta frase: "it is possible to create and rule-based systems"  ¿está bien escrita?   [pedro]
-%FERGU: pero también 'podría" ser peor... no?
-% Efectivamente. O tardar una eternidad. - JJ
-% Antonio - aro, pero eso no lo vamos a decir, no? Todos los métodos tienen sus puntos flacos, no veo por qué habría que destacarlos...
-% FERGU2: He reescrito la frase quitando en "eventually", mirala a ver
-Due to the difficulties when applying Computational Intelligence
-techniques in the videogames scope, such as uncertainty in the
-evaluation functions, several different fitness functions have been
-designed and tested in this work. 
-% Are they all the possible solutions? Why these three and not 5 or
-% only one? - JJ
-Two of them try to reduce uncertainty by considering additional dynamic information about the
-evaluation matches, rather than just the final result (the winner), as
-the other function does. 
-% AntonioDEF - A ver si ahora está mejor
-%FERGU: qué dificultades?
-	% especificar esos detalles se podría dejar para la Introducción  [pedro]
-% Antonio - Such as noise in the fitness function. XD
-% Algunos resultados preliminares del fitness ya se han publicado en abierto. Haz pull del  ultimo geneura.bib y mira wilcoxon:ga - JJ
-% Antonio - JJ, estamos hablando del problema en los videojuegos, no quiere decir que sea el único sitio en el que hay ruido. Pongo la cita a tu Wilcoxon en el texto. ;)
-% pero cuál es ese problema? definidlo de verdad - JJ
-% AntonioDEF:
-% - Problema 1: crear un bot para Planet Wars -> resuelto con GP
-% - Problema 2: paliar el ruido en la evaluación -> intentado resolver
-% con nuevas funciones de fitness
-%Afú. ¡El problema del ruido en el fitness! -JJ
-In order to prove them, the best obtained agents have been compared with a previous bot, created by an expert player (from scratch) and then optimised by means of Genetic Algorithms. 
-%Three different fitness have been compared: a hierarchical fitness that does not takes into account the whole execution process and two that use information of the battle: slope and area. %FERGU2: explicarlos con una frase
-% AntonioDEF - esto ya no hace falta, se dice antes
-%***
-%Los resultados indican que los bots creados con GP son más competentes, y que el uso de la función de fitness XXX es la que mejores agentes genera.
-%***
-% agh. No pongáis esto nunca así, que a veces se cuela en la versión final. Ponedlo en comentarios - JJ
-% Antonio - tranquilo que no se cuela, lo revisaré yo mismo buscando el texto '***' que yo siempre pongo. Me gusta más resaltarlo así porque además me hago una idea de lo que ocupa en el texto. ;)
-%FERGU2: Posible frase abajo
-The experiments show that the three used fitness functions generate bots that outperform the optimized human-defined one, being the area-based fitness function the one that produces better results.
-% AntonioDEF - escribir la que realmente sea la mejor, de acuerdo a
-% los resultados
-% Vamos a ver. ¿Cuál es el selling point del trabajo? ¿Los GPbots o
-% cómo enfocáis el problema del ruido? ¿Cómo probáis que los GPbots
-% son buenos? ¿Cómo probáis que lo es el abordar el problema del
-% ruido? - JJ
+Genetic Programming (GP) is a classical evolutionary technique used to create tree- or rule-based systems. In this paper, one approach of a GP algorithm is described. Its aim is to automatically create the behavioural engine, i.e. the set decision of rules, that will guide the actions of an autonomous agent (\textit{Bot}), to be a competitive adversarial playing the real-time strategy game Planet Wars.
+This algorithm uses an evaluation or fitness function in order to assign a value to every bot (individual) being evolved meaning its quality, regarding the objectives of the game.
+The work presents a deep analysis on the performance of three different fitness functions, based one in the concept of victories, and the other two in dynamic information about the evaluation matches. 
+The analysis testes several aspects of the bots, in addition of their final performance on battles, such as the evolution of the behavioural trees themselves or the influence of noise/uncertainty present in this context (in games).
+% Antonio - TODO: Poner las conclusiones reales de este trabajo
+%The experiments show that the three used fitness functions generate bots that outperform the optimized human-defined one, being the area-based fitness function the one that produces better results.
 \end{abstract}
 
 %
@@ -931,7 +884,12 @@ In future work, other rules will be added to the proposed algorithm (for example
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ACKNOWLEDGEMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO: actualizar con los nuevos proyectos
 \section*{Acknowledgements}
-This work has been supported in part by FPU research grant AP2009-2942 and projects SIPESCA (G-GI3000/IDIF, under Programa Operativo FEDER de Andalucía 2007-2013), CANUBE (CEI2013-P-14), ANYSELF (TIN2011-28627-C04-02) and PYR-2014-17 included in GENIL - CEI BIOTIC (Granada).
+This work has been supported in part by projects 
+EPHEMECH (TIN2014-56494-C4-3-P, Spanish Ministerio de Economía y Competitividad), 
+PROY-PP2015-06 (Plan Propio 2015 UGR), 
+PETRA (SPIP2014-01437, funded by Dirección General de Tráfico),
+CEI2015-MP-V17 (awarded by CEI BioTIC Granada), and 
+PRY142/14 (funded by Fundación Pública Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigación).
 
 \bibliographystyle{elsarticle-num}
 \bibliography{gpbot-fitness-entcom}

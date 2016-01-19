@@ -21,7 +21,7 @@
 \usepackage{verbatim}
 \usepackage{moreverb} 
 \usepackage{url}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 %\usepackage[spanish]{babel}
 \usepackage{url}
 
@@ -39,7 +39,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   AUTHORS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\author{A. FernÃ¡ndez-Ares, A. M. Mora, P. GarcÃ­a-SÃ¡nchez, P. A. Castillo, J.J. Merelo}
+\author{A. Fern{\'a}ndez-Ares, A. M. Mora, P. Garc{\'i}a-S{\'a}nchez, P. A. Castillo, J.J. Merelo}
 \ead{\{antares, amorag, pgarcia, pedro, jmerelo\}@geneura.ugr.es}
 \address{Departamento de Arquitectura y TecnologÃ­a de Computadores.\\ ETSIIT - CITIC. University of Granada, Spain}
 
@@ -104,13 +104,13 @@ Corporate mobile security \sep User-centric systems \sep Self-adaptation \sep Mu
 
 Real-Time Strategy (RTS) games are a sub-genre of computer games where the action takes place in an arena and contenders fight to control the resources. These games are played in real-time, that is, there are no turns, as in chess, for example. This kind of games has become an interesting part in Computational Intelligence research, as they can be seen as a simplification of more complex environments, such as road traffic or finances prediction. As in these environments, RTS dealt with uncertainty and real-time planning, so, the application of different CI techniques have been applied in the past \cite{Lara2013review}.
 
-The automatic generation of agents (also called {\em bots}) that play this kind of games is one of the most prominent areas. For example, Evolutionary Algorithms (EAs) have been previously used for the creation of bots in games such as {\em Planet Wars} \cite{Genebot_CEC11,ExpGenebot_CIG2012} or {\em StarCraft} \cite{Garcia15Starcraft}, among others. In these works, different EAs, such as Genetic Algorithms \cite{ExpGenebot_CIG2012} or Genetic Programming \cite{Garcia14Treedepth}, have been used. All these algorithms have in common the usage of a {\em fitness} function that is used to measure the quality of the behaviour of the bots. Different fitness functions have been used in the past, for example the game score, or the number of victories against other bots. However, these functions have to deal with the uncertainty due the stochastic nature of the bots or the different arenas used \cite{wilcoxon:ga}. Also, choosing a proper fitness function may produce different behaviours of generated bots. For example, a evolutionary process based on a victory-based fitness function would create `aggressive' bots, while one that also has into account the number of different structures created may generate a more `strategic' bot that could win in more different types of games. 
+The automatic generation of agents (also called {\em bots}) that play this kind of games is one of the most prominent areas. For example, Evolutionary Algorithms (EAs) have been previously used for the creation of bots in games such as {\em Planet Wars} \cite{Genebot_CEC11,ExpGenebot_CIG2012} or {\em StarCraft} \cite{Garcia15Starcraft}, among others. In these works, different EAs, such as Genetic Algorithms?\cite{ExpGenebot_CIG2012} or Genetic Programming \cite{Garcia14Treedepth}, have been used. All these algorithms have in common the usage of a {\em fitness} function that is used to measure the quality of the behaviour of the bots. Different fitness functions have been used in the past, for example the game score, or the number of victories against other bots. However, these functions have to deal with the uncertainty due the stochastic nature of the bots or the different arenas used \cite{wilcoxon:ga}. Also, choosing a proper fitness function may produce different behaviours of generated bots. For example, a evolutionary process based on a victory-based fitness function would create `aggressive' bots, while one that also has into account the number of different structures created may generate a more `strategic' bot that could win in more different types of games. 
 
 Therefore, our aim in this paper is to compare the generated bots evaluated with different types of fitness, performing a proper analysis studying the generated rules and the behaviour of the bots against unknown enemies. In this paper we have tested three different fitness functions:
 \begin{itemize}
 \item A victory based fitness, that only takes into account the number of games won.
 \item A slope fitness: that measures the behaviour during all the game (not only at the end, as in the previous one), using the slope of the number of units during the game.
-\item An area fitness: as in the previous one, it takes into account the number of units during in the game, but to calculate the integral. %PABLO: por qué esta diferenciación en estas dos ultimas?
+\item An area fitness: as in the previous one, it takes into account the number of units during in the game, but to calculate the integral. %PABLO: por qu? esta diferenciaci?n en estas dos ultimas?
 \end{itemize}
 
 We have used GP to generate the bots, because it provides a good mechanism to generate rules from scratch, giving the possibility to create very different behaviours. The game used is {\em Planet Wars}, as it is simplest game that model an RTS: only one type of resources and units. 
@@ -216,7 +216,7 @@ In order to prove the method value, the resulting agents will be compared with a
 
 
 The Genetic Programming-based bot or {\em GPBot} \cite{Garcia14Treedepth} evolves a set of rules which, in turn, models a Decision Tree.
-%FERGU: quitado lo del turno. Cada turno no modela un árbol nuevo.
+%FERGU: quitado lo del turno. Cada turno no modela un ?rbol nuevo.
 % Antonio - "in turn" significa "a su vez". ;)
 During the evolution, every individual in the population (a tree) must be evaluated. To do so, the tree is set as the behavioural engine of an agent, which is then placed in a map against a rival in a Planet Wars match. Depending on the obtained results, the agent (i.e. the individual) gets a fitness value, that will be considered in the evolutionary process as a measure of its validity. 
 %FERGU: i.e. -> that is

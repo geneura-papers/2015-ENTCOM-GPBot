@@ -34,6 +34,8 @@
 \title{Analyzing the Influence of the Fitness Function on Genetic Programming-based Bots for a Real-Time Strategy Game}
 % What problem are we solving? Why do we need to test and analyse? - JJ
 % Antonio - Mejorado
+% What about genetically programmed bots? Or bots evolved via Genetic
+% Programming? - JJ
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   AUTHORS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -47,12 +49,41 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ABSTRACT   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{abstract}
-Genetic Programming (GP) is a classical evolutionary technique used to create tree- or rule-based systems. In this paper, one approach of a GP algorithm is described. Its aim is to automatically create the behavioural engine, i.e. the set decision of rules, that will guide the actions of an autonomous agent (\textit{Bot}), to be a competitive adversarial playing the real-time strategy game Planet Wars.
-This algorithm uses an evaluation or fitness function in order to assign a value to every bot (individual) being evolved meaning its quality, regarding the objectives of the game.
-The work presents a deep analysis on the performance of three different fitness functions, based one in the concept of victories, and the other two in dynamic information about the evaluation matches. 
-The analysis testes several aspects of the bots, in addition of their final performance on battles, such as the evolution of the behavioural trees themselves or the influence of noise/uncertainty present in this context (in games).
+% What problem do we try to solve? - JJ
+Genetic Programming (GP) is a classical evolutionary technique used to
+evolve expressions represented via a tree. % This is something you
+                                % should say in an abstract? That is
+                                % really the abstract of your work? 
+In this paper we use GP % why? 
+to automatically create the
+behavioural engine, i.e. the set  of decision rules, that will guide
+the actions of an autonomous agent (\textit{Bot}), to compete
+adversarially playing the real-time strategy game Planet Wars. % why
+                                % this game?
+This algorithm uses evaluates every bot and evolves a population of
+them taking the score obtained into account. % That's what GP does. So
+                                % what?
+%However, evaluation of every solution is not straightforward. Several
+%elements should be taken into accout, such as... that is why in this
+%paper... - JJ
+The work presents a deep analysis on the performance of three %deep as
+                                %compared to what? - JJ
+% In previous work, we did an initial approach to, obtaining ... but
+% in this one, we will try to prove... - JJ
+different fitness functions, based one in the concept of victories, % why three? why victories? Why everything? - JJ
+and the other two in dynamic information about the evaluation
+matches.  % why? - JJ
+The analysis tests several aspects of the bots, in addition of their
+final performance on battles, such as the evolution of the behavioural
+trees themselves or the influence of noise/uncertainty present in this
+context (in games). 
 % Antonio - TODO: Poner las conclusiones reales de este trabajo
-%The experiments show that the three used fitness functions generate bots that outperform the optimized human-defined one, being the area-based fitness function the one that produces better results.
+%The experiments show that the three used fitness functions generate
+%bots that outperform the optimized human-defined one, being the
+%area-based fitness function the one that produces better results.
+% What is the selling point? Using GP? Testing different fitnesses? Is
+% GP important? Is any of the fitnesses? What are the conclusions and
+% how can you generalize them? - JJ
 \end{abstract}
 
 %

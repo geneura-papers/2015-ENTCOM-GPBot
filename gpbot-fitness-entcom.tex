@@ -9,7 +9,7 @@
 \usepackage{rotating}
 \usepackage{subfigure}
 \usepackage{multirow}
-%\usepackage[boxed]{algorithm2e}
+%\usepackage[boxed]{algorithm2e}l
 %\usepackage{algpseudocode}
 
 \providecommand{\SetAlgoLined}{\SetLine}
@@ -37,9 +37,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   AUTHORS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\author{A. Fernández-Ares, A. M. Mora, P. García-Sánchez, P. A. Castillo, J.J. Merelo}
+\author{A. FernÃ¡ndez-Ares, A. M. Mora, P. GarcÃ­a-SÃ¡nchez, P. A. Castillo, J.J. Merelo}
 \ead{\{antares, amorag, pgarcia, pedro, jmerelo\}@geneura.ugr.es}
-\address{Departamento de Arquitectura y Tecnología de Computadores.\\ ETSIIT - CITIC. University of Granada, Spain}
+\address{Departamento de Arquitectura y TecnologÃ­a de Computadores.\\ ETSIIT - CITIC. University of Granada, Spain}
 
 %\maketitle
 
@@ -79,27 +79,27 @@ Two levels of AI are usually considered in RTS games \cite{ahlquist_game_ai08}: 
 These two level of actions, which can be considered {\em strategic} and {\em tactical}, make them inherently difficult to be designed by a human; but this difficulty is increased by their real-time nature (usually addressed by constraining the time that each bot can use to make a decision) and also for the huge search space that is implicit in its action.
 
 For these reasons, in this work a Genetic Programming (GP) approach is proposed % si ya lo ha hecho alguien, ese no puede ser el selling point del paper - JJ
-as an automatic method to create the Artificial Intelligence (AI) engine %no es un "AI" engine. Es un engine creado con métodos de soft computing - JJ
-% AntonioDEF - da igual cómo se haya creado, el conjunto de reglas que definen el comportamiento de un bot son su motor de IA. Se llama así, vaya.
+as an automatic method to create the Artificial Intelligence (AI) engine %no es un "AI" engine. Es un engine creado con mÃ©todos de soft computing - JJ
+% AntonioDEF - da igual cÃ³mo se haya creado, el conjunto de reglas que definen el comportamiento de un bot son su motor de IA. Se llama asÃ­, vaya.
  of autonomous agents in a RTS. The objective of GP is to create functions or programs to solve determined problems, moreover the individual representation is usually in form of a tree, formed by operators (or {\em primitives}) and variables ({\em terminals}). 
 %Thus GP can be applied to the generation of rule-based systems, such as Decision Trees [***REF***], which can, in turn, define the behavioural engine of a bot in this case. 
 The aim of using GP in this scope is the creation of behavioural rule-based engines following an heuristic, algorithmic and automatic process. Thus, instead of implementing them from scratch by a human (expert or not), this method will define a set of rules that could be more complex (or simpler) than those defined by the humans. 
 In addition, this algorithm is able to evaluate every possible set of rules, assigning to that set a value according to the corresponding bot's performance (during battles). Thus, these sets will be improved (evolved) along the algorithm run in order to increase that bot's performance. 
-% ¿qué? No me entero de nada - JJ
+% Â¿quÃ©? No me entero de nada - JJ
 % AntonioDEF - lo he reescrito a ver si se entiende mejor. ;)
 
-% Pero ¿no creéis que ya es hora de que presentéis el trabajo como algo más general, y no cómo una solución particular de un problema particular, el Challenge e AI, que es de hace 4 años? Hablad de estrategia, de los problemas que presentan, todo eso. Esto ya no es relevante a estas alturas y deberías de empezar a hablar de él en metodología. Vamos a desarrollar una estrategia para hacer tal, y para ver si funciona lo vamos a probar en Planet War. - JJ
-% Antonio - hecho, creo que ahora está mejor. ;)
+% Pero Â¿no creÃ©is que ya es hora de que presentÃ©is el trabajo como algo mÃ¡s general, y no cÃ³mo una soluciÃ³n particular de un problema particular, el Challenge e AI, que es de hace 4 aÃ±os? Hablad de estrategia, de los problemas que presentan, todo eso. Esto ya no es relevante a estas alturas y deberÃ­as de empezar a hablar de Ã©l en metodologÃ­a. Vamos a desarrollar una estrategia para hacer tal, y para ver si funciona lo vamos a probar en Planet War. - JJ
+% Antonio - hecho, creo que ahora estÃ¡ mejor. ;)
 In order to implement and test this proposal, we have considered the game {\em Planet Wars}, a RTS which was presented under the Google AI Challenge 2010\footnote{\url{http://planetwars.aichallenge.org/}}. It has been used by several authors for the study of computational intelligence techniques in RTS games
 \cite{Genebot_CEC11,ExpGenebot_CIG2012,Lara_PCG_PlanetWars14}, due to it is a simplification (just one type of resource and one type of unit) of the elements that those commercial RTSs present. 
 % FERGU quitar el "as those previously cited", que queda raro
 % Antonio - hecho
-% y una vez más decid qué problema queréis solucionar. Si es como decís en el título, GP para RTS, es interesante. Si es planet wars, no lo es a menos que haya competiciones actuales, etc, etc. - jj
-% Antonio - creo que ahora está mejor explicado. ;)
+% y una vez mÃ¡s decid quÃ© problema querÃ©is solucionar. Si es como decÃ­s en el tÃ­tulo, GP para RTS, es interesante. Si es planet wars, no lo es a menos que haya competiciones actuales, etc, etc. - jj
+% Antonio - creo que ahora estÃ¡ mejor explicado. ;)
 Thus, the players in this game just can manage planets and starships (or just ships). The aim is conquering the whole galaxy in the current map, against an enemy
 %\footnote{can be more than one opponents,but we are focusing in 1 vs 1 battles in this work} 
 trying to do the same. The planets can produce new ships and the ships are destroyed one by one for both players when they crash. 
-%FERGU: si no se va a hacer nada 4vs4 quitar de todo el paper que también existe la posibilidad, que puede liar.
+%FERGU: si no se va a hacer nada 4vs4 quitar de todo el paper que tambiÃ©n existe la posibilidad, que puede liar.
 % Antonio - Ok
 
 %The objective of the player is to conquer enemy and neutral planets in a space-like simulator. Each player has planets (resources) that produce ships (units) depending on a growth-rate. The player must send these ships to other planets (literally, crashing towards the planet) to conquer them. A player win if he is the owner of all the planets. As requirements, the limit to calculate next actions (this time window is called {\em turn}\footnote{Although in this work we are using this term, note that the game is always performed in real time.}) is only a second, and no memory about the previous turns must be used.  Figure \ref{fig:naves} shows a screen capture of the game. The reader is referred to \cite{Mora2012Genebot,FernandezAres2012adaptive} for more details about the game.
@@ -124,32 +124,32 @@ which evaluates all the individuals in the population by playing five different 
 % Antonio - ok
 Due to this, the fitness value for an individual could dramatically vary between different matches, since it depends on the pseudo-stochastic opponent's actions, and also on its own non-deterministic decisions.
 The other two presented fitness functions also point to reduce the influence of noise in the evolution, but using additional data obtained during the execution of the bot.
-%FERGU: si buscan lo mismo poner al principio "las 3 funciones". No tiene sentido decir "Vamos a usar una función para tratar el ruido y otras dos que también" xD
-% Antonio - Lo he aclarado mejor. Se trata de que esas funciones incluyen nuevas técnicas para tratar el ruido. ;)
+%FERGU: si buscan lo mismo poner al principio "las 3 funciones". No tiene sentido decir "Vamos a usar una funciÃ³n para tratar el ruido y otras dos que tambiÃ©n" xD
+% Antonio - Lo he aclarado mejor. Se trata de que esas funciones incluyen nuevas tÃ©cnicas para tratar el ruido. ;)
 % FERGU2: cambiado el final de la frase diciendo que se tiene en cuenta toda la run del juego
 Thus, they consider the number of ships generated by each bot rather than the number of turns and compute, respectively, a \textit{linear regression} (Slope) based on the percentage of ships with respect to the total, and \textit{the integral} (Area) of the function which represents these numbers.
 All of them consider the final results of every individual (bot) after the aforementioned five matches (on average).
 
 The work is then focused on proving the value of these evolved rule-based control systems for the agents. To this end, several experiments have been conducted, considering the aforementioned fitness functions, and an evolutionary bot as rival. This bot, called GeneBot, was presented in a previous work \cite{Genebot_CEC11}. 
-%FERGU: our previous evolutionary bots -> bots previously used in the literature (que parece que el paper dice "somos los únicos que hacemos esto"
-% Antonio - Yo no veo que digamos que somos los únicos, que (casi) lo somos, (XD), pero si dices en la literatura parece más general de lo que es... una evolución de un trabajo anterior.
-% AntonioDEF - ale, he dejado que sólo se usa un bot (Genebot)
+%FERGU: our previous evolutionary bots -> bots previously used in the literature (que parece que el paper dice "somos los Ãºnicos que hacemos esto"
+% Antonio - Yo no veo que digamos que somos los Ãºnicos, que (casi) lo somos, (XD), pero si dices en la literatura parece mÃ¡s general de lo que es... una evoluciÃ³n de un trabajo anterior.
+% AntonioDEF - ale, he dejado que sÃ³lo se usa un bot (Genebot)
 
 %The rest of the work is structured as follows: after the state of the art, the description of our agent is presented in Section \ref{sec:agent}. Then, the experimental setup conduced with the GP is shown (Section \ref{sec:experiments}). Finally, results, conclusions and future works are discussed.
 %
 
-% Genial, saltáis del problema a decir qué habéis hecho en el paper sin nada enmedio. El clásico "he hecho esto sobre esto y me ha salido esto" que es como NO tiene que escribirse un paper. Algún día aprenderéis, pero mientras tanto os vuelvo a repetir el esquema, la "narrativa", que tiene que seguir un paper
-% Queremos resolver un problema: generación de estrategias en RTS
-% Hasta ahora, otros lo han hecho así: y nosotros asao: usando parametrización de una estrategia heurística, pero tenía problemas como este y este
-% En este trabajo queremos hacer una búsqueda más eficiente del espacio de estrategias usando GP. Y para ello vamos a usar un juego RTS en particular, tal y tal. - JJ
-% Antonio - Creo que ahora está mejor explicado.
+% Genial, saltÃ¡is del problema a decir quÃ© habÃ©is hecho en el paper sin nada enmedio. El clÃ¡sico "he hecho esto sobre esto y me ha salido esto" que es como NO tiene que escribirse un paper. AlgÃºn dÃ­a aprenderÃ©is, pero mientras tanto os vuelvo a repetir el esquema, la "narrativa", que tiene que seguir un paper
+% Queremos resolver un problema: generaciÃ³n de estrategias en RTS
+% Hasta ahora, otros lo han hecho asÃ­: y nosotros asao: usando parametrizaciÃ³n de una estrategia heurÃ­stica, pero tenÃ­a problemas como este y este
+% En este trabajo queremos hacer una bÃºsqueda mÃ¡s eficiente del espacio de estrategias usando GP. Y para ello vamos a usar un juego RTS en particular, tal y tal. - JJ
+% Antonio - Creo que ahora estÃ¡ mejor explicado.
 
-%Genome? Quien ha hablado de genome? Y de size? Y qué importa a estas alturas? - JJ
+%Genome? Quien ha hablado de genome? Y de size? Y quÃ© importa a estas alturas? - JJ
 % Antonio - Lo he quitado.
 
 %GP has been used to evolve LISP (LISt Processing) programs \cite{Koza1990Tools}, or XSLT (eXtensible Stylesheet Language Transformations) scripts \cite{Garcia2008XSLT}, among others.
-% Hombre, podíais haberlo dejado... - JJ
-% Antonio - No pintaba nada y nos falta espacio (nos sobran páginas, vaya)... XD
+% Hombre, podÃ­ais haberlo dejado... - JJ
+% Antonio - No pintaba nada y nos falta espacio (nos sobran pÃ¡ginas, vaya)... XD
 
 
 
@@ -161,7 +161,7 @@ The work is then focused on proving the value of these evolved rule-based contro
 
 \subsection{Genetic Programming}
 
-Genetic Programming (GP) \cite{GP_Koza92} is a kind of Evolutionary Algorithm (EA), that is, a probabilistic search and optimization algorithms gleaned from the model of darwinistic evolution, based on the idea that in nature structures undergo adaptation. EAs work on a population of possible solutions (individuals) for the target problem and use a selection method that favours better solutions and a set of operators that act upon the selected solutions. %coñe, si has dicho que es un tipo de, cómo no va a compartirlos. Lo cambio.  -JJ
+Genetic Programming (GP) \cite{GP_Koza92} is a kind of Evolutionary Algorithm (EA), that is, a probabilistic search and optimization algorithms gleaned from the model of darwinistic evolution, based on the idea that in nature structures undergo adaptation. EAs work on a population of possible solutions (individuals) for the target problem and use a selection method that favours better solutions and a set of operators that act upon the selected solutions. %coÃ±e, si has dicho que es un tipo de, cÃ³mo no va a compartirlos. Lo cambio.  -JJ
 % AntonioDEF - ok
 However, GP is a structural optimisation technique where the individuals are represented as hierarchical structures (typically tree) and the size and shape of the solutions are not defined a priori as in other methods from the field of evolutionary computation, but they evolve along the generations. So, the main difference with respect to GAs is the individual representation and the genetic operators to apply, which are mainly focused on the management (and improvement) of this kind of structure.
 The flow of a GP algorithm is the same as any other EA: a population is created at random, each individual in the population is evaluated using a fitness function, the individuals that performed better in the evaluation process have a higher probability of being selected as parents for the new population than the rest and a new population is created once the individuals are subjected to the genetic operators of crossover and mutation with a certain probability. The loop is run until a predefined termination criterion is met.
@@ -181,23 +181,23 @@ version of the game Galcon, aimed at performing bot's fights which was used as b
  \label{figura:PlanetWars1}
  \end{figure}
 
-A Planet Wars match takes place on a map (see Fig. \ref{figura:PlanetWars1}) %FERGU: por qué estaba comentada la referencia a la figura?
+A Planet Wars match takes place on a map (see Fig. \ref{figura:PlanetWars1}) %FERGU: por quÃ© estaba comentada la referencia a la figura?
 that contains several planets (neutral, enemies or owned), each one of them with a number assigned to it that represents the quantity of ships that the planet is currently hosting. 
 
 The aim of the game is to defeat all the ships in the opponent's planets. Although Planet Wars is a RTS game, this implementation has transformed it into a turn-based game, in which each player has a maximum number of turns to accomplish the objective. At the end of the match, the winner is the player that remains alive, or that which owns more ships if more than one survives. 
 
 There are two strong constraints which determine the possible methods to apply to design a bot: a simulated turn takes \textit{just one second}, 
-%FERGU: falso, es el máximo tiempo para calcular una acción
-% Antonio - y qué es un turno entonces sino el tiempo para decidir una acción (o conjunto de acciones)?
+%FERGU: falso, es el mÃ¡ximo tiempo para calcular una acciÃ³n
+% Antonio - y quÃ© es un turno entonces sino el tiempo para decidir una acciÃ³n (o conjunto de acciones)?
 and the bot is \textit{not allowed to store any kind of information} about its former actions, about the opponent's actions or about the state of the game (i.e., the game's map). 
 %FERGU: i.e. no quiere decir "es decir", quiere decir "por ejemplo". Poner "that is,"
-% Antonio - creo que te lias, i.e. significa "id est", que significa "esto es/es decir". Creo que te confundes con e.g. que sí significa "for example".
+% Antonio - creo que te lias, i.e. significa "id est", que significa "esto es/es decir". Creo que te confundes con e.g. que sÃ­ significa "for example".
 %FERGU2: es verdad xD
 
 Therefore, the aim in this paper is to study the improvement of a bot according to the state of the map in each simulated turn (input), returning a set of actions to perform in order to fight the enemy, conquering its resources, and, ultimately, wining the game. 
 %In the original game, only two bots are faced but in this paper it is studied what happen when we simulate 4 on 4 battles, i.e., when 4 bots are fighting in the same map. 
 %FERGU: no se va a hacer 4 vs 4: quitadlo
-% Antonio - Cierto es. se me había pasado. :D
+% Antonio - Cierto es. se me habÃ­a pasado. :D
 
 %-----------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%% STATE OF THE ART %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -211,15 +211,15 @@ Among other techniques, Evolutionary Algorithms have been widely used as a  Comp
 
 One of these types, Genetic Programming, has been proved as a good tool for developing strategies in games, achieving results comparable to human, or human-based competitors \cite{Sipper2007gameplaying}. They also have obtained higher ranking than solvers produced by other techniques or even beating high-ranking humans \cite{Elyasaf2012FreeCell}. GP has also been used in different kind of games, such as board-games \cite{Benbassat2012Reversi}, or (in principle) simpler games such as Ms. Pac-Man \cite{Brandstetter2012PacMan} and Spoof \cite{Wittkamp2007spoof} and even in modern video-games such as First Person Shothers (FPS) (for example, Unreal\texttrademark~ \cite{Esparcia2013GPunreal}). With respect to RTS games, there are just a few applications on pathfinding \cite{pathfinding_GP_RTS} and definition of tactics in an abstract tactical game \cite{KeaveneyO09_GP_RTS}.
 In this paper, the aim is to apply GP inside a modern RTS, in order to define the whole behavioural engine for an autonomous player (non-player character), trying to improve a rule-based system previously defined by a human expert.
-% AntonioDEF - he puesto esto nuevo, que creo que queda bien. No decimos que no se haya hecho, pero sí que lo nuestro es más mejor (o al menos diferente)
+% AntonioDEF - he puesto esto nuevo, que creo que queda bien. No decimos que no se haya hecho, pero sÃ­ que lo nuestro es mÃ¡s mejor (o al menos diferente)
 % ... y eso nos hace pensar que puede dar buenos resultados en este caso, porque nunca se ha aplicado a este tipo de problema.
-% ¿Cuál es el selling poing? ¿GP aplicado a RTS? ¿GP aplicado a Planet Wars? - JJ 
+% Â¿CuÃ¡l es el selling poing? Â¿GP aplicado a RTS? Â¿GP aplicado a Planet Wars? - JJ 
 % Antonio - escrito, aunque no es una frase lapidaria porque no estoy seguro de que no se haya usado antes en RTSs. PEro el objetivo/selling point se explica en la intro ahora.
  
 Planet Wars, the game used in this work, has also been used in other researches as an experimental framework for agent testing. 
 %We have deeply worked in this environment \cite{Genebot-IWANN2011,Genebot_CEC11,genebot-evo12,ExpGenebot_CIG2012,Co-Genebot_EVO2014},
-%FERGU: no usar el "hemos trabajado", sino "se ha trabajado", que parece que somos los únicos que lo hacen (aunque sea verdad)
-% Antonio - pues yo lo veo peor así porque das a entender que se ha usado en varios trabajos (de gente diversa) y sólo citas los nuestros... XD
+%FERGU: no usar el "hemos trabajado", sino "se ha trabajado", que parece que somos los Ãºnicos que lo hacen (aunque sea verdad)
+% Antonio - pues yo lo veo peor asÃ­ porque das a entender que se ha usado en varios trabajos (de gente diversa) y sÃ³lo citas los nuestros... XD
 We have considered this game in some previous studies \cite{Genebot-IWANN2011,Genebot_CEC11,genebot-evo12,ExpGenebot_CIG2012,Co-Genebot_EVO2014}, mainly applying Genetic Algorithms for evolving (the parameters of) a behavioural engine previously defined by a human expert from scratch. Those works have respectively defined a first approach, compared different implementations, analysed the noise influence, defined expert bots, and implemented co-evolutionary approaches.
 
 %For example, in
@@ -235,11 +235,11 @@ The present work means a new step in this research line, which tries to avoid th
 The use of GP here will provide us with a new tool for completely redefine the bot's AI engine, which could also get better results than previous bots.
 Thus GP has been applied to create the Decision Tree that the bot will use to make decisions during the game.
 In order to prove the method value, the resulting agents will be compared with a competitive bot previously presented: GeneBot \cite{Genebot_CEC11}, our initial bot improved by means of Genetic Algorithms. This bot also proved (in that work) to be better than a human-defined bot (AresBot).
-% AntonioDEF - He completado esto un poco para justificar mejor el trabajo. Comento además que Genebot era mejor que uno definido por un humano, Aresbot.
+% AntonioDEF - He completado esto un poco para justificar mejor el trabajo. Comento ademÃ¡s que Genebot era mejor que uno definido por un humano, Aresbot.
 
 %, and Exp-Genebot \cite{ExpGenebot_CIG2012} an enhanced agent which considers different sets of parameters depending on the type of battle map, which is previously analysed by the bot.
 %*** Quitamos Exp-Genebot??? ***
-%FERGU2: sí, quitado
+%FERGU2: sÃ­, quitado
 
 %-------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%% GP BOT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -248,7 +248,7 @@ In order to prove the method value, the resulting agents will be compared with a
 \label{sec:agent}
 
 The Genetic Programming-based bot or {\em GPBot} evolves a set of rules which, in turn, models a Decision Tree. 
-%FERGU: quitado lo del turno. Cada turno no modela un árbol nuevo.
+%FERGU: quitado lo del turno. Cada turno no modela un Ã¡rbol nuevo.
 % Antonio - "in turn" significa "a su vez". ;)
 During the evolution, every individual in the population (a tree) must be evaluated. To do so, the tree is set as the behavioural engine of an agent, which is then placed in a map against a rival in a Planet Wars match. Depending on the obtained results, the agent (i.e. the individual) gets a fitness value, that will be considered in the evolutionary process as a measure of its validity. 
 %FERGU: i.e. -> that is
@@ -264,7 +264,7 @@ Thus, during the match the tree will be used (by the bot) in order to select the
 \end{itemize}
 
 \noindent The decisions are based in the values of different \textit{variables} which are computed considering some other variables in the game. They are defined by a human expert, and are:
-% estas variables, ¿de dónde salen? ¿Son todas las variables del juego? ¿Unas pocas? - JJ 
+% estas variables, Â¿de dÃ³nde salen? Â¿Son todas las variables del juego? Â¿Unas pocas? - JJ 
 % Antonio - Las define un experto. Escrito. ;)
 
 \begin{itemize}
@@ -353,10 +353,10 @@ else
 %\ENDLOOP
 
 Next section explains one of the main components of the evolutionary process, i.e. the fitness function. As previously stated, three different functions have been implemented, which are used to evaluate the agent's performance during the matches. 
-%FERGU: el "devoted to" no me mola xD Tampoco sé si el fitness es el "main component". Ah, no usar el "we"
+%FERGU: el "devoted to" no me mola xD Tampoco sÃ© si el fitness es el "main component". Ah, no usar el "we"
 % Antonio - arreglado
-% la función de fitness es muy importante, pero ¿mucho mucho más que tipos de nodos que componen los árboles?
-% ¿no quedaría mejor diciendo "...explains one of the main components of the..." ?     [pedro]
+% la funciÃ³n de fitness es muy importante, pero Â¿mucho mucho mÃ¡s que tipos de nodos que componen los Ã¡rboles?
+% Â¿no quedarÃ­a mejor diciendo "...explains one of the main components of the..." ?     [pedro]
 % AntonioDEF - hecho
 
 %-----------------------------------------------------------------------
@@ -369,7 +369,7 @@ Next section explains one of the main components of the evolutionary process, i.
 % ---------------------------------------------------------------------
 
 \subsection{Fitness based in Victories}
-% "Turn based fitness"  [pedro] FERGU3: arreglado. Habría que llamarlo fitness basado en VICTORIAS, que es lo importante!!!!! (de hecho, el valor de las tablas muestra las VICTORIAS)
+% "Turn based fitness"  [pedro] FERGU3: arreglado. HabrÃ­a que llamarlo fitness basado en VICTORIAS, que es lo importante!!!!! (de hecho, el valor de las tablas muestra las VICTORIAS)
 \label{subsec:fitness_turns}
 
 %In previous works \cite{Genebot_CEC11}, a bot was evaluated always versus the same enemy (a reference bot), several times (in different maps), using a \textit{hierarchical fitness function}. FERGU4: comento esto que no sirve para nada.
@@ -377,7 +377,7 @@ Next section explains one of the main components of the evolutionary process, i.
 This a variation of the hierarchical fitness considered in \cite{Genebot_CEC11}.
 In this approach, an individual is better than another if it wins in a higher number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. the stronger one) is considered as better. The maximum fitness in this work is, therefore, 5 victories and 0 turns. 
 %FERGU: mover la ultima frase a cuando se hable de los parametros
-% AntonioDEF - ¿cómo que 0 turns? ¿Cómo se va a ganar en 0 turnos?
+% AntonioDEF - Â¿cÃ³mo que 0 turns? Â¿CÃ³mo se va a ganar en 0 turnos?
 For two bots, A and B, the fitness comparison (and therefore, their order inside the population) is defined as Algorithm \ref{alg:fitness_turns_positions} shows.
 
 \begin{algorithm}[ht]
@@ -400,12 +400,12 @@ For two bots, A and B, the fitness comparison (and therefore, their order inside
 
 \end{algorithmic}
 \caption{Comparison between two individuals using hierarchical fitness.}
-% AntonioDEF - ¿dejamos hierachical o victories?
+% AntonioDEF - Â¿dejamos hierachical o victories?
 \label{alg:fitness_turns_positions}
 \end{algorithm}
 
-% Antonio - Lo de 'is better' ¿qué significa a efectos de puntuación? ¿no sería mejor poner en lugar de "A is better than B" otra cosa?. Es que no queda claro cómo se calcula el fitness, que es un número con este algoritmo,que es más bien una comparativa entre individuos... ¿?
-%FERGU2: esto sirve a la hora de ordenar los individuos, por ejemplo. He cambiado el pie de página y la frase de justo arriba.
+% Antonio - Lo de 'is better' Â¿quÃ© significa a efectos de puntuaciÃ³n? Â¿no serÃ­a mejor poner en lugar de "A is better than B" otra cosa?. Es que no queda claro cÃ³mo se calcula el fitness, que es un nÃºmero con este algoritmo,que es mÃ¡s bien una comparativa entre individuos... Â¿?
+%FERGU2: esto sirve a la hora de ordenar los individuos, por ejemplo. He cambiado el pie de pÃ¡gina y la frase de justo arriba.
 
 In this fitness, we are only interested in the final result (position and number of turns). We do not include in the analysis how the bot has reached them. The problem of this function is that the consideration of two different terms makes it difficult the comparison between different evaluations. 
 
@@ -486,10 +486,10 @@ In this case, a square regression analysis is computed in order to transform the
 %\end{figure}
 
 Theoretical maximum and minimum values are set for this fitness. An optimum bot that wins in the first turn, has an ideal slope of {$1$}, so this is the maximum value of our fitness. On the other hand, a bot that loses in the first turn,  has a slope of {$-1$}. Thus, if we calculate the $slope$, we know if the bot {$WINs$} ({$slope>0$}) or {$LOSEs$} {$slope<0$}. 
-The values of the different battles are summed to compute the global $slope$. %FERGU: por qué las mayúsculas? Explicar mejor esta última frase
+The values of the different battles are summed to compute the global $slope$. %FERGU: por quÃ© las mayÃºsculas? Explicar mejor esta Ãºltima frase
 Then, the bot with the highest value will be the best is each turn or battle. 
 
-%Several evaluations in different maps was using, so it's need operate with fitness. In that case, only sum the slope of all the evaluations of the bot. Maribel, esto ya lo has dicho antes y además lía más la cosa así que lo he eliminado. Además expresiones como "was using" están mal, qué quieres decir? fue usando? eso en inglés no se dice.
+%Several evaluations in different maps was using, so it's need operate with fitness. In that case, only sum the slope of all the evaluations of the bot. Maribel, esto ya lo has dicho antes y ademÃ¡s lÃ­a mÃ¡s la cosa asÃ­ que lo he eliminado. AdemÃ¡s expresiones como "was using" estÃ¡n mal, quÃ© quieres decir? fue usando? eso en inglÃ©s no se dice.
 
 % ---------------------------------------------------------------------
 
@@ -567,13 +567,13 @@ Mutation step-size & 0.25 \\ \hline
 Selection & 2-tournament \\ \hline
 Replacement & Steady-state\\ \hline
 Stop criterion & 50 generations \\ \hline
-Maximum Tree Depth & 7  \\ \hline %FERGU: quitados distintos tamaños
+Maximum Tree Depth & 7  \\ \hline %FERGU: quitados distintos tamaÃ±os
 Runs per configuration & 30 \\ \hline
 Evaluation & Playing versus GeneBot \cite{Genebot_CEC11}  \\ \hline 
 %FERGU: Antares, confirmalo
-% Antonio - Al final creo que sólo Genebot %FERGU2: quitado
+% Antonio - Al final creo que sÃ³lo Genebot %FERGU2: quitado
 Maps used in each evaluation & map76, map69, map7, map11, map26 
-% AntonioDEF - los mapas han sido esos, ¿no?
+% AntonioDEF - los mapas han sido esos, Â¿no?
 \\ \hline
 \end{tabular}
 \caption{Parameters used in the experiments.}
@@ -581,14 +581,14 @@ Maps used in each evaluation & map76, map69, map7, map11, map26
 \end{center}
 \end{table}
 
-% ¿cómo se han obtenido los valores de esos parámetros?   [pedro]
-% AntonioDEF - habla un poco de los parámetros Fergu. Dí que se ahn obtenido por systematic experimentation y justifica la profundidad de 7, pero sin decir nada del artículo del EVO*. XD
-% que es un valor habitual, que dado el número de antecedentes es un valor justo, no sé...
+% Â¿cÃ³mo se han obtenido los valores de esos parÃ¡metros?   [pedro]
+% AntonioDEF - habla un poco de los parÃ¡metros Fergu. DÃ­ que se ahn obtenido por systematic experimentation y justifica la profundidad de 7, pero sin decir nada del artÃ­culo del EVO*. XD
+% que es un valor habitual, que dado el nÃºmero de antecedentes es un valor justo, no sÃ©...
  
 
 After all the executions we have evaluated the obtained best individuals in all runs confronting to the other bots in a larger set of maps to study the behaviour of the algorithm and how good are the obtained bots versus enemies and maps that have not been used for training.
 
-%FERGU3: ANTARES, confirma como has hecho esto ANTARES: Confirmo, se ha hecho la prueba en 4 mapas adicionales desconocidos y frente a oponentes desconocidos a su vez (los que han generado los métodos)
+%FERGU3: ANTARES, confirma como has hecho esto ANTARES: Confirmo, se ha hecho la prueba en 4 mapas adicionales desconocidos y frente a oponentes desconocidos a su vez (los que han generado los mÃ©todos)
 
 
 The used framework is OSGiLiath, a service-oriented evolutionary framework. %\cite{Garcia13Service}. 
@@ -603,18 +603,18 @@ The generated tree is compiled in real-time and injected in the agent's code usi
 \subsection{-- EA --}
 
 Table \ref{tab:results3config} shows the obtained results after executing 21 times each approach, i.e. GP algorithm using every fitness implementation. 
-% AntonioDEF - aclaro un poco más
+% AntonioDEF - aclaro un poco mÃ¡s
 Although these fitness are not comparable, as they obviously apply different metrics, the \textit{Victory-based} fitness achieves values near to the optimum (5) at the end of the run (look at the best individual and average population values). The \textit{Slope} and \textit{Area} fitness yield results under their theoretical optimum, 
-% AntonioDEF - ¿cuál es su óptimo teórico?
+% AntonioDEF - Â¿cuÃ¡l es su Ã³ptimo teÃ³rico?
 as they depend on more information ranges (variation in the number of ships).
-\textit{Area} obtains slightly better values than \textit{Slope}. Fig.\ref{fig:evolutionFitness} shows how --TO DO COMENTADO EN ESPAÑOL-- %Básicamente quiero decir que en la figura 2 se muestra como el fitness del mejor individuo de la población mejora a medida que transcurren las generaciones, que es lo que debe suceder en un EA. De igual manera, la figura 3 muestra como el promedio de la población también mejora a medida que van transcurriendo las generaciones.
+\textit{Area} obtains slightly better values than \textit{Slope}. Fig.\ref{fig:evolutionFitness} shows how --TO DO COMENTADO EN ESPAÃ‘OL-- %BÃ¡sicamente quiero decir que en la figura 2 se muestra como el fitness del mejor individuo de la poblaciÃ³n mejora a medida que transcurren las generaciones, que es lo que debe suceder en un EA. De igual manera, la figura 3 muestra como el promedio de la poblaciÃ³n tambiÃ©n mejora a medida que van transcurriendo las generaciones.
 
-%La figura 4 muestra el tamaño del árbol de los mejores individuos de cada generación. Los tres métodos de fitness estudiados producen árboles cada vez más grandes (o complejos) en las sucesivas generaciones. El fitness basado en victorias es el que menor crecimiento tiene, llegando a tener árboles de poco tamaño que aún así consiguen ser el mejor individuo de la población.
+%La figura 4 muestra el tamaÃ±o del Ã¡rbol de los mejores individuos de cada generaciÃ³n. Los tres mÃ©todos de fitness estudiados producen Ã¡rboles cada vez mÃ¡s grandes (o complejos) en las sucesivas generaciones. El fitness basado en victorias es el que menor crecimiento tiene, llegando a tener Ã¡rboles de poco tamaÃ±o que aÃºn asÃ­ consiguen ser el mejor individuo de la poblaciÃ³n.
 
-%La figura 5 muestra la antiguedad promedida de la población durante cada generación de todas las ejecuciones de cada método. Un crecimiento constante indicaría que la población es cada vez más vieja, por lo que no se están produciendo reemplazamos de nuevos individuos. Esto indicaría que no se están generando nuevos individuos con fitness mejores a los de sus ancentros. En los tres métodos estudiados, no se aprecia un crecimiento constante, por lo que el algoritmo está generando nuevos individuos que superan a sus padres constantemente. Los individuos están de media 4-5 generaciones antes de ser sacados del pool de la población reemplazados por individuos mejores que ellos.
+%La figura 5 muestra la antiguedad promedida de la poblaciÃ³n durante cada generaciÃ³n de todas las ejecuciones de cada mÃ©todo. Un crecimiento constante indicarÃ­a que la poblaciÃ³n es cada vez mÃ¡s vieja, por lo que no se estÃ¡n produciendo reemplazamos de nuevos individuos. Esto indicarÃ­a que no se estÃ¡n generando nuevos individuos con fitness mejores a los de sus ancentros. En los tres mÃ©todos estudiados, no se aprecia un crecimiento constante, por lo que el algoritmo estÃ¡ generando nuevos individuos que superan a sus padres constantemente. Los individuos estÃ¡n de media 4-5 generaciones antes de ser sacados del pool de la poblaciÃ³n reemplazados por individuos mejores que ellos.
 
 % NI IDEA PORQUE NO LOS ENTIENDO XDD (FERGU3). ARREGLADLO
-% AntonioDEF - yo tampoco sabría justificarlo. ANTARES dí algo y lo traduce Fergu. ;D
+% AntonioDEF - yo tampoco sabrÃ­a justificarlo. ANTARES dÃ­ algo y lo traduce Fergu. ;D
 
  \begin{figure}[ht]
  \begin{center}
@@ -644,7 +644,7 @@ as they depend on more information ranges (variation in the number of ships).
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_AGE.pdf}
  \end{center}
- \caption{Evolution of the average age of every execution by fitness method. -- TO DO -- Un crecimiento constante de la edad indicaría que el algoritmo no está generando individuos que sean mejores que los anteriores, por lo que se habría ...}
+ \caption{Evolution of the average age of every execution by fitness method. -- TO DO -- Un crecimiento constante de la edad indicarÃ­a que el algoritmo no estÃ¡ generando individuos que sean mejores que los anteriores, por lo que se habrÃ­a ...}
  \label{figura:evolutionAGE}
  \end{figure}
 
@@ -654,7 +654,7 @@ as they depend on more information ranges (variation in the number of ships).
 		& Average best fitness	&	Average population fitness	\\ \hline \hline
 Victory	& 4,761 $\pm$	0,624	&	4,345	$\pm$	0,78 \\ \hline
 Slope	& 2,296	$\pm$	0,486	&	2,103	$\pm$	0,486 \\ \hline
-% AntonioDEF - la misma desv. típica? huele a copy-paste mal hecho. XD
+% AntonioDEF - la misma desv. tÃ­pica? huele a copy-paste mal hecho. XD
 Area	& 2,838	$\pm$	1,198	&	2,347	$\pm$	0,949 \\ \hline
 
 
@@ -676,40 +676,40 @@ This experiment has been conducted in order to validate if the bots obtained by 
    \includegraphics[width=12cm]{nuevas_imgs/vsGENEBOT_Boxplot.pdf}
  \end{center}
  \caption{Boxplot of average percentage of victories of the bots obtained by each approach vs. GeneBot. 9 different matches have been performed per bot in different maps.} 
-% AntonioDEF - ¿average percentage o sólo percentage? (ANTARES)
-% Toy un poco dormío ya para pensar. :/
+% AntonioDEF - Â¿average percentage o sÃ³lo percentage? (ANTARES)
+% Toy un poco dormÃ­o ya para pensar. :/
  \label{figura:boxplotvictoriesgenebot}
  \end{figure}
 
 Finally, an additional experiment has been conducted, proposing a direct comparison between the three methods. To this end each of the best individuals obtained per approach has been tested competing against all the rest (in a vs 1 battles) in 9 matches per pair of bots, one per representative map.
-% AntonioDEF - ¿en cuantos mapas? o sea, ¿cuántos combates hacía cada pareja?
-% revisad si está bien así. (ANTARES)
+% AntonioDEF - Â¿en cuantos mapas? o sea, Â¿cuÃ¡ntos combates hacÃ­a cada pareja?
+% revisad si estÃ¡ bien asÃ­. (ANTARES)
 
 This allows a comparison with a wider number of bots, and also, allows the analysis of their behavior against rivals not previously used during training (as in the experiment above).
 The boxplots of the average percentage of victories from the best bots obtained by each method are shown in Figure \ref{figura:boxplotvictories}. It is clear from the image that the \textit{Slope} fitness does not get good results with respect to the other methods. This can be explained because the this fitness loses information during the run, in comparison with the others, obtaining bots less aggressive. 
-% AntonioDEF - ¿Qué información pierde?¿Esto de dónde os lo habeis sacado?¿Cómo lo sabéis? (ANTARES)
+% AntonioDEF - Â¿QuÃ© informaciÃ³n pierde?Â¿Esto de dÃ³nde os lo habeis sacado?Â¿CÃ³mo lo sabÃ©is? (ANTARES)
 The \textit{Victory-based} fitness achieves better results in average, being also more robust (small standard deviation). However, looking at the \textit{Area} fitness results, they outperform several times the \textit{Victory} results, obtaining more victories.
-%.... NO SE COMO JUSTIFICAR QUE ESTO ES MEJOR :/// (FERGU3). ç
+%.... NO SE COMO JUSTIFICAR QUE ESTO ES MEJOR :/// (FERGU3). Ã§
 
 %FERGU3 ANTARES, CUANTAS EJECUCIONES POR BOT Y EN QUE MAPAS?????  
 %Los mapas son & 7 & 11 & 13 & 26 & 32 & 64 & 69 & 76 & 87 \ y os explico un poco las cuentas.
-%Se han hecho 35721 batallas en 9 mapas con 63 bots (21 por método).
-%Cada bot se ha enfrentado con los otros bots en 9 mapas (63 enfrentamientos) más luego él mismo ha servido como rival para los otros bots (otros 63 combates)
-% AntonioDEF - esto supongo que es de aquí
+%Se han hecho 35721 batallas en 9 mapas con 63 bots (21 por mÃ©todo).
+%Cada bot se ha enfrentado con los otros bots en 9 mapas (63 enfrentamientos) mÃ¡s luego Ã©l mismo ha servido como rival para los otros bots (otros 63 combates)
+% AntonioDEF - esto supongo que es de aquÃ­
 
  \begin{figure}[ht]
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/batallas_Boxplot.pdf}
  \end{center}
  \caption{Boxplot of average percentage of victories of the best bots obtained by each method vs. the rest.}
-% Los boxplot son para comparar. Los tenéis que meter a los tres en el mismo. Si no vais a comparar, no tenéis que hacer ningún boxplot. - JJ FERGU4: lo que te dije, Antares. 
+% Los boxplot son para comparar. Los tenÃ©is que meter a los tres en el mismo. Si no vais a comparar, no tenÃ©is que hacer ningÃºn boxplot. - JJ FERGU4: lo que te dije, Antares. 
  \label{figura:boxplotvictories}
  \end{figure}
 
 
 There is still a final remark, which concerns to the percentage of draw matches.
 As it can be seen in Table \ref{tab:ties}. The \textit{Victory-based} fitness achieves more draws against bots of the same type than the other approaches. This can be explained because they use less information to perform the evolution, obtaining quite similar behaviours. This is also reinforced by previous results in which the bots of this fitness seemed to perform similarly, obtaining close number of victories and thus, getting small standard deviation values.
-% AntonioDEF - a ver si os mola esta conclusión. (ANTARES)
+% AntonioDEF - a ver si os mola esta conclusiÃ³n. (ANTARES)
 
 \begin{table*}
 \centering{
@@ -764,7 +764,7 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_ACTIONS.pdf}
  \end{center}
- \caption{Evolution of the percentage of every type of actions over the total of actions used by the best individual by generation of every execution. -- TO DO -- %Se puede ver que la acción más empleada por los mejores bots es la acción de atacar. Las acciones de reinforce y doNothing son menos usadas por los mejores bots a medida que se mejora la población.
+ \caption{Evolution of the percentage of every type of actions over the total of actions used by the best individual by generation of every execution. -- TO DO -- %Se puede ver que la acciÃ³n mÃ¡s empleada por los mejores bots es la acciÃ³n de atacar. Las acciones de reinforce y doNothing son menos usadas por los mejores bots a medida que se mejora la poblaciÃ³n.
  }
  \label{figura:e_actions}
  \end{figure}
@@ -773,7 +773,7 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_ATTACKS.pdf}
  \end{center}
- \caption{Evolution of the percentage of every type of attack over the total of attacks used by the best individual by generation of every execution -- TO DO -- %Se puede observar como el attack de tipo attack_Nearest es el tipo de ataque más empleado por los mejores bots, por lo que se puede considerar que la mejores estretegia es atacar a los planetas más cercanos. Estrategias como attack_Base, attack_Quickest son menos usadas por los mejores bots a medida que mejora la población.
+ \caption{Evolution of the percentage of every type of attack over the total of attacks used by the best individual by generation of every execution -- TO DO -- %Se puede observar como el attack de tipo attack_Nearest es el tipo de ataque mÃ¡s empleado por los mejores bots, por lo que se puede considerar que la mejores estretegia es atacar a los planetas mÃ¡s cercanos. Estrategias como attack_Base, attack_Quickest son menos usadas por los mejores bots a medida que mejora la poblaciÃ³n.
  }
  \label{figura:e_attacks}
  \end{figure}
@@ -798,7 +798,7 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
 
 
 
-%FERGU: he borrado las tablas, que aquí no se usan. Dejo el resto comentado, por si queréis "inspiraros". Vamos, que no se reutiliza nada del trabajo del Evostar
+%FERGU: he borrado las tablas, que aquÃ­ no se usan. Dejo el resto comentado, por si querÃ©is "inspiraros". Vamos, que no se reutiliza nada del trabajo del Evostar
 
 %As can be seen, the average population fitness versus Genebot is nearest to the optimum than versus Exp-Genebot, even with the lowest depth. Highest performance in the population is also with the depth of 3 levels. On the contrary, confronting with Exp-Genebot the configuration with unlimited depth achieves better results. This make sense as more decisions should be taken because the enemy can be different in each map.
 
@@ -862,22 +862,22 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
 \section{Conclusions}
 \label{sec:conclusion}
 
-%This work presents a Genetic Programming algorithm that generates agents for playing the Planet Wars game. A number of possible actions to perform and decision variables have been presented. A competitive bot available in the literature (Genebot) has been used to calculate the fitness of the generated individuals. This bot was the best obtained from several runs and the behaviour to be optimized was extracted from human expertise. %FERGU: confirmarlo %FERGU2: quitado exp-genebot y reescrito a continuación
+%This work presents a Genetic Programming algorithm that generates agents for playing the Planet Wars game. A number of possible actions to perform and decision variables have been presented. A competitive bot available in the literature (Genebot) has been used to calculate the fitness of the generated individuals. This bot was the best obtained from several runs and the behaviour to be optimized was extracted from human expertise. %FERGU: confirmarlo %FERGU2: quitado exp-genebot y reescrito a continuaciÃ³n
 
-%Genetic programming is a method that can help to create competitive bots for RTS games. % ¿Eso es una conclusión? ¿Lo habéis concluido en el paper? Empezad las conclusiones por "en este trabajo nos proponíamos probar..." - JJ
+%Genetic programming is a method that can help to create competitive bots for RTS games. % Â¿Eso es una conclusiÃ³n? Â¿Lo habÃ©is concluido en el paper? Empezad las conclusiones por "en este trabajo nos proponÃ­amos probar..." - JJ
 The objective of this work is to validate if using Genetic Programming can create competitive bots for RTS games, and study the behaviour of different fitness functions, as they can affect directly to the creation of these bots. Three different fitness functions have been compared to generate bots for the Planet Wars game. A competitive bot available in the literature (GeneBot) has been used to evaluate the generated individuals (fighting against it). This bot was the best one obtained in an evolutionary process which optimized different parameters inside a human-designed behavioural engine. 
 
 Different information of the run of the game is taken into account in these functions to obtain a metric to guide the evolution. %Although a turn-based fitness behaves more robustly than other methods, the area-based fitness achieves better percentage of victories in more produced robots. % robots o bots? - JJ
-%FERGU3: esto ultimo lo estoy escribiendo a las 3 de la mañana y no sé que pongo
-% Por lo que más queráis, revisad el inglés - JJ FERGU4: ya, vaya horror.
+%FERGU3: esto ultimo lo estoy escribiendo a las 3 de la maÃ±ana y no sÃ© que pongo
+% Por lo que mÃ¡s querÃ¡is, revisad el inglÃ©s - JJ FERGU4: ya, vaya horror.
 The results show differences depending on the fitness used: a victory-based fitness that prioritizes the number of victories generate better bots in average than fitness that take into account the number of spaceships during all the run of the battle. This can be explained because this fitness exploits the individuals to generate more aggressive bots. However, their performance decreases confronting versus different types of bots.
 
-% La conclusión tiene que estar relacionada con el título. ¿Qué habéis concluido con respecto a GP? ¿Qué tipo de GP? ¿Qué población? ¿No decís nada más que del fitness? - JJ FERGU
+% La conclusiÃ³n tiene que estar relacionada con el tÃ­tulo. Â¿QuÃ© habÃ©is concluido con respecto a GP? Â¿QuÃ© tipo de GP? Â¿QuÃ© poblaciÃ³n? Â¿No decÃ­s nada mÃ¡s que del fitness? - JJ FERGU
 
 %Three different maximum depth for the trees have been used: 3, 7 and unlimited. Results show that the best individuals outperform these agents during the evolution in all configurations. These individuals have been tested against a larger set of maps not previously used during the evolution, obtaining equivalent or better results than Genebot and Exp-Genebot. FERGU: estos no son los resultados
 
 %Results show that it is important to choose carefully the fitness that is going to be used to evaluate the evolved bots and to validate it using some kind of benchmark. % Some kind? Which kind? - JJ
-% ¿Eso es lo único que muestran? - JJ FERGU4: joer, menuda mierda de frase he escrito...
+% Â¿Eso es lo Ãºnico que muestran? - JJ FERGU4: joer, menuda mierda de frase he escrito...
 
 In future work, other rules will be added to the proposed algorithm (for example, ones analysing the map) and more competitive enemies will be used. In addition, the approach could be implemented and tested in more complex RTS games, such as Starcraft, or even in different videogames like Unreal\texttrademark~ or Super Mario\texttrademark~.
 
@@ -885,11 +885,11 @@ In future work, other rules will be added to the proposed algorithm (for example
 % TODO: actualizar con los nuevos proyectos
 \section*{Acknowledgements}
 This work has been supported in part by projects 
-EPHEMECH (TIN2014-56494-C4-3-P, Spanish Ministerio de Economía y Competitividad), 
+EPHEMECH (TIN2014-56494-C4-3-P, Spanish Ministerio de EconomÃ­a y Competitividad), 
 PROY-PP2015-06 (Plan Propio 2015 UGR), 
-PETRA (SPIP2014-01437, funded by Dirección General de Tráfico),
+PETRA (SPIP2014-01437, funded by DirecciÃ³n General de TrÃ¡fico),
 CEI2015-MP-V17 (awarded by CEI BioTIC Granada), and 
-PRY142/14 (funded by Fundación Pública Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigación).
+PRY142/14 (funded by FundaciÃ³n PÃºblica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de InvestigaciÃ³n).
 
 \bibliographystyle{elsarticle-num}
 \bibliography{gpbot-fitness-entcom}

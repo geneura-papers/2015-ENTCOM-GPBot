@@ -71,6 +71,26 @@ Corporate mobile security \sep User-centric systems \sep Self-adaptation \sep Mu
 \section{Introduction}
 \noindent 
 
+Real-Time Strategy (RTS) games are a sub-genre of computer games where the action takes place in an arena and contenders fight to control the resources. These games are played in real-time, that is, there are no turns, as in chess, for example. This kind of games has become an interesting part in Computational Intelligence research, as they can be seen as a simplification of more complex environments, such as road traffic or finances prediction. As in these environments, RTS dealt with uncertainty and real-time planning, so, the application of different CI techniques have been applied in the past \cite{Lara2013review}.
+
+The automatic generation of agents (also called {\em bots}) that play this kind of games is one of the most prominent areas. For example, Evolutionary Algorithms (EAs) have been previously used for the creation of bots in games such as {\em Planet Wars} \cite{Genebot_CEC11,ExpGenebot_CIG2012} or {\em StarCraft} \cite{Garcia15Starcraft}, among others. In these works, different EAs, such as Genetic Algorithms \cite{ExpGenebot_CIG2012} or Genetic Programming \cite{Garcia14Treedepth}, have been used. All these algorithms have in common the usage of a {\em fitness} function that is used to measure the quality of the behaviour of the bots. Different fitness functions have been used in the past, for example the game score, or the number of victories against other bots. However, these functions have to deal with the uncertainty due the stochastic nature of the bots or the different arenas used \cite{wilcoxon:ga}. Also, choosing a proper fitness function may produce different behaviours of generated bots. For example, a evolutionary process based on a victory-based fitness function would create `aggressive' bots, while one that also has into account the number of different structures created may generate a more `strategic' bot that could win in more different types of games. 
+
+Therefore, our aim in this paper is to compare the generated bots evaluated with different types of fitness, performing a proper analysis studying the generated rules and the behaviour of the bots against unknown enemies. In this paper we have tested three different fitness functions:
+\begin{itemize}
+\item A victory based fitness, that only takes into account the number of games won.
+\item A slope fitness: that measures the behaviour during all the game (not only at the end, as in the previous one), using the slope of the number of units during the game.
+\item An area fitness: as in the previous one, it takes into account the number of units during in the game, but to calculate the integral. %PABLO: por qué esta diferenciación en estas dos ultimas?
+\end{itemize}
+
+We have used GP to generate the bots, because it provides a good mechanism to generate rules from scratch, giving the possibility to create very different behaviours. The game used is {\em Planet Wars}, as it is simplest game that model an RTS: only one type of resources and units. 
+
+The presented paper is an extension of the paper published in \cite{Ares14Cosecivi}. The rest of the paper is structured as follows: after the background and the problem description (Section \ref{section:background}), the State of the Art is presented in Section \ref{sec:soa}. Then, the description of the agents and the used fitness functions are presented in Sections \ref{sec:agent} and \ref{sec:fitness_functions}. Section \ref{sec:experiments} presents the experimental setup, while Section \ref{sec:results} describes the results. Finally, the conclusions and future work are presented.
+
+
+
+
+%%%%%%ANTIGUA INTRODUCCION
+
 Real-Time Strategy (RTS) games are a sub-genre of strategy-based videogames in which the contenders struggle to control a set of resources, units and structures that are distributed in a playing arena. A proper control and a sound strategy and tactics for handling these units is essential for winning the game, which happens after the game objective has been fulfilled, normally eliminating all enemy units, but sometimes also when certain points or game objectives have been reached.
 
 Their main feature is their real-time nature (which is explicit in its denomination, real time strategy games), i.e. the player is not required to wait for the results of other players' moves as in turn-based games. Command and Conquer\texttrademark, Starcraft\texttrademark, Warcraft\texttrademark~ and Age of Empires\texttrademark~ are examples of RTS games.
@@ -158,7 +178,7 @@ The work is then focused on proving the value of these evolved rule-based contro
 %%%%%%%%%%%%%%%%%%%%%%%% BACKGROUND %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %-----------------------------------------------------------------
 \section{Background and problem description}
-
+\label{section:background}
 \subsection{Genetic Programming}
 
 Genetic Programming (GP) \cite{GP_Koza92} is a kind of Evolutionary Algorithm (EA), that is, a probabilistic search and optimization algorithms gleaned from the model of darwinistic evolution, based on the idea that in nature structures undergo adaptation. EAs work on a population of possible solutions (individuals) for the target problem and use a selection method that favours better solutions and a set of operators that act upon the selected solutions. %coñe, si has dicho que es un tipo de, cómo no va a compartirlos. Lo cambio.  -JJ
@@ -247,7 +267,7 @@ In order to prove the method value, the resulting agents will be compared with a
 \section{GPBot}
 \label{sec:agent}
 
-The Genetic Programming-based bot or {\em GPBot} evolves a set of rules which, in turn, models a Decision Tree. 
+The Genetic Programming-based bot or {\em GPBot} \cite{Garcia14Treedepth} evolves a set of rules which, in turn, models a Decision Tree.
 %FERGU: quitado lo del turno. Cada turno no modela un árbol nuevo.
 % Antonio - "in turn" significa "a su vez". ;)
 During the evolution, every individual in the population (a tree) must be evaluated. To do so, the tree is set as the behavioural engine of an agent, which is then placed in a map against a rival in a Planet Wars match. Depending on the obtained results, the agent (i.e. the individual) gets a fitness value, that will be considered in the evolutionary process as a measure of its validity. 
@@ -599,7 +619,7 @@ The generated tree is compiled in real-time and injected in the agent's code usi
 %%%%%%%%%%%%%%%%%%%%%%%% RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %-------------------------------------------------------------
 \section{Results}
-
+\label{sec:results}
 \subsection{-- EA --}
 
 Table \ref{tab:results3config} shows the obtained results after executing 21 times each approach, i.e. GP algorithm using every fitness implementation. 

@@ -2,6 +2,7 @@
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx,epsfig}
+\usepackage{graphicx}
 \usepackage{algorithm}
 \usepackage{algorithmic}
 %\usepackage{listings}
@@ -646,16 +647,53 @@ The generated tree is compiled in real-time and injected in the agent's code usi
 %-------------------------------------------------------------
 \section{Results}
 
-Table \ref{tab:results3config} shows the obtained results after executing 20 times each approach, i.e. GP algorithm using every fitness implementation. 
+\subsection{-- EA --}
+
+Table \ref{tab:results3config} shows the obtained results after executing 21 times each approach, i.e. GP algorithm using every fitness implementation. 
 % AntonioDEF - aclaro un poco más
 Although these fitness are not comparable, as they obviously apply different metrics, the \textit{Victory-based} fitness achieves values near to the optimum (5) at the end of the run (look at the best individual and average population values). The \textit{Slope} and \textit{Area} fitness yield results under their theoretical optimum, 
 % AntonioDEF - ¿cuál es su óptimo teórico?
 as they depend on more information ranges (variation in the number of ships).
-\textit{Area} obtains slightly better values than \textit{Slope}.
+\textit{Area} obtains slightly better values than \textit{Slope}. Fig.\ref{fig:evolutionFitness} shows how --TO DO COMENTADO EN ESPAÑOL-- %Básicamente quiero decir que en la figura 2 se muestra como el fitness del mejor individuo de la población mejora a medida que transcurren las generaciones, que es lo que debe suceder en un EA. De igual manera, la figura 3 muestra como el promedio de la población también mejora a medida que van transcurriendo las generaciones.
+
+%La figura 4 muestra el tamaño del árbol de los mejores individuos de cada generación. Los tres métodos de fitness estudiados producen árboles cada vez más grandes (o complejos) en las sucesivas generaciones. El fitness basado en victorias es el que menor crecimiento tiene, llegando a tener árboles de poco tamaño que aún así consiguen ser el mejor individuo de la población.
+
+%La figura 5 muestra la antiguedad promedida de la población durante cada generación de todas las ejecuciones de cada método. Un crecimiento constante indicaría que la población es cada vez más vieja, por lo que no se están produciendo reemplazamos de nuevos individuos. Esto indicaría que no se están generando nuevos individuos con fitness mejores a los de sus ancentros. En los tres métodos estudiados, no se aprecia un crecimiento constante, por lo que el algoritmo está generando nuevos individuos que superan a sus padres constantemente. Los individuos están de media 4-5 generaciones antes de ser sacados del pool de la población reemplazados por individuos mejores que ellos.
 
 % NI IDEA PORQUE NO LOS ENTIENDO XDD (FERGU3). ARREGLADLO
 % AntonioDEF - yo tampoco sabría justificarlo. ANTARES dí algo y lo traduce Fergu. ;D
 
+ \begin{figure}[ht]
+ \begin{center}
+   \includegraphics[width=12cm]{nuevas_imgs/evolution_BEST_FITNESS.pdf}
+ \end{center}
+ \caption{Evolution of the fitness of the best individual of every execution by fitness method.}
+ \label{fig:evolutionFitness}
+ \end{figure}
+
+ \begin{figure}[ht]
+ \begin{center}
+   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_FITNESS.pdf}
+ \end{center}
+ \caption{Evolution of the average fitness of every execution by fitness method.}
+ \label{figura:evolutionFitnessAverage}
+ \end{figure}
+
+ \begin{figure}[ht]
+ \begin{center}
+   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_DEPTH.pdf}
+ \end{center}
+ \caption{Evolution of the average depth of every exectuion by fitness method. -- TO DO --}
+ \label{figura:evolutionDEPTH}
+ \end{figure}
+
+ \begin{figure}[ht]
+ \begin{center}
+   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_AGE.pdf}
+ \end{center}
+ \caption{Evolution of the average age of every execution by fitness method. -- TO DO -- Un crecimiento constante de la edad indicaría que el algoritmo no está generando individuos que sean mejores que los anteriores, por lo que se habría ...}
+ \label{figura:evolutionAGE}
+ \end{figure}
 
 \begin{table*}
 \centering{
@@ -668,19 +706,21 @@ Area	& 2,838	$\pm$	1,198	&	2,347	$\pm$	0,949 \\ \hline
 
 
 \end{tabular}
-\caption{Average results obtained for each approach at the end of the runs. Everyone has been tested 20 times.}
+\caption{Average results obtained for each approach at the end of the runs. Everyone has been tested 21 times.}
 \label{tab:results3config}
 }
 \end{table*}
 
-Even though the \textit{Victory-based} fitness yields better results (near optimal), to do a fair comparison, we have confronted the 20 best bots obtained with each configuration (one per run) against GeneBot. However these matches have been performed in 9 different maps than those where the bots were trained (evolved). These maps, provided by Google, are considered as representative, because they have different features to promote a wide set of strategies, i.e. different distributions of planets, sizes and number of initial ships. 
+\subsection{-- TO DO -- Fitness Benchmark}
+
+Even though the \textit{Victory-based} fitness yields better results (near optimal), to do a fair comparison, we have confronted the 21 best bots obtained with each configuration (one per run) against GeneBot. However these matches have been performed in 9 different maps than those where the bots were trained (evolved). These maps, provided by Google, are considered as representative, because they have different features to promote a wide set of strategies, i.e. different distributions of planets, sizes and number of initial ships. 
 
 This experiment has been conducted in order to validate if the bots obtained by the proposed approaches can be competitive in terms of quality in maps not used for evolution/evaluation. Results are shown in Figure \ref{figura:boxplotvictoriesgenebot}. As it can be seen, again the \textit{Victory-based} fitness achieves significantly better results than the other methods.
 
 
 \begin{figure}[ht]
  \begin{center}
-   \includegraphics[width=7cm]{graficas_experimentos/boxplot_victoria_bot_por_metodo_contra_genebot.eps}
+   \includegraphics[width=12cm]{nuevas_imgs/vsGENEBOT_Boxplot.pdf}
  \end{center}
  \caption{Boxplot of average percentage of victories of the bots obtained by each approach vs. GeneBot. 9 different matches have been performed per bot in different maps.} 
 % AntonioDEF - ¿average percentage o sólo percentage? (ANTARES)
@@ -706,7 +746,7 @@ The \textit{Victory-based} fitness achieves better results in average, being als
 
  \begin{figure}[ht]
  \begin{center}
-   \includegraphics[width=7cm]{graficas_experimentos/boxplot_victoria_bot_por_metodo.eps}
+   \includegraphics[width=12cm]{nuevas_imgs/batallas_Boxplot.pdf}
  \end{center}
  \caption{Boxplot of average percentage of victories of the best bots obtained by each method vs. the rest.}
 % Los boxplot son para comparar. Los tenéis que meter a los tres en el mismo. Si no vais a comparar, no tenéis que hacer ningún boxplot. - JJ FERGU4: lo que te dije, Antares. 
@@ -726,6 +766,21 @@ Victory & 62.06\%	& 23.15 \% 	&	12.47 \% \\ \hline
 Slope	& 	-		& 19.07 \%	&	12.50 \%		\\ \hline
 Area	& 	-		&	-		&	11.87 \% \\ \hline
 
+%  \begin{table}[ht]
+% \centering
+% \begin{tabular}{rlr}
+%   \hline
+%  FITNESS METHOD & Victories\\ 
+%   \hline
+%  VICTORIES FITNESS & 68.04\% \\ 
+%  AREA FITNESS & 33.01\% \\ 
+%  SLOPE FITNESS & 13.17\% \\ 
+%    \hline
+% \end{tabular}
+%  \caption{ -- TO DO -- Victories vs Genebot}
+%  \label{tabla:vsGenebot}
+% \end{table}
+
 
 \end{tabular}
 \caption{Percentage of draw matches between bots per fitness approach.}
@@ -733,69 +788,14 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
 }
 \end{table*}
 
-\section{------POR HACER------}
 
- \begin{figure}[ht]
- \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/vsGENEBOT_Boxplot.pdf}
- \end{center}
- \caption{ -- TO DO --}
- \label{figura:vsGenebot-boxplot}
- \end{figure}
-
- \begin{table}[ht]
-\centering
-\begin{tabular}{rlr}
-  \hline
- FITNESS METHOD & Victories\\ 
-  \hline
- VICTORIES FITNESS & 68.04\% \\ 
- AREA FITNESS & 33.01\% \\ 
- SLOPE FITNESS & 13.17\% \\ 
-   \hline
-\end{tabular}
- \caption{ -- TO DO -- Victories vs Genebot}
- \label{tabla:vsGenebot}
-\end{table}
-
- \begin{figure}[ht]
- \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/evolution_BEST_FITNESS.pdf}
- \end{center}
- \caption{ -- TO DO --}
- \label{figura:e_number_nodes}
- \end{figure}
-
- \begin{figure}[ht]
- \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_FITNESS.pdf}
- \end{center}
- \caption{ -- TO DO --}
- \label{figura:e_number_nodes}
- \end{figure}
-
- \begin{figure}[ht]
- \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_DEPTH.pdf}
- \end{center}
- \caption{ -- TO DO --}
- \label{figura:e_number_nodes}
- \end{figure}
-
- \begin{figure}[ht]
- \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_AGE.pdf}
- \end{center}
- \caption{ -- TO DO --}
- \label{figura:e_number_nodes}
- \end{figure}
-
+\subsection{-- TO DO -- Estudio acciones y condiciones}
 
  \begin{figure}[ht]
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_number_nodes.pdf}
  \end{center}
- \caption{ -- TO DO --}
+ \caption{Evolution of the number of nodes of the best individual by generation of every execution. Nodes can be conditions (internal nodes) or actions (lead nodes). The tree is always a binary tree, so both (conditions and actions) are related.}
  \label{figura:e_number_nodes}
  \end{figure}
 
@@ -803,7 +803,7 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_CONDITIONS.pdf}
  \end{center}
- \caption{ -- TO DO a--}
+ \caption{Evolution of the percentage of every conditions over the total of conditions used by the best individual by generation of every execution.}
  \label{figura:e_conditions}
  \end{figure}
 
@@ -811,7 +811,8 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_ACTIONS.pdf}
  \end{center}
- \caption{ -- TO DO a--}
+ \caption{Evolution of the percentage of every type of actions over the total of actions used by the best individual by generation of every execution. -- TO DO -- %Se puede ver que la acción más empleada por los mejores bots es la acción de atacar. Las acciones de reinforce y doNothing son menos usadas por los mejores bots a medida que se mejora la población.
+ }
  \label{figura:e_actions}
  \end{figure}
 
@@ -819,7 +820,8 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_ATTACKS.pdf}
  \end{center}
- \caption{ -- TO DO a--}
+ \caption{Evolution of the percentage of every type of attack over the total of attacks used by the best individual by generation of every execution -- TO DO -- %Se puede observar como el attack de tipo attack_Nearest es el tipo de ataque más empleado por los mejores bots, por lo que se puede considerar que la mejores estretegia es atacar a los planetas más cercanos. Estrategias como attack_Base, attack_Quickest son menos usadas por los mejores bots a medida que mejora la población.
+ }
  \label{figura:e_attacks}
  \end{figure}
 
@@ -827,7 +829,8 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_TARGETS.pdf}
  \end{center}
- \caption{ -- TO DO a--}
+ \caption{Evolution of the percentage of every type of attacking targets over the total of attaks used by the best individual by generation of every execution -- TO DO -- %Se puede ver como existen oscilaciones entre el atacar un planeta enemigo o un planeta neutral
+ }
  \label{figura:e_targets}
  \end{figure}
 
@@ -836,8 +839,8 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_TARGETS_REINFORCE.pdf}
  \end{center}
- \caption{ -- TO DO a--}
- \label{figura:e_targets}
+ \caption{Evolution of the percentage of every type of reinforce over the total of reinforces used by the best individual by generation of every execution -- TO DO--}
+ \label{figura:e_targetsReinforce}
  \end{figure}
 
 

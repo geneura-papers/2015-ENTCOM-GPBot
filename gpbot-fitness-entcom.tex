@@ -659,7 +659,11 @@ Area	& 2,838	$\pm$	1,198	&	2,347	$\pm$	0,949 \\ \hline
 
 
 \end{tabular}
-\caption{Average results obtained for each approach at the end of the runs. Everyone has been tested 21 times.}
+\caption{Average results obtained for each approach at the end of the
+  runs. Everyone has been tested 21 times.}
+%Don't understand this. How do you compare fitnesses if they are
+%computed in a different way? Shouldn't you call it score? Or
+%victories? Or something else? - JJ
 \label{tab:results3config}
 }
 \end{table*}
@@ -716,8 +720,23 @@ The \textit{Victory-based} fitness achieves better results in average, being als
 
 
 There is still a final remark, which concerns to the percentage of draw matches.
-As it can be seen in Table \ref{tab:ties}. The \textit{Victory-based} fitness achieves more draws against bots of the same type than the other approaches. This can be explained because they use less information to perform the evolution, obtaining quite similar behaviours. This is also reinforced by previous results in which the bots of this fitness seemed to perform similarly, obtaining close number of victories and thus, getting small standard deviation values.
+As it can be seen in Table \ref{tab:ties}. The matches with bots obtained using \textit{Victory-based}
+fitness  result in more ties against bots of the same type than the
+other approaches. % so what? - JJ
+This can be explained because they use less
+information to perform the evolution, obtaining quite similar
+behaviours. % which is good because a) it is more consistent b) more
+            % robust c) no idea - JJ
+This is also reinforced by previous results in which the
+bots of this fitness seemed to perform similarly, obtaining close
+number of victories and thus, getting small standard deviation
+values. 
 % AntonioDEF - a ver si os mola esta conclusión. (ANTARES)
+% Don't understand a thing. Which one is better? Why do you use the
+% number of ties to compare them? Shouldn't you compare the number of
+% ties _with itself_ with the number of ties _with the best bots
+% created with other methods? - JJ
+
 
 \begin{table*}
 \centering{
@@ -727,6 +746,8 @@ Victory & 62.06\%	& 23.15 \% 	&	12.47 \% \\ \hline
 Slope	& 	-		& 19.07 \%	&	12.50 \%		\\ \hline
 Area	& 	-		&	-		&	11.87 \% \\ \hline
 
+%This table is WRONG!!! They are not in the same order. Area vs. Area,
+%for instance is not completed - JJ
 %  \begin{table}[ht]
 % \centering
 % \begin{tabular}{rlr}

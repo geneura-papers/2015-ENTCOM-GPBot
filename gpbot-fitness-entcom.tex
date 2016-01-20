@@ -581,8 +581,10 @@ The generated tree is compiled in real-time and injected in the agent's code usi
 \label{sec:results}
 \subsection{-- EA --}
 
-Table \ref{tab:results3config} shows the obtained results after executing 21 times each approach, i.e. GP algorithm using every fitness implementation. 
+Table \ref{tab:results3config} shows the obtained results after
+executing each approach 21 times, i.e. GP algorithm using every fitness implementation. 
 % AntonioDEF - aclaro un poco más
+% la frase está mal construida después de i. e. - JJ
 Although these fitness are not comparable, as they obviously apply different metrics, the \textit{Victory-based} fitness achieves values near to the optimum (5) at the end of the run (look at the best individual and average population values). The \textit{Slope} and \textit{Area} fitness yield results under their theoretical optimum, 
 % AntonioDEF - ¿cuál es su óptimo teórico?
 % Antares: Esto ya lo he comentado varias veces, todos tienen como rango de valores entre 0 y 5.
@@ -600,7 +602,9 @@ as they depend on more information ranges (variation in the number of ships).
 \begin{figure}[ht]
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_turns.pdf}
- \end{center}
+ \end{center} % no podéis empezar una frase con "for
+              % individuals". Empezad con Boxplot - JJ También es
+              % inútil un boxplot sólo, sólo sirve para comparar. - JJ
  \caption{For individuals obtained with \textbf{Victories Fitness Method}: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
  \label{figura:fitness_turns}
  \end{figure}
@@ -731,7 +735,11 @@ The \textit{Victory-based} fitness achieves better results in average, being als
  \end{center}
  \caption{Boxplot of average percentage of victories of the best bots obtained by each method vs. the rest.}
 % Los boxplot son para comparar. Los tenéis que meter a los tres en el mismo. Si no vais a comparar, no tenéis que hacer ningún boxplot. - JJ FERGU4: lo que te dije, Antares. 
-% Antares: a ver, aquí si se comparan la misma cosa, el porcentaje de victorias de cada individuo. En principio en el texto hay que compararlos.
+% Antares: a ver, aquí si se comparan la misma cosa, el porcentaje de
+% victorias de cada individuo. En principio en el texto hay que
+% compararlos.
+% Por favor, corregid el título de los gráficos "victories of best"
+% está mal dicho. Ponedlo consistente en todos los gráficos también. 
  \label{figura:boxplotvictories}
  \end{figure}
 
@@ -839,7 +847,10 @@ values.
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_TARGETS_REINFORCE.pdf}
  \end{center}
- \caption{Evolution of the percentage of every type of reinforce over the total of reinforces used by the best individual by generation of every execution -- TO DO--}
+ \caption{Evolution of the percentage of every type of reinforce over
+   the total of reinforces used by the best individual by generation
+   of every execution -- TO DO--}
+% What do you mean by reinforce? Refresh troops? - JJ 
  \label{figura:e_targetsReinforce}
  \end{figure}
 

@@ -88,9 +88,10 @@ The automatic generation of agents (also called {\em bots}) that play this kind 
 
 Therefore, our aim in this paper is to compare the generated bots evaluated with different types of fitness, performing a proper analysis studying the generated rules and the behaviour of the bots against unknown enemies. In this paper we have tested three different fitness functions:
 \begin{itemize}
-\item A victory based fitness, that only takes into account the number of games won.
+\item A victory based fitness, that only takes into account the number of games won. %ANTARES: También tiene en cuenta los turnos, pero para desempatar...
 \item A slope fitness: that measures the behaviour during all the game (not only at the end, as in the previous one), using the slope of the number of units during the game.
 \item An area fitness: as in the previous one, it takes into account the number of units during in the game, but to calculate the integral. %PABLO: por qu? esta diferenciaci?n en estas dos ultimas?
+%ANTARES: Realmente se calcula el número promedio de recursos en el número de turnos, y esto se calcula con la integral (sumatoria de valores discretos) dividido por el número de turnos
 \end{itemize}
 
 We have used GP to generate the bots, because it provides a good mechanism to generate rules from scratch, giving the possibility to create very different behaviours. The game used is {\em Planet Wars}, as it is simplest game that model an RTS: only one type of resources and units. 
@@ -136,6 +137,7 @@ The aim of the game is to defeat all the ships in the opponent's planets. Althou
 There are two strong constraints which determine the possible methods to apply to design a bot: a simulated turn takes \textit{just one second}, 
 %FERGU: falso, es el máximo tiempo para calcular una acción
 % Antonio - y qué es un turno entonces sino el tiempo para decidir una acción (o conjunto de acciones)?
+% ANTARES: Estoy de acuerdo con Fergu, es el tiempo máximo que se tiene de cómputo. Si el juego dura 1000 turnos, no quiere decir que haya tardado 1000 segundos en simulares. Pero bueno, para que entrar en follones.
 and the bot is \textit{not allowed to store any kind of information} about its former actions, about the opponent's actions or about the state of the game (i.e., the game's map). 
 %FERGU: i.e. no quiere decir "es decir", quiere decir "por ejemplo". Poner "that is,"
 % Antonio - creo que te lias, i.e. significa "id est", que significa "esto es/es decir". Creo que te confundes con e.g. que sí significa "for example".
@@ -324,6 +326,7 @@ Next section explains one of the main components of the evolutionary process, i.
 
 \subsection{Fitness based in Victories}
 % "Turn based fitness"  [pedro] FERGU3: arreglado. Habría que llamarlo fitness basado en VICTORIAS, que es lo importante!!!!! (de hecho, el valor de las tablas muestra las VICTORIAS)
+% ANTARES: De hecho en todos lados se llama así...
 \label{subsec:fitness_turns}
 
 %In previous works \cite{Genebot_CEC11}, a bot was evaluated always versus the same enemy (a reference bot), several times (in different maps), using a \textit{hierarchical fitness function}. FERGU4: comento esto que no sirve para nada.
@@ -358,6 +361,7 @@ For two bots, A and B, the fitness comparison (and therefore, their order inside
 \end{algorithmic}
 \caption{Comparison between two individuals using hierarchical fitness.}
 % AntonioDEF - ¿dejamos hierachical o victories?
+% ANTARES: Creo que basado en victorias. Lo otros dos son basados en recursos.
 \label{alg:fitness_turns_positions}
 \end{algorithm}
 
@@ -599,6 +603,9 @@ as they depend on more information ranges (variation in the number of ships).
 % NI IDEA PORQUE NO LOS ENTIENDO XDD (FERGU3). ARREGLADLO
 % AntonioDEF - yo tampoco sabría justificarlo. ANTARES dí algo y lo traduce Fergu. ;D
 
+% ANTARES: Cómo he re-ajustado las figuras para hacer comparaciones "entre mismo tipos de fitness" ha cambiado un poco las gráficas.
+% las gráficas de convergencia del algoritmo sirven para demostrar que realmente el algoritmo esta convergiendo hacia mejores soluciones según el fitness.
+
 
 \begin{figure}[ht]
  \begin{center}
@@ -606,7 +613,7 @@ as they depend on more information ranges (variation in the number of ships).
  \end{center} % no podéis empezar una frase con "for
               % individuals". Empezad con Boxplot - JJ También es
               % inútil un boxplot sólo, sólo sirve para comparar. - JJ
- \caption{For individuals obtained with \textbf{Victories Fitness Method}: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
+ \caption{\textbf{Victories Fitness Method} individuals: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
  \label{figura:fitness_turns}
  \end{figure}
 
@@ -614,7 +621,7 @@ as they depend on more information ranges (variation in the number of ships).
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_area.pdf}
  \end{center}
- \caption{For individuals obtained with \textbf{Area Fitness Method}: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
+ \caption{\textbf{Area Fitness Method} individuals: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
  \label{figura:fitness_area}
  \end{figure}
 
@@ -622,7 +629,7 @@ as they depend on more information ranges (variation in the number of ships).
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_slope.pdf}
  \end{center}
- \caption{For individuals obtained with \textbf{Slope Fitness Method}: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
+ \caption{\textbf{Slope Fitness Method} individuals: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
  \label{figura:e_fitness_slope}
  \end{figure}
 

@@ -590,21 +590,47 @@ as they depend on more information ranges (variation in the number of ships).
 % NI IDEA PORQUE NO LOS ENTIENDO XDD (FERGU3). ARREGLADLO
 % AntonioDEF - yo tampoco sabría justificarlo. ANTARES dí algo y lo traduce Fergu. ;D
 
- \begin{figure}[ht]
+
+\begin{figure}[ht]
  \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/evolution_BEST_FITNESS.pdf}
+   \includegraphics[width=12cm]{nuevas_imgs/estudio_turns.pdf}
  \end{center}
- \caption{Evolution of the fitness of the best individual of every execution by fitness method.}
- \label{fig:evolutionFitness}
+ \caption{For individuals obtained with \textbf{Victories Fitness Method}: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
+ \label{figura:fitness_turns}
  \end{figure}
 
- \begin{figure}[ht]
+   \begin{figure}[ht]
  \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_FITNESS.pdf}
+   \includegraphics[width=12cm]{nuevas_imgs/estudio_area.pdf}
  \end{center}
- \caption{Evolution of the average fitness of every execution by fitness method.}
- \label{figura:evolutionFitnessAverage}
+ \caption{For individuals obtained with \textbf{Area Fitness Method}: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
+ \label{figura:fitness_area}
  \end{figure}
+
+    \begin{figure}[ht]
+ \begin{center}
+   \includegraphics[width=12cm]{nuevas_imgs/estudio_slope.pdf}
+ \end{center}
+ \caption{For individuals obtained with \textbf{Slope Fitness Method}: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
+ \label{figura:e_fitness_slope}
+ \end{figure}
+
+
+ % \begin{figure}[ht]
+ % \begin{center}
+ %   \includegraphics[width=12cm]{nuevas_imgs/evolution_BEST_FITNESS.pdf}
+ % \end{center}
+ % \caption{Evolution of the fitness of the best individual of every execution by fitness method.}
+ % \label{fig:evolutionFitness}
+ % \end{figure}
+
+ % \begin{figure}[ht]
+ % \begin{center}
+ %   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_FITNESS.pdf}
+ % \end{center}
+ % \caption{Evolution of the average fitness of every execution by fitness method.}
+ % \label{figura:evolutionFitnessAverage}
+ % \end{figure}
 
  \begin{figure}[ht]
  \begin{center}
@@ -804,7 +830,6 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
  \caption{Evolution of the percentage of every type of reinforce over the total of reinforces used by the best individual by generation of every execution -- TO DO--}
  \label{figura:e_targetsReinforce}
  \end{figure}
-
 
 
 %FERGU: he borrado las tablas, que aquí no se usan. Dejo el resto comentado, por si queréis "inspiraros". Vamos, que no se reutiliza nada del trabajo del Evostar

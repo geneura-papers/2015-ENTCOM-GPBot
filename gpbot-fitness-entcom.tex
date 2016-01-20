@@ -41,7 +41,8 @@
 
 \author{A. Fern{\'a}ndez-Ares, A. M. Mora, P. Garc{\'i}a-S{\'a}nchez, P. A. Castillo, J.J. Merelo}
 \ead{\{antares, amorag, pgarcia, pedro, jmerelo\}@geneura.ugr.es}
-\address{Departamento de Arquitectura y Tecnología de Computadores.\\ ETSIIT - CITIC. University of Granada, Spain}
+%\address{Departamento de Arquitectura y Tecnología de Computadores.\\ ETSIIT - CITIC. University of Granada, Spain}
+\address{Department of Computer Architecture and Technlogy\\ and CITIC. University of Granada, Spain}
 
 %\maketitle
 
@@ -49,41 +50,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ABSTRACT   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{abstract}
-% What problem do we try to solve? - JJ
-Genetic Programming (GP) is a classical evolutionary technique used to
-evolve expressions represented via a tree. % This is something you
-                                % should say in an abstract? That is
-                                % really the abstract of your work? 
-In this paper we use GP % why? 
-to automatically create the
-behavioural engine, i.e. the set  of decision rules, that will guide
-the actions of an autonomous agent (\textit{Bot}), to compete
-adversarially playing the real-time strategy game Planet Wars. % why
-                                % this game?
-This algorithm uses evaluates every bot and evolves a population of
-them taking the score obtained into account. % That's what GP does. So
-                                % what?
-%However, evaluation of every solution is not straightforward. Several
-%elements should be taken into accout, such as... that is why in this
-%paper... - JJ
-The work presents a deep analysis on the performance of three %deep as
-                                %compared to what? - JJ
-% In previous work, we did an initial approach to, obtaining ... but
-% in this one, we will try to prove... - JJ
-different fitness functions, based one in the concept of victories, % why three? why victories? Why everything? - JJ
-and the other two in dynamic information about the evaluation
-matches.  % why? - JJ
-The analysis tests several aspects of the bots, in addition of their
-final performance on battles, such as the evolution of the behavioural
-trees themselves or the influence of noise/uncertainty present in this
-context (in games). 
-% Antonio - TODO: Poner las conclusiones reales de este trabajo
-%The experiments show that the three used fitness functions generate
-%bots that outperform the optimized human-defined one, being the
-%area-based fitness function the one that produces better results.
-% What is the selling point? Using GP? Testing different fitnesses? Is
-% GP important? Is any of the fitnesses? What are the conclusions and
-% how can you generalize them? - JJ
+% una o dos frases dando una breve introduccion general al area
+In Real-Time Strategy games the action takes place in an arena, and contenders fight to control the resources.
+% dos o tres frases mas detallando el background
+The generation of bots using Computational Intelligence techniques to play this kind of games has recently become a popular area.
+All these techniques must dealt with uncertainty and real-time planning in order to control the game agents.
+% una frase muy directa indicando el problema general a resolver en este trabajo
+In this work, a detailed analysis on the performance of different fitness functions for a genetic programming algorithm to create the agents' behavioural engine is presented.
+% una frase muy directa indicando el resultado obtenido en este trabajo (el mas destacable)
+Here we show that genetic programming is a suitable method to generate the bots to play a RTS game, as it provides a mechanism to generate rules that enable to create very different behaviours.
+% un par de frases indicando lo que aporta este resultado al estado del arte
+Specifically, the set of decision rules to manage an autonomous agent to play the Planet Wars game is obtained.
+In this analysis, several aspects of the bots are tested, in addition of their final performance on battles, such as the evolution of the behavioural trees themselves or the influence of noise/uncertainty present in the context of games.
+% una ultima frase poniendo el resultado en un ambito general
+Our results demonstrate that a victory-based fitness that prioritizes the number of victories can generate better bots, on average, than either slope-based or area-based fitnesses. 
 \end{abstract}
 
 %

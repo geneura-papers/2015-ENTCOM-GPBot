@@ -334,6 +334,7 @@ This a variation of the hierarchical fitness considered in \cite{Genebot_CEC11}.
 In this approach, an individual is better than another if it wins in a larger number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. the stronger one) is considered as better. The maximum fitness in this work is, therefore, 5 victories and 0 turns. 
 %FERGU: mover la ultima frase a cuando se hable de los parametros
 % AntonioDEF - ¿cómo que 0 turns? ¿Cómo se va a ganar en 0 turnos?
+% Antares - Es un máximo teórico, y por tanto inalcanzable en la realidad.
 For two bots, A and B, the fitness comparison (and therefore, their order inside the population) is defined as Algorithm \ref{alg:fitness_turns_positions} shows.
 
 \begin{algorithm}[ht]
@@ -415,11 +416,11 @@ In this case, a square regression analysis is computed in order to transform the
 %\end{figure}
 
 
-%\begin{figure}[h]
-%\centering
-%\hspace*{-1in}
-%\begin{subfigure}[H]{0.4\textwidth}
-%	\large
+% \begin{figure}[ht]
+% \centering
+% \hspace*{-1in}
+% \begin{subfigure}[H]{0.4\textwidth}
+% 	\large
 %    \begin{equation}
 %        \alpha = \frac{\sum_{i=1}^{n}(X_{i} - \bar{X_{i}})(Y_{i} - \bar{Y_{i}})}{\sum_{i=1}^{n}(X_{i} - \bar{X_{i}})^{2}}
 %    \end{equation}
@@ -428,18 +429,18 @@ In this case, a square regression analysis is computed in order to transform the
 %    \end{equation}
 %    \caption{Least Squares Regression}
 %    \label{equation:LeastSquares}
-%\end{subfigure}
-%\hfill
-%\hspace*{0.2in}
-%\begin{subfigure}[H]{0.7\textwidth}
-%\begin{center}
+% \end{subfigure}
+% \hfill
+% \hspace*{0.2in}
+% \begin{subfigure}[H]{0.7\textwidth}
+% \begin{center}
 %  \epsfig{file=imagenes/nubecita_pendiente.eps,width=1.1\textwidth}
-%\end{center}
-%\caption{Number of ships of every bot in each turn} %Maribel, cambio if por of
-%\label{figura:nubecita:pendiente}
-%\end{subfigure}
-%\caption{Fitness based in Slope}
-%\end{figure}
+% \end{center}
+% \caption{Number of ships of every bot in each turn} %Maribel, cambio if por of
+% \label{figura:nubecita:pendiente}
+% \end{subfigure}
+% \caption{Fitness based in Slope}
+% \end{figure}
 
 Theoretical maximum and minimum values are set for this fitness. An optimum bot that wins in the first turn, has an ideal slope of {$1$}, so this is the maximum value of our fitness. On the other hand, a bot that loses in the first turn,  has a slope of {$-1$}. Thus, if we calculate the $slope$, we know if the bot {$WINs$} ({$slope>0$}) or {$LOSEs$} {$slope<0$}. 
 The values of the different battles are summed to compute the global $slope$. %FERGU: por qué las mayúsculas? Explicar mejor esta última frase
@@ -511,9 +512,11 @@ case, the mutation randomly changes the decision of a node or mutate
 the value with a step-size of 0.25 (an adequate value empirically
 tested). Each configuration is executed 30 times, with a population of
 32 individuals and a 2-tournament selector for a pool of 16
-parents. %This is not experimental setup, it is description of
-         %parameters used in the algorithm. Experimental setup is
-         %number of runs, which conditions, so on - JJ
+parents.
+
+%This is not experimental setup, it is description of
+%parameters used in the algorithm. Experimental setup is
+%number of runs, which conditions, so on - JJ
 
 To test each individual during the evolution, a battle with a previously created bot is performed in 5 different (but representative) maps provided by Google is played. 
 %Hierarchical fitness is used, as proposed in \cite{Genebot_CEC11}. Thus, an individual is better than another if it wins in a higher number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. the stronger one) is considered better. The maximum fitness is, therefore 5 victories and 0 turns. 
@@ -546,8 +549,10 @@ Runs per configuration & 30 \\ \hline
 Evaluation & Playing versus GeneBot \cite{Genebot_CEC11}  \\ \hline 
 %FERGU: Antares, confirmalo
 % Antonio - Al final creo que sólo Genebot %FERGU2: quitado
+% Antares: Si
 Maps used in each evaluation & map76, map69, map7, map11, map26 
 % AntonioDEF - los mapas han sido esos, ¿no?
+% Antares: Si
 \\ \hline
 \end{tabular}
 \caption{Parameters used in the experiments.}
@@ -580,6 +585,7 @@ Table \ref{tab:results3config} shows the obtained results after executing 21 tim
 % AntonioDEF - aclaro un poco más
 Although these fitness are not comparable, as they obviously apply different metrics, the \textit{Victory-based} fitness achieves values near to the optimum (5) at the end of the run (look at the best individual and average population values). The \textit{Slope} and \textit{Area} fitness yield results under their theoretical optimum, 
 % AntonioDEF - ¿cuál es su óptimo teórico?
+% Antares: Esto ya lo he comentado varias veces, todos tienen como rango de valores entre 0 y 5.
 as they depend on more information ranges (variation in the number of ships).
 \textit{Area} obtains slightly better values than \textit{Slope}. Fig.\ref{fig:evolutionFitness} shows how --TO DO COMENTADO-- %Básicamente quiero decir que en la figura 2 se muestra como el fitness del mejor individuo de la población mejora a medida que transcurren las generaciones, que es lo que debe suceder en un EA. De igual manera, la figura 3 muestra como el promedio de la población también mejora a medida que van transcurriendo las generaciones.
 
@@ -695,18 +701,21 @@ This experiment has been conducted in order to validate if the bots obtained by 
  \caption{Boxplot of average percentage of victories of the bots obtained by each approach vs. GeneBot. 9 different matches have been performed per bot in different maps.} 
 % AntonioDEF - ¿average percentage o sólo percentage? (ANTARES)
 % Toy un poco dormío ya para pensar. :/
+% Antares: No, a ver. Se coge cada individuo y se le evalúa contra Genebot. Ese gana pues digamos un 90%. Se coge otro y se prueba, gana el 70%.... Con todos esos valores se hace un bloxplot. Así que no es el promedio.
  \label{figura:boxplotvictoriesgenebot}
  \end{figure}
 
 Finally, an additional experiment has been conducted, proposing a direct comparison between the three methods. To this end each of the best individuals obtained per approach has been tested competing against all the rest (in a vs 1 battles) in 9 matches per pair of bots, one per representative map.
 % AntonioDEF - ¿en cuantos mapas? o sea, ¿cuántos combates hacía cada pareja?
-% revisad si está bien así. (ANTARES)
+% revisad si está bien así. (ANTARES).
+% Antares: Está explicdo más adelante
 
 This allows a comparison with a bigger number of bots, and also,
 allows the analysis of their behavior against rivals not previously
 used during training (as in the experiment above). 
 The boxplots of the average percentage of victories from the best bots obtained by each method are shown in Figure \ref{figura:boxplotvictories}. It is clear from the image that the \textit{Slope} fitness does not get good results with respect to the other methods. This can be explained because the this fitness loses information during the run, in comparison with the others, obtaining bots less aggressive. 
 % AntonioDEF - ¿Qué información pierde?¿Esto de dónde os lo habeis sacado?¿Cómo lo sabéis? (ANTARES)
+% Antares: Yo no he sacado ese texto. Supongo que lo querrá decir, es que el fitness basado en pendiente suma puntos si gana (la pendiente es positiva) o resta si pierde (la pendiente es negativa). Así que supongo que lo que se quiere decir es que la puntuación no se sabe cuanto ha sumado y cuando ha restado. Igual a sumado mucho pero ha restado algo. O igual ha sumado muy poco. No sé a que otra cosa se puede referir.
 The \textit{Victory-based} fitness achieves better results in average, being also more robust (small standard deviation). However, looking at the \textit{Area} fitness results, they outperform several times the \textit{Victory} results, obtaining more victories.
 %.... NO SE COMO JUSTIFICAR QUE ESTO ES MEJOR :/// (FERGU3). ç
 
@@ -722,6 +731,7 @@ The \textit{Victory-based} fitness achieves better results in average, being als
  \end{center}
  \caption{Boxplot of average percentage of victories of the best bots obtained by each method vs. the rest.}
 % Los boxplot son para comparar. Los tenéis que meter a los tres en el mismo. Si no vais a comparar, no tenéis que hacer ningún boxplot. - JJ FERGU4: lo que te dije, Antares. 
+% Antares: a ver, aquí si se comparan la misma cosa, el porcentaje de victorias de cada individuo. En principio en el texto hay que compararlos.
  \label{figura:boxplotvictories}
  \end{figure}
 
@@ -745,38 +755,39 @@ values.
 % created with other methods? - JJ
 
 
-\begin{table*}
-\centering{
-\begin{tabular}{|c|c|c|c|} \hline            
-		& Victory		&	Area 		& Slope	\\ \hline \hline
-Victory & 62.06\%	& 23.15 \% 	&	12.47 \% \\ \hline
-Slope	& 	-		& 19.07 \%	&	12.50 \%		\\ \hline
-Area	& 	-		&	-		&	11.87 \% \\ \hline
+% \begin{table*}
+% \centering{
+% \begin{tabular}{|c|c|c|c|} \hline            
+% 		& Victory		&	Area 		& Slope	\\ \hline \hline
+% Victory & 62.06\%	& 23.15 \% 	&	12.47 \% \\ \hline
+% Slope	& 	-		& 19.07 \%	&	12.50 \%		\\ \hline
+% Area	& 	-		&	-		&	11.87 \% \\ \hline
 
-%This table is WRONG!!! They are not in the same order. Area vs. Area,
-%for instance is not completed - JJ
-%  \begin{table}[ht]
-% \centering
-% \begin{tabular}{rlr}
-%   \hline
-%  FITNESS METHOD & Victories\\ 
-%   \hline
-%  VICTORIES FITNESS & 68.04\% \\ 
-%  AREA FITNESS & 33.01\% \\ 
-%  SLOPE FITNESS & 13.17\% \\ 
-%    \hline
+% %This table is WRONG!!! They are not in the same order. Area vs. Area,
+% %for instance is not completed - JJ
+% %  \begin{table}[ht]
+% % \centering
+% % \begin{tabular}{rlr}
+% %   \hline
+% %  FITNESS METHOD & Victories\\ 
+% %   \hline
+% %  VICTORIES FITNESS & 68.04\% \\ 
+% %  AREA FITNESS & 33.01\% \\ 
+% %  SLOPE FITNESS & 13.17\% \\ 
+% %    \hline
+% % \end{tabular}
+% %  \caption{ -- TO DO -- Victories vs Genebot}
+% %  \label{tabla:vsGenebot}
+% % \end{table}
+
+
 % \end{tabular}
-%  \caption{ -- TO DO -- Victories vs Genebot}
-%  \label{tabla:vsGenebot}
-% \end{table}
+% \caption{Percentage of draw matches between bots per fitness approach.}
+% \label{tab:ties}
+% }
+% \end{table*}
 
-
-\end{tabular}
-\caption{Percentage of draw matches between bots per fitness approach.}
-\label{tab:ties}
-}
-\end{table*}
-
+% Antares: esta tabla se va fuera, porque estoy intentando hacerlo de otra manera y ahora mismo no aporta mucho, para que decir lo contrario.
 
 \subsection{-- TO DO -- Estudio acciones y condiciones}
 
@@ -832,6 +843,9 @@ Area	& 	-		&	-		&	11.87 \% \\ \hline
  \label{figura:e_targetsReinforce}
  \end{figure}
 
+
+
+%% DE AQUÍ PARA ABAJO ES TEXTO ANTIGUO DEL EVO QUE NO TIENE QUE VER CON ESTE ARTÍCULO
 
 %FERGU: he borrado las tablas, que aquí no se usan. Dejo el resto comentado, por si queréis "inspiraros". Vamos, que no se reutiliza nada del trabajo del Evostar
 

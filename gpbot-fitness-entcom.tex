@@ -39,6 +39,7 @@
 % Programming? - JJ
 % Antonio - Paso a hablar en cristiano que todos somos de Madrid pabajo. ;D
 % Me ha gustado lo de 'Genetically-Programmed', a ver qué opina Antares.
+% Antares: Me parece bien.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   AUTHORS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -108,11 +109,13 @@ Three fitness functions have been tested in the paper:
 \begin{itemize}
 \item A {\em victory-based fitness}, that only considers the number of battles won in the evaluation. %ANTARES: TambiÃ©n tiene en cuenta los turnos, pero para desempatar...
 % Antonio - mejor decirlo cuando se describa en detalle, para no liar aquí. ;)
+% Antares: Ok
 \item A {\em slope-based fitness}: that measures the behaviour during all the game (not only at the end, as in the previous one), using the slope of the number of generated units during the game.
-\item An {\em area-based fitness}: which computes an integral as the average number of generated units divided by the number of turns the battle has taken. 
+\item An {\em area-based fitness}: which computes an integral as the percentage of units possessed by the bot divided by the number of turns the battle has taken. 
 %PABLO: por qu? esta diferenciaci?n en estas dos ultimas?
 %ANTARES: Realmente se calcula el nÃºmero promedio de recursos en el nÃºmero de turnos, y esto se calcula con la integral (sumatoria de valores discretos) dividido por el nÃºmero de turnos
 % Antonio - mirad si lo he descrito bien. ;)
+%ANTARES: No es del número ''generado'' sino el número total en juego. Lo intento corregir.
 \end{itemize}
 
 These approaches have been implemented for the game {\em Planet Wars} (or Galcon
@@ -181,6 +184,7 @@ We have considered this game in some previous studies \cite{Genebot-IWANN2011,Ge
 % - Estudio en profundidad de los árboles (que antes no se había hecho)
 % - ¿Mejora en los resultados?
 % - ¿Algo del ruido?
+% ANTARES: Lo del estudio de profundidad se hizo en el primer artículo de GP-BOT del EVOSTAR, y se hizo mejor que aquí.
 
 %For example, in
 %\cite{Mora2012Genebot} the authors programmed the behaviour of a {\em bot} (a computer-controlled player) with a decision tree of 3 levels. Then, the values of these rules were optimized using a genetic algorithm to tune the strategy rates and percentages.  

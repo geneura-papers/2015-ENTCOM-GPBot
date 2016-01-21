@@ -165,15 +165,14 @@ Therefore, the objective of this paper is to generate a reliable BT for a bot, w
 \section{State of the art}
 \label{sec:soa}
 
-RTS games have been used extensively in the Computational Intelligence area (see \cite{Lara2013review} for a survey). 
-Among other techniques, Evolutionary Algorithms have been widely used as a  Computational Intelligence method in RTS games, for example, for parameter optimisation \cite{Genebot_CEC11,ExpGenebot_CIG2012}, building order decision \cite{Kostler2013:MO_StarCraftII,Barriga2014:BuildingOrder_GA}, learning \cite{learning_StarCraft_AAIDE11,Wender_RL_CIG12}, or content generation \cite{Mahlmann2012MapGeneration,Lara_EntComp_PCG_RTS14}. 
+RTS games have been used extensively in the Computational Intelligence (CI) area (see \cite{Lara2013review} for a survey). 
+Among other techniques, EAs have been widely used as a CI method in RTS games, for example, for parameter optimisation \cite{Genebot_CEC11,ExpGenebot_CIG2012}, building order decision \cite{Kostler2013:MO_StarCraftII,Barriga2014:BuildingOrder_GA}, learning \cite{learning_StarCraft_AAIDE11,Wender_RL_CIG12}, or content generation \cite{Mahlmann2012MapGeneration,Lara_EntComp_PCG_RTS14}. 
 
-One of these types, Genetic Programming, has been proved as a good tool for developing strategies in games, achieving results comparable to human, or human-based competitors \cite{Sipper2007gameplaying}. They also have obtained higher ranking than solvers produced by other techniques or even beating high-ranking humans \cite{Elyasaf2012FreeCell}. GP has also been used in different kind of games, such as board-games \cite{Benbassat2012Reversi}, or (in principle) simpler games such as Ms. Pac-Man \cite{Brandstetter2012PacMan} and Spoof \cite{Wittkamp2007spoof} and even in modern video-games such as First Person Shothers (FPS) (for example, Unreal\texttrademark~ \cite{Esparcia2013GPunreal}). With respect to RTS games, there are just a few applications on pathfinding \cite{pathfinding_GP_RTS} and definition of tactics in an abstract tactical game \cite{KeaveneyO09_GP_RTS}.
-In this paper, the aim is to apply GP inside a modern RTS, in order to define the whole behavioural engine for an autonomous player(non-player character), trying to improve a rule-based system previously defined by a human expert.
-% AntonioDEF - he puesto esto nuevo, que creo que queda bien. No decimos que no se haya hecho, pero sí que lo nuestro es más mejor (o al menos diferente)
-% ... y eso nos hace pensar que puede dar buenos resultados en este caso, porque nunca se ha aplicado a este tipo de problema.
-% ¿Cuál es el selling poing? ¿GP aplicado a RTS? ¿GP aplicado a Planet Wars? - JJ 
-% Antonio - escrito, aunque no es una frase lapidaria porque no estoy seguro de que no se haya usado antes en RTSs. PEro el objetivo/selling point se explica en la intro ahora.
+GP has also proved to be a very good tool for developing strategies in games, achieving results comparable to human, or human-based competitors \cite{Sipper2007gameplaying}. They also have obtained higher ranking than solvers produced by other techniques or even beating expert human players \cite{Elyasaf2012FreeCell}. GP has also been used in different kind of games, such as board-games \cite{Benbassat2012Reversi}, (apparently) `simple' games like Ms. Pac-Man \cite{Brandstetter2012PacMan} or Spoof \cite{Wittkamp2007spoof}, and even in modern videogames such as First Person Shooters (FPS) as Unreal\texttrademark~ \cite{Mora_UnrealBots10,Esparcia2013GPunreal}. 
+
+With respect to RTS games, it has not been extremely exploited, so there are just a few applications, such as pathfinding \cite{pathfinding_GP_RTS}, definition of tactics in an abstract tactical game \cite{KeaveneyO09_GP_RTS},and recently to the automatic generation of strategies for a bot \cite{Garcia15Starcraft}.
+% Antonio - Fergu, mira a ver si quieres a�adir algo a esto. ;)
+In this paper, the aim is to apply GP inside a `simple' RTS, Planet Wars, in order to define the whole behavioural engine for bot.
  
 Planet Wars, the game used in this work, has also been used in other researches as an experimental framework for agent testing. 
 %We have deeply worked in this environment \cite{Genebot-IWANN2011,Genebot_CEC11,genebot-evo12,ExpGenebot_CIG2012,Co-Genebot_EVO2014},

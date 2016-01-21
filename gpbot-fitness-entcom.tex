@@ -31,18 +31,20 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   TITLE   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Analyzing the Influence of the Fitness Function on Genetic Programming-based Bots for a Real-Time Strategy Game}
+\title{Analyzing the Influence of the Fitness Function on Genetically Programmed Bots for a Real-Time Strategy Game}
 % What problem are we solving? Why do we need to test and analyse? - JJ
 % Antonio - Mejorado
 % What about genetically programmed bots? Or bots evolved via Genetic
 % Programming? - JJ
+% Antonio - Paso a hablar en cristiano que todos somos de Madrid pabajo. ;D
+% Me ha gustado lo de 'Genetically-Programmed', a ver qué opina Antares.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   AUTHORS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \author{A. Fern{\'a}ndez-Ares, A. M. Mora, P. Garc{\'i}a-S{\'a}nchez, P. A. Castillo, J.J. Merelo}
 \ead{\{antares, amorag, pgarcia, pedro, jmerelo\}@geneura.ugr.es}
 %\address{Departamento de Arquitectura y TecnologÃ­a de Computadores.\\ ETSIIT - CITIC. University of Granada, Spain}
-\address{Department of Computer Architecture and Technlogy\\ and CITIC. University of Granada, Spain}
+\address{Department of Computer Architecture and Technology\\ ETSIIT, CITIC. University of Granada, Spain}
 
 %\maketitle
 
@@ -51,21 +53,19 @@
 %
 \begin{abstract}
 % una o dos frases dando una breve introduccion general al area
-In Real-Time Strategy games the action takes place in an arena, and contenders fight to control the resources.
+Real-Time Strategy games (RTSs) are one of the common testbeds for research in the Computational Intelligence field.
 % dos o tres frases mas detallando el background
-The generation of bots using Computational Intelligence techniques to play this kind of games has recently become a popular area.
-All these techniques must dealt with uncertainty and real-time planning in order to control the game agents.
+The automatic generation of autonomous agents (bots) to play this kind of games is also a very prolific research line. However, the applied techniques to do this, must dealt with uncertainty and real-time planning in order to control the game agents.
 % una frase muy directa indicando el problema general a resolver en este trabajo
-In this work, a detailed analysis on the performance of different fitness functions for a genetic programming algorithm to create the agents' behavioural engine is presented.
+In this work, a genetic programming algorithm to create the behavioural engine of bots able to play a RTS is presented. Three different fitness functions aiming to better deal with this uncertainty are considered, and a detailed analysis on their performance has been conducted. 
 % una frase muy directa indicando el resultado obtenido en este trabajo (el mas destacable)
-Here we show that genetic programming is a suitable method to generate the bots to play a RTS game, as it provides a mechanism to generate rules that enable to create very different behaviours.
+The results show that genetic programming is a suitable method to generate bots to play a 'simple' RTS game, Planet Wars, Moreover it provides a mechanism to generate rules that enable to create very different behaviours.
 % un par de frases indicando lo que aporta este resultado al estado del arte
-Specifically, the set of decision rules to manage an autonomous agent to play the Planet Wars game is obtained.
-In this analysis, several aspects of the bots are tested, in addition of their final performance on battles, such as the evolution of the behavioural trees themselves or the influence of noise/uncertainty present in the context of games.
+The paper analyzes several aspects of the bots, in addition of their final performance on battles, such as the evolution of the behavioural trees themselves or the influence in the results of noise/uncertainty always present in the context of games.
 % una ultima frase poniendo el resultado en un ambito general
-Our results demonstrate that a victory-based fitness that prioritizes the number of victories can generate better bots, on average, than either slope-based or area-based fitnesses. 
+As a general conclusion a victory-based fitness, which prioritizes the number of victories, contributes to generate better bots, on average, than other functions based on numerical aspects of the games (such as the number of resources gathered, or the number of units generated). 
 \end{abstract}
-
+% Antonio - he hecho una mejora de lo que proponía Pedro, atendiendo también a lo que sugería JJ. A ver si os gusta. ;)
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   KEYWORDS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %

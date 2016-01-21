@@ -42,7 +42,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   AUTHORS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\author{A. Fern{\'a}ndez-Ares, A. M. Mora, P. Garc{\'i}a-S{\'a}nchez, P. A. Castillo, J.J. Merelo}
+\author{A. Fern{\'a}ndez-Ares, A.M. Mora, P. Garc{\'i}a-S{\'a}nchez, P.A. Castillo, J.J. Merelo}
 \ead{\{antares, amorag, pgarcia, pedro, jmerelo\}@geneura.ugr.es}
 %\address{Departamento de Arquitectura y Tecnolog√≠a de Computadores.\\ ETSIIT - CITIC. University of Granada, Spain}
 \address{Department of Computer Architecture and Technology\\ ETSIIT, CITIC. University of Granada, Spain}
@@ -62,9 +62,9 @@ This work presents a Genetic Programming (GP) algorithm to create the behavioura
 % una frase muy directa indicando el resultado obtenido en este trabajo (el mas destacable)
 The results show that GP is a suitable method to generate bots to play a `simple' RTS game, Planet Wars. Moreover, it provides a mechanism to generate rules that enable to define very different behaviours.
 % un par de frases indicando lo que aporta este resultado al estado del arte
-The paper analyzes several aspects of the bots, in addition to their final performance on battles, such as the evolution of the behavioural trees themselves, or the influence on the results of noise/uncertainty always present in the context of games.
+The paper analyses several aspects of the bots, in addition to their final performance on battles, such as the evolution of the behavioural trees themselves, or the influence on the results of noise/uncertainty always present in the context of games.
 % una ultima frase poniendo el resultado en un ambito general
-As a general conclusion a victory-based fitness, which prioritizes the number of victories, contributes to generate better bots, on average, than other functions based on the numerical aspects of the battles, such as the number of resources gathered, or the number of units generated. 
+As a general conclusion a victory-based fitness, which prioritises the number of victories, contributes to generate better bots, on average, than other functions based on the numerical aspects of the battles, such as the number of resources gathered, or the number of units generated. 
 \end{abstract}
 % Antonio - he hecho una mejora de lo que proponÌa Pedro, atendiendo tambiÈn a lo que sugerÌa JJ. A ver si os gusta. ;)
 %
@@ -83,11 +83,11 @@ Real-time Strategy game \sep Genetic Programming \sep Autonomous agent \sep Bot 
 \section{Introduction}
 \noindent 
 
-Real-Time Strategy (RTS) games are a genre of videogames where the action takes place in a scenario (or arena) and the contenders must fight, controlling a set of units, in order to monopolize the resources and, eventually, to defeat the opponent. These games are not turn-based, so the players must take decisions in real-time. This kind of games has become an interesting testbed in Computational Intelligence research \cite{Lara2013review}, as they can be seen as a simplification of more complex scenarios, such as road traffic simulation or financial prediction. As in these environments, in addition to the required real-time planning, there is some uncertainty present in RTSs.
+Real-Time Strategy (RTS) games are a genre of videogames where the action takes place in a scenario (or arena) and the contenders must fight, controlling a set of units, in order to monopolise the resources and, eventually, to defeat the opponent. These games are not turn-based, so the players must take decisions in real-time. This kind of games has become an interesting testbed in Computational Intelligence research \cite{Lara2013review}, as they can be seen as a simplification of more complex scenarios, such as road traffic simulation or financial prediction. As in these environments, in addition to the required real-time planning, there is some uncertainty present in RTSs.
 
 In this scope, the automatic generation of agents (also called {\em bots}) to play this kind of games is one of the most prominent areas. For example, Evolutionary Algorithms (EAs) have been previously used for the creation of bots/strategies in RTSs such as {\em Planet Wars} \cite{Genebot_CEC11,ExpGenebot_CIG2012,Garcia14Treedepth} or {\em StarCraft} \cite{bistrom_GP_StarCraft,Barriga2014:BuildingOrder_GA,Garcia15Starcraft}, among others. 
 
-% Antonio - introdusco aquÌ lo que son los EAs, porque viene bien para justificar la importancia del fitness. ;D
+% Antonio - introduzco aquÌ lo que son los EAs, porque viene bien para justificar la importancia del fitness. ;D
 EAs \cite{EAs_Back96} are a class of probabilistic search and optimisation algorithms inspired on the model of Darwinistic evolution. 
 There are several subtypes, depending on the data structure that is preferentially used for representing solutions, but Genetic Algorithms (GAs) \cite{GAs_Goldberg89} and Genetic Programming (GP) \cite{GP_Koza92} are the most extended. The main features are common to all of them: a population of individuals or potential solutions of the target problem, a selection method that favours better solutions, and a set of operators that act upon the
 selected solutions. Thus, after an initial population is created (usually random), the selection and operators - crossover and mutation - are applied to the individuals, and the new population then replaces the older one. This is repeated for a number of generations or until another stop condition is met. 
@@ -120,7 +120,7 @@ These approaches have been implemented for the game {\em Planet Wars} (or Galcon
 
 %The presented paper is an extension of the paper published in \cite{Ares14Cosecivi}. 
 % Antonio - Yo esto no lo mencionarÌa, si acaso en alg˙n punto se puede hacer la referencia, pero sin decir que es una extensiÛn, ya que esto acarrea m·s problemas que otra cosa. Al decir que es una extensiÛn hay que aclarar bien en quÈ se extiende y justificar la necesidad de esta extensiÛn. Los revisores ya lo saben y si lo piden lo ponemos. ;D
-The rest of the paper is structured as follows: after the background and the problem description (Section \ref{section:background}), the state of the art is presented in Section \ref{sec:soa}. Then, the description of the GP approach and the considered fitness functions are described respectively in Sections \ref{sec:agent} and \ref{sec:fitness_functions}. Section \ref{sec:experiments} explains the experimental setup, while Section \ref{sec:results} analyzes the obtained results. Finally, the conclusions and future lines work are presented in Section \ref{sec:conclusion}.
+The rest of the paper is structured as follows: after the background and the problem description (Section \ref{section:background}), the state of the art is presented in Section \ref{sec:soa}. Then, the description of the GP approach and the considered fitness functions are described respectively in Sections \ref{sec:agent} and \ref{sec:fitness_functions}. Section \ref{sec:experiments} explains the experimental setup, while Section \ref{sec:results} analyses the obtained results. Finally, the conclusions and future lines work are presented in Section \ref{sec:conclusion}.
 
 
 
@@ -138,7 +138,7 @@ The flow of a GP algorithm is the same as any other EA: a population is created 
 
 \subsection{Planet Wars Game}
 In this paper we work with a %simplified
-version of the game Galcon, aimed at performing bot's fights which was used as base for the Google AI Challenge 2010 (GAIC)\footnote{http://ai-contest.com}.
+version of the game Galcon, aimed at performing bot's fights which was used for the Google AI Challenge 2010 (GAIC)\footnote{http://planetwars.aichallenge.org/}.
 
  \begin{figure}[ht]
  \begin{center}
@@ -148,24 +148,16 @@ version of the game Galcon, aimed at performing bot's fights which was used as b
  \label{figura:PlanetWars1}
  \end{figure}
 
-A Planet Wars match takes place on a map (see Fig. \ref{figura:PlanetWars1}) %FERGU: por qu√© estaba comentada la referencia a la figura?
-that contains several planets (neutral, enemies or owned), each one of them with a number assigned to it that represents the quantity of ships that the planet is currently hosting. 
+A Planet Wars match takes place on a map (see Fig. \ref{figura:PlanetWars1})
+that contains several planets (neutral, enemies, or owned), each one of them with a number assigned to it that represents the amount of ships that the planet is currently hosting. 
 
 The aim of the game is to defeat all the ships in the opponent's planets. Although Planet Wars is a RTS game, this implementation has transformed it into a turn-based game, in which each player has a maximum number of turns to accomplish the objective. At the end of the match, the winner is the player that remains alive, or that which owns more ships if more than one survives. 
 
-There are two strong constraints which determine the possible methods to apply to design a bot: a simulated turn takes \textit{just one second}, 
-%FERGU: falso, es el m√°ximo tiempo para calcular una acci√≥n
-% Antonio - y qu√© es un turno entonces sino el tiempo para decidir una acci√≥n (o conjunto de acciones)?
-% ANTARES: Estoy de acuerdo con Fergu, es el tiempo m√°ximo que se tiene de c√≥mputo. Si el juego dura 1000 turnos, no quiere decir que haya tardado 1000 segundos en simulares. Pero bueno, para que entrar en follones.
+There are two strong constraints which determine the possible methods to apply to design a bot: the time for making a decision is \textit{just one second}, 
 and the bot is \textit{not allowed to store any kind of information} about its former actions, about the opponent's actions or about the state of the game (i.e., the game's map). 
-%FERGU: i.e. no quiere decir "es decir", quiere decir "por ejemplo". Poner "that is,"
-% Antonio - creo que te lias, i.e. significa "id est", que significa "esto es/es decir". Creo que te confundes con e.g. que s√≠ significa "for example".
-%FERGU2: es verdad xD
 
-Therefore, the aim in this paper is to study the improvement of a bot according to the state of the map in each simulated turn (input), returning a set of actions to perform in order to fight the enemy, conquering its resources, and, ultimately, wining the game. 
-%In the original game, only two bots are faced but in this paper it is studied what happen when we simulate 4 on 4 battles, i.e., when 4 bots are fighting in the same map. 
-%FERGU: no se va a hacer 4 vs 4: quitadlo
-% Antonio - Cierto es. se me hab√≠a pasado. :D
+Therefore, the objective of this paper is to generate a reliable BT for a bot, which, according to the state of the map in every simulated turn (input), returns a set of actions to perform in order to fight the enemy, conquer its resources, and finally, win the game. 
+
 
 %-----------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%% STATE OF THE ART %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -173,9 +165,8 @@ Therefore, the aim in this paper is to study the improvement of a bot according 
 \section{State of the art}
 \label{sec:soa}
 
-RTS games have been used extensively in the computational intelligence area (see \cite{Lara2013review} for a survey). 
-
-Among other techniques, Evolutionary Algorithms have been widely used as a  Computational Intelligence method in RTS games \cite{Lara2013review}. For example, for parameter optimization \cite{Esparcia10FPS}, learning \cite{Kenneth2005neuroevolution} or content generation \cite{Mahlmann2012MapGeneration}. 
+RTS games have been used extensively in the Computational Intelligence area (see \cite{Lara2013review} for a survey). 
+Among other techniques, Evolutionary Algorithms have been widely used as a  Computational Intelligence method in RTS games, for example, for parameter optimisation \cite{Genebot_CEC11,ExpGenebot_CIG2012}, building order decision \cite{Kostler2013:MO_StarCraftII,Barriga2014:BuildingOrder_GA}, learning \cite{learning_StarCraft_AAIDE11,Wender_RL_CIG12}, or content generation \cite{Mahlmann2012MapGeneration,Lara_EntComp_PCG_RTS14}. 
 
 One of these types, Genetic Programming, has been proved as a good tool for developing strategies in games, achieving results comparable to human, or human-based competitors \cite{Sipper2007gameplaying}. They also have obtained higher ranking than solvers produced by other techniques or even beating high-ranking humans \cite{Elyasaf2012FreeCell}. GP has also been used in different kind of games, such as board-games \cite{Benbassat2012Reversi}, or (in principle) simpler games such as Ms. Pac-Man \cite{Brandstetter2012PacMan} and Spoof \cite{Wittkamp2007spoof} and even in modern video-games such as First Person Shothers (FPS) (for example, Unreal\texttrademark~ \cite{Esparcia2013GPunreal}). With respect to RTS games, there are just a few applications on pathfinding \cite{pathfinding_GP_RTS} and definition of tactics in an abstract tactical game \cite{KeaveneyO09_GP_RTS}.
 In this paper, the aim is to apply GP inside a modern RTS, in order to define the whole behavioural engine for an autonomous player(non-player character), trying to improve a rule-based system previously defined by a human expert.
@@ -392,7 +383,7 @@ In this fitness, we are only interested in the final result (position and number
 Thus, in this work two additional evaluation functions have been proposed in order to let easier and fairer comparison methods between bots, trying to add another factor in order to reduce the influence of noise \cite{Mora_noisy_jcst}.
 %FERGU: he puesto un therefore para enlazar
 % Antonio - lo he cambiado todo. XD
-Both of them are based in the percentage of ships belonging to each player in every turn. They are normalized considering the total amount of ships in the game for that turn (including neutrals ships in neutral planets), so for each player, there is a different {$cloud$} of ships.
+Both of them are based in the percentage of ships belonging to each player in every turn. They are normalised considering the total amount of ships in the game for that turn (including neutrals ships in neutral planets), so for each player, there is a different {$cloud$} of ships.
 % as Fig.\ref{figura:nubecita} shows. 
 %FERGU: explicar la figura, que no queda na claro.
 % Antonio - Eso digo yo... la voy a quitar
@@ -477,7 +468,7 @@ Then, the bot with the highest value will be the best is each turn or battle.
 % "area based fitness"    [pedro]
 \label{sec:fitness}
 
-In this function, the integral of the curve of the bot's live-line is used for calculating the area that is `covered' by the fitness cloud of points (see Equation \ref{eq:area}). This {$area$} is normalized considering the number of turns, and thus it represents the average percentage of ships during the battle for each player. 
+In this function, the integral of the curve of the bot's live-line is used for calculating the area that is `covered' by the fitness cloud of points (see Equation \ref{eq:area}). This {$area$} is normalised considering the number of turns, and thus it represents the average percentage of ships during the battle for each player. 
 %An example is shown in Fig. \ref{figura:nubecita:area}.
 
 \begin{equation}
@@ -552,7 +543,7 @@ re-evaluated in every generation, constituting an implicit averaging
 % all evaluations in all generations! - JJ
 
 
-A publicly available bot has been chosen for our experiments\footnote{It can be downloaded from \url{https://github.com/deantares/genebot}}. The bot to confront is {\em GeneBot}, proposed in \cite{Genebot_CEC11}. As stated, this bot was trained using a GA to optimize the 8 parameters that conforms a set of hand-made rules, obtained from an expert human player experience.  Table \ref{tab:parameters} summarizes all the parameters used.
+A publicly available bot has been chosen for our experiments\footnote{It can be downloaded from \url{https://github.com/deantares/genebot}}. The bot to confront is {\em GeneBot}, proposed in \cite{Genebot_CEC11}. As stated, this bot was trained using a GA to optimise the 8 parameters that conforms a set of hand-made rules, obtained from an expert human player experience.  Table \ref{tab:parameters} summarises all the parameters used.
 
 \begin{table}
 \begin{center}
@@ -967,7 +958,7 @@ available in the literature (GeneBot) has been used to evaluate the
 generated individuals (fighting against it). %Is this the best way of
                                 %evaluating new bots? - JJ
  This bot was the best one
-obtained in an evolutionary process which optimized different
+obtained in an evolutionary process which optimised different
 parameters inside a human-designed behavioural engine.  
 
 
@@ -982,7 +973,7 @@ obtain a metric to guide the evolution. %Although a turn-based fitness
 % Por lo que m√°s quer√°is, revisad el ingl√©s - JJ FERGU4: ya, vaya horror.
 The results show differences depending on the fitness used: % hey, big
                                 % deal - JJ
- a victory-based fitness that prioritizes the number of victories
+ a victory-based fitness that prioritises the number of victories
  generates better bots on average than fitness that take into account
  the number of spaceships during all the run of the battle. % how
                                 % many? 

@@ -21,7 +21,8 @@
 \usepackage{verbatim}
 \usepackage{moreverb} 
 \usepackage{url}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{inputenc}
 %\usepackage[spanish]{babel}
 \usepackage{url}
 
@@ -57,20 +58,20 @@ Real-Time Strategy games (RTSs) are one of the common testbeds for research in t
 % dos o tres frases mas detallando el background
 The automatic generation of autonomous agents (bots) to play this kind of games is also a very prolific research line. However, the applied techniques to do this, must dealt with uncertainty and real-time planning in order to control the game agents.
 % una frase muy directa indicando el problema general a resolver en este trabajo
-In this work, a genetic programming algorithm to create the behavioural engine of bots able to play a RTS is presented. Three different fitness functions aiming to better deal with this uncertainty are considered, and a detailed analysis on their performance has been conducted. 
+This work presents a Genetic Programming (GP) algorithm to create the behavioural engine of bots able to play a RTS. Three different fitness functions are proposed and a detailed analysis on their performance has been conducted. The aim is to get a better deal with this uncertainty. 
 % una frase muy directa indicando el resultado obtenido en este trabajo (el mas destacable)
-The results show that genetic programming is a suitable method to generate bots to play a 'simple' RTS game, Planet Wars, Moreover it provides a mechanism to generate rules that enable to create very different behaviours.
+The results show that GP is a suitable method to generate bots to play a `simple' RTS game, Planet Wars. Moreover it provides a mechanism to generate rules that enable to define very different behaviours.
 % un par de frases indicando lo que aporta este resultado al estado del arte
-The paper analyzes several aspects of the bots, in addition of their final performance on battles, such as the evolution of the behavioural trees themselves or the influence in the results of noise/uncertainty always present in the context of games.
+The paper analyzes several aspects of the bots, in addition to their final performance on battles, such as the evolution of the behavioural trees themselves, or the influence on the results of noise/uncertainty always present in the context of games.
 % una ultima frase poniendo el resultado en un ambito general
-As a general conclusion a victory-based fitness, which prioritizes the number of victories, contributes to generate better bots, on average, than other functions based on numerical aspects of the games (such as the number of resources gathered, or the number of units generated). 
+As a general conclusion a victory-based fitness, which prioritizes the number of victories, contributes to generate better bots, on average, than other functions based on numerical aspects of the battles, such as the number of resources gathered, or the number of units generated. 
 \end{abstract}
 % Antonio - he hecho una mejora de lo que propon�a Pedro, atendiendo tambi�n a lo que suger�a JJ. A ver si os gusta. ;)
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   KEYWORDS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{keyword}
-Corporate mobile security \sep User-centric systems \sep Self-adaptation \sep Multi-platform \sep BYOD
+Real-time Strategy game \sep Genetic Programming \sep Autonomous agent \sep Bot \sep Fitness function \sep Uncertainty
 \end{keyword}
 
 \end{frontmatter}
@@ -123,7 +124,7 @@ version of the game Galcon, aimed at performing bot's fights which was used as b
 
  \begin{figure}[ht]
  \begin{center}
-   \epsfig{file=./imags/naves.eps,width=7cm}
+   \epsfig{file=./imags/naves.pdf,width=7cm}
  \end{center}
  \caption{Simulated screenshot of an early stage of a run in Planet Wars. White planets belong to the player (blue colour in the game), dark grey belong to the opponent (red in the game), and light grey planets belong to no player. The triangles are fleets, and the numbers (in planets and triangles) represent the ships. The planet size means growth rate of the amount of ships in it (the bigger, the higher).}
  \label{figura:PlanetWars1}
@@ -159,7 +160,7 @@ RTS games have been used extensively in the computational intelligence area (see
 Among other techniques, Evolutionary Algorithms have been widely used as a  Computational Intelligence method in RTS games \cite{Lara2013review}. For example, for parameter optimization \cite{Esparcia10FPS}, learning \cite{Kenneth2005neuroevolution} or content generation \cite{Mahlmann2012MapGeneration}. 
 
 One of these types, Genetic Programming, has been proved as a good tool for developing strategies in games, achieving results comparable to human, or human-based competitors \cite{Sipper2007gameplaying}. They also have obtained higher ranking than solvers produced by other techniques or even beating high-ranking humans \cite{Elyasaf2012FreeCell}. GP has also been used in different kind of games, such as board-games \cite{Benbassat2012Reversi}, or (in principle) simpler games such as Ms. Pac-Man \cite{Brandstetter2012PacMan} and Spoof \cite{Wittkamp2007spoof} and even in modern video-games such as First Person Shothers (FPS) (for example, Unreal\texttrademark~ \cite{Esparcia2013GPunreal}). With respect to RTS games, there are just a few applications on pathfinding \cite{pathfinding_GP_RTS} and definition of tactics in an abstract tactical game \cite{KeaveneyO09_GP_RTS}.
-In this paper, the aim is to apply GP inside a modern RTS, in order to define the whole behavioural engine for an autonomous player (non-player character), trying to improve a rule-based system previously defined by a human expert.
+In this paper, the aim is to apply GP inside a modern RTS, in order to define the whole behavioural engine for an autonomous player(non-player character), trying to improve a rule-based system previously defined by a human expert.
 % AntonioDEF - he puesto esto nuevo, que creo que queda bien. No decimos que no se haya hecho, pero sí que lo nuestro es más mejor (o al menos diferente)
 % ... y eso nos hace pensar que puede dar buenos resultados en este caso, porque nunca se ha aplicado a este tipo de problema.
 % ¿Cuál es el selling poing? ¿GP aplicado a RTS? ¿GP aplicado a Planet Wars? - JJ 

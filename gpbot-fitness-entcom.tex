@@ -62,7 +62,7 @@ This work presents a Genetic Programming (GP) algorithm to create the behavioura
 % una frase muy directa indicando el resultado obtenido en este trabajo (el mas destacable)
 The results show that GP is a suitable method to generate bots to play a `simple' RTS game, Planet Wars. Moreover, it provides a mechanism to generate rules that enable to define very different behaviours.
 % un par de frases indicando lo que aporta este resultado al estado del arte
-The paper analyses several aspects of the bots, in addition to their final performance on battles, such as the evolution of the behavioural trees themselves, or the influence on the results of noise/uncertainty always present in the context of games.
+The paper analyses several aspects of the bots, in addition to their final performance on battles, such as the evolution of the decision trees themselves, or the influence on the results of noise/uncertainty always present in the context of games.
 % una ultima frase poniendo el resultado en un ambito general
 As a general conclusion a victory-based fitness, which prioritises the number of victories, contributes to generate better bots, on average, than other functions based on the numerical aspects of the battles, such as the number of resources gathered, or the number of units generated. 
 \end{abstract}
@@ -100,8 +100,8 @@ Different fitness functions have been used in the past, for example the {\em gam
 
 In addition, the selection of a fitness function or another, may generate different behaviours for the generated bots. For example, an evolutionary process using a victory-based fitness function would create `aggressive' bots, while one function, that also takes into account the number of different structures created, may generate a more `strategic' bot. 
 
-Therefore, this paper aims to choose the best type of fitness function for a Genetic Programming-based approach, which generates {\em behavioural trees} - or rule-based systems - (BTs), as Artificial Intelligence engines for bots in the scope of RTSs.
-To this end, we compare the bots created using different types of fitness, studying both, the generated BTs, and the performance of the bots in battles against unknown enemies. 
+Therefore, this paper aims to choose the best type of fitness function for a Genetic Programming-based approach, which generates {\em Decision Trees} - or rule-based systems - (DTs), as Artificial Intelligence engines for bots in the scope of RTSs.
+To this end, we compare the bots created using different types of fitness, studying both, the generated DTs, and the performance of the bots in battles against unknown enemies. 
 We have applied GP to generate the bots because it provides a good mechanism to create rules from scratch, giving the possibility to define very different behaviours. 
 
 Three fitness functions have been tested in the paper:
@@ -156,7 +156,7 @@ The aim of the game is to defeat all the ships in the opponent's planets. Althou
 There are two strong constraints which determine the possible methods to apply to design a bot: the time for making a decision is \textit{just one second}, 
 and the bot is \textit{not allowed to store any kind of information} about its former actions, about the opponent's actions or about the state of the game (i.e., the game's map). 
 
-Therefore, the objective of this paper is to generate a reliable BT for a bot, which, according to the state of the map in every simulated turn (input), returns a set of actions to perform in order to fight the enemy, conquer its resources, and finally, win the game. 
+Therefore, the objective of this paper is to generate a reliable DT for a bot, which, according to the state of the map in every simulated turn (input), returns a set of actions to perform in order to fight the enemy, conquer its resources, and finally, win the game. 
 
 
 %-----------------------------------------------------------------------
@@ -175,10 +175,12 @@ With respect to RTS games, it has not been extremely exploited, so there are jus
 In this paper, the aim is to apply GP inside a `simple' RTS, Planet Wars, in order to define the whole behavioural engine for bot.
  
 Planet Wars, the game used in this work, has also been used in other researches as an experimental framework for agent testing. 
-%We have deeply worked in this environment \cite{Genebot-IWANN2011,Genebot_CEC11,genebot-evo12,ExpGenebot_CIG2012,Co-Genebot_EVO2014},
-%FERGU: no usar el "hemos trabajado", sino "se ha trabajado", que parece que somos los únicos que lo hacen (aunque sea verdad)
-% Antonio - pues yo lo veo peor así porque das a entender que se ha usado en varios trabajos (de gente diversa) y sólo citas los nuestros... XD
 We have considered this game in some previous studies \cite{Genebot-IWANN2011,Genebot_CEC11,genebot-evo12,ExpGenebot_CIG2012,Co-Genebot_EVO2014}, mainly applying Genetic Algorithms for evolving (the parameters of) a behavioural engine previously defined by a human expert from scratch. Those works have respectively defined a first approach, compared different implementations, analysed the noise influence, defined expert bots, and implemented co-evolutionary approaches.
+
+% TODO: *** METER COSAS DE EN QU� AVANZA ESTE ART�CULO EL SotA: 
+% - Estudio en profundidad de los �rboles (que antes no se hab�a hecho)
+% - �Mejora en los resultados?
+% - �Algo del ruido?
 
 %For example, in
 %\cite{Mora2012Genebot} the authors programmed the behaviour of a {\em bot} (a computer-controlled player) with a decision tree of 3 levels. Then, the values of these rules were optimized using a genetic algorithm to tune the strategy rates and percentages.  
@@ -195,9 +197,7 @@ Thus GP has been applied to create the Decision Tree that the bot will use to ma
 In order to prove the method value, the resulting agents will be compared with a competitive bot previously presented: GeneBot \cite{Genebot_CEC11}, our initial bot improved by means of Genetic Algorithms. This bot also proved (in that work) to be better than a human-defined bot (AresBot).
 % AntonioDEF - He completado esto un poco para justificar mejor el trabajo. Comento además que Genebot era mejor que uno definido por un humano, Aresbot.
 
-%, and Exp-Genebot \cite{ExpGenebot_CIG2012} an enhanced agent which considers different sets of parameters depending on the type of battle map, which is previously analysed by the bot.
-%*** Quitamos Exp-Genebot??? ***
-%FERGU2: sí, quitado
+
 
 %-------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%% GP BOT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -206,16 +206,13 @@ In order to prove the method value, the resulting agents will be compared with a
 \label{sec:agent}
 
 
-The Genetic Programming-based bot or {\em GPBot} \cite{Garcia14Treedepth} evolves a set of rules which, in turn, models a Decision Tree.
-%FERGU: quitado lo del turno. Cada turno no modela un ?rbol nuevo.
-% Antonio - "in turn" significa "a su vez". ;)
+The Genetic Programming-based bot or {\em GPBot} \cite{Garcia14Treedepth} evolves a set of rules which, in turn, models a Decision Tree (DT).
+
 During the evolution, every individual in the population (a tree) must be evaluated. To do so, the tree is set as the behavioural engine of an agent, which is then placed in a map against a rival in a Planet Wars match. Depending on the obtained results, the agent (i.e. the individual) gets a fitness value, that will be considered in the evolutionary process as a measure of its validity. 
-%FERGU: i.e. -> that is
-% Antonio - no. XD
  
 Thus, during the match the tree will be used (by the bot) in order to select the best strategy at every moment, i.e. for every planet a target will be selected along with the number of ships to send from one the other.
 
-\noindent The used Decision Trees are binary trees of expressions composed by two different \textit{types of nodes}:
+\noindent The used DTs are binary trees of expressions composed by two different \textit{types of nodes}:
 
 \begin{itemize}
 \item {\em Decision}: a logical expression formed by a variable, a less than operator ($<$), and a number between 0 and 1. It is the equivalent to a ``primitive'' in the field of GP.
@@ -223,8 +220,6 @@ Thus, during the match the tree will be used (by the bot) in order to select the
 \end{itemize}
 
 \noindent The decisions are based in the values of different \textit{variables} which are computed considering some other variables in the game. They are defined by a human expert, and are:
-% estas variables, ¿de dónde salen? ¿Son todas las variables del juego? ¿Unas pocas? - JJ 
-% Antonio - Las define un experto. Escrito. ;)
 
 \begin{itemize}
 \item {\em myShipsEnemyRatio}: Ratio between the player's ships and enemy's ships.
@@ -252,7 +247,7 @@ Thus, during the match the tree will be used (by the bot) in order to select the
 
 \end{itemize}
 
-\noindent An example of a possible decision tree is shown below. This example tree has a total of 5 nodes, with 2 decisions and 3 actions, and a depth of 3 levels.
+\noindent An example of a possible DT is shown below. This example tree has a total of 5 nodes, with 2 decisions and 3 actions, and a depth of 3 levels.
 
 \begin{verbatim}
 
@@ -733,7 +728,7 @@ Finally, an additional experiment has been conducted, proposing a direct compari
 % Antares: Está explicdo más adelante
 
 This allows a comparison with a bigger number of bots, and also,
-allows the analysis of their behavior against rivals not previously
+allows the analysis of their behaviour against rivals not previously
 used during training (as in the experiment above). 
 The boxplots of the average percentage of victories from the best bots obtained by each method are shown in Figure \ref{figura:boxplotvictories}. It is clear from the image that the \textit{Slope} fitness does not get good results with respect to the other methods. This can be explained because the this fitness loses information during the run, in comparison with the others, obtaining bots less aggressive. 
 % AntonioDEF - ¿Qué información pierde?¿Esto de dónde os lo habeis sacado?¿Cómo lo sabéis? (ANTARES)

@@ -56,15 +56,15 @@
 % una o dos frases dando una breve introduccion general al area
 Real-Time Strategy games (RTSs) are one of the common testbeds for research in the Computational Intelligence field.
 % dos o tres frases mas detallando el background
-The automatic generation of autonomous agents (bots) to play this kind of games is also a very prolific research line. However, the applied techniques to do this, must dealt with uncertainty and real-time planning in order to control the game agents.
+The automatic generation of autonomous agents (bots) to play this kind of games is also a very prolific research line. However, the applied techniques to do this, must deal with uncertainty and real-time planning in order to control the game agents.
 % una frase muy directa indicando el problema general a resolver en este trabajo
-This work presents a Genetic Programming (GP) algorithm to create the behavioural engine of bots able to play a RTS. Three different fitness functions are proposed and a detailed analysis on their performance has been conducted. The aim is to get a better deal with this uncertainty. 
+This work presents a Genetic Programming (GP) algorithm to create the behavioural engine of bots able to play an RTS. Three different fitness functions are proposed and a detailed analysis of their performance has been conducted. The aim is to get a better deal with this uncertainty. 
 % una frase muy directa indicando el resultado obtenido en este trabajo (el mas destacable)
-The results show that GP is a suitable method to generate bots to play a `simple' RTS game, Planet Wars. Moreover it provides a mechanism to generate rules that enable to define very different behaviours.
+The results show that GP is a suitable method to generate bots to play a `simple' RTS game, Planet Wars. Moreover, it provides a mechanism to generate rules that enable to define very different behaviours.
 % un par de frases indicando lo que aporta este resultado al estado del arte
 The paper analyzes several aspects of the bots, in addition to their final performance on battles, such as the evolution of the behavioural trees themselves, or the influence on the results of noise/uncertainty always present in the context of games.
 % una ultima frase poniendo el resultado en un ambito general
-As a general conclusion a victory-based fitness, which prioritizes the number of victories, contributes to generate better bots, on average, than other functions based on numerical aspects of the battles, such as the number of resources gathered, or the number of units generated. 
+As a general conclusion a victory-based fitness, which prioritizes the number of victories, contributes to generate better bots, on average, than other functions based on the numerical aspects of the battles, such as the number of resources gathered, or the number of units generated. 
 \end{abstract}
 % Antonio - he hecho una mejora de lo que proponía Pedro, atendiendo también a lo que sugería JJ. A ver si os gusta. ;)
 %
@@ -83,23 +83,44 @@ Real-time Strategy game \sep Genetic Programming \sep Autonomous agent \sep Bot 
 \section{Introduction}
 \noindent 
 
-Real-Time Strategy (RTS) games are a sub-genre of computer games where the action takes place in an arena and contenders fight to control the resources. These games are played in real-time, that is, there are no turns, as in chess, for example. This kind of games has become an interesting part in Computational Intelligence research, as they can be seen as a simplification of more complex environments, such as road traffic or finances prediction. As in these environments, RTS dealt with uncertainty and real-time planning, so, the application of different CI techniques have been applied in the past \cite{Lara2013review}.
+Real-Time Strategy (RTS) games are a genre of videogames where the action takes place in a scenario (or arena) and the contenders must fight, controlling a set of units, in order to monopolize the resources and, eventually, to defeat the opponent. These games are not turn-based, so the players must take decisions in real-time. This kind of games has become an interesting testbed in Computational Intelligence research \cite{Lara2013review}, as they can be seen as a simplification of more complex scenarios, such as road traffic simulation or financial prediction. As in these environments, in addition to the required real-time planning, there is some uncertainty present in RTSs.
 
-The automatic generation of agents (also called {\em bots}) that play this kind of games is one of the most prominent areas. For example, Evolutionary Algorithms (EAs) have been previously used for the creation of bots in games such as {\em Planet Wars} \cite{Genebot_CEC11,ExpGenebot_CIG2012} or {\em StarCraft} \cite{Garcia15Starcraft}, among others. In these works, different EAs, such as Genetic Algorithms?\cite{ExpGenebot_CIG2012} or Genetic Programming \cite{Garcia14Treedepth}, have been used. All these algorithms have in common the usage of a {\em fitness} function that is used to measure the quality of the behaviour of the bots. Different fitness functions have been used in the past, for example the game score, or the number of victories against other bots. However, these functions have to deal with the uncertainty due the stochastic nature of the bots or the different arenas used \cite{wilcoxon:ga}. Also, choosing a proper fitness function may produce different behaviours of generated bots. For example, a evolutionary process based on a victory-based fitness function would create `aggressive' bots, while one that also has into account the number of different structures created may generate a more `strategic' bot that could win in more different types of games. 
+In this scope, the automatic generation of agents (also called {\em bots}) to play this kind of games is one of the most prominent areas. For example, Evolutionary Algorithms (EAs) have been previously used for the creation of bots/strategies in RTSs such as {\em Planet Wars} \cite{Genebot_CEC11,ExpGenebot_CIG2012,Garcia14Treedepth} or {\em StarCraft} \cite{bistrom_GP_StarCraft,Barriga2014:BuildingOrder_GA,Garcia15Starcraft}, among others. 
 
-Therefore, our aim in this paper is to compare the generated bots evaluated with different types of fitness, performing a proper analysis studying the generated rules and the behaviour of the bots against unknown enemies. In this paper we have tested three different fitness functions:
+% Antonio - introdusco aquí lo que son los EAs, porque viene bien para justificar la importancia del fitness. ;D
+EAs \cite{EAs_Back96} are a class of probabilistic search and optimisation algorithms inspired on the model of Darwinistic evolution. 
+There are several subtypes, depending on the data structure that is preferentially used for representing solutions, but Genetic Algorithms (GAs) \cite{GAs_Goldberg89} and Genetic Programming (GP) \cite{GP_Koza92} are the most extended. The main features are common to all of them: a population of individuals or potential solutions of the target problem, a selection method that favours better solutions, and a set of operators that act upon the
+selected solutions. Thus, after an initial population is created (usually random), the selection and operators - crossover and mutation - are applied to the individuals, and the new population then replaces the older one. This is repeated for a number of generations or until another stop condition is met. 
+If there is defined a correct {\em fitness function}, which assigns a reliable value to every individual, this process guarantees that the average quality of the population increases with the number of generations.
+Thus, deciding the best evaluation function is a key factor for the success of these algorithms.
+
+The aforementioned works apply GAs \cite{Genebot_CEC11,ExpGenebot_CIG2012,Barriga2014:BuildingOrder_GA}, and GP \cite{bistrom_GP_StarCraft,Garcia14Treedepth,Garcia15Starcraft}. 
+All these approaches have in common the consideration of an evaluation function which measures the quality of the behaviour of the bots being evolved. 
+Different fitness functions have been used in the past, for example the {\em game score}, or the {\em number of victories} against the rivals during the evaluation. However, these functions have to deal with the uncertainty, also called {\em noise} \cite{merelo14:noisy,merelo15:uncertainty}, present due to the stochastic nature of the bots or to the game itself. 
+
+In addition, the selection of a fitness function or another, may generate different behaviours for the generated bots. For example, an evolutionary process using a victory-based fitness function would create `aggressive' bots, while one function, that also takes into account the number of different structures created, may generate a more `strategic' bot. 
+
+Therefore, this paper aims to choose the best type of fitness function for a Genetic Programming-based approach, which generates {\em behavioural trees} - or rule-based systems - (BTs), as Artificial Intelligence engines for bots in the scope of RTSs.
+To this end, we compare the bots created using different types of fitness, studying both, the generated BTs, and the performance of the bots in battles against unknown enemies. 
+We have applied GP to generate the bots because it provides a good mechanism to create rules from scratch, giving the possibility to define very different behaviours. 
+
+Three fitness functions have been tested in the paper:
 \begin{itemize}
-\item A victory based fitness, that only takes into account the number of games won. %ANTARES: TambiÃ©n tiene en cuenta los turnos, pero para desempatar...
-\item A slope fitness: that measures the behaviour during all the game (not only at the end, as in the previous one), using the slope of the number of units during the game.
-\item An area fitness: as in the previous one, it takes into account the number of units during in the game, but to calculate the integral. %PABLO: por qu? esta diferenciaci?n en estas dos ultimas?
+\item A {\em victory-based fitness}, that only considers the number of battles won in the evaluation. %ANTARES: TambiÃ©n tiene en cuenta los turnos, pero para desempatar...
+% Antonio - mejor decirlo cuando se describa en detalle, para no liar aquí. ;)
+\item A {\em slope-based fitness}: that measures the behaviour during all the game (not only at the end, as in the previous one), using the slope of the number of generated units during the game.
+\item An {\em area-based fitness}: which computes an integral as the average number of generated units divided by the number of turns the battle has taken. 
+%PABLO: por qu? esta diferenciaci?n en estas dos ultimas?
 %ANTARES: Realmente se calcula el nÃºmero promedio de recursos en el nÃºmero de turnos, y esto se calcula con la integral (sumatoria de valores discretos) dividido por el nÃºmero de turnos
+% Antonio - mirad si lo he descrito bien. ;)
 \end{itemize}
 
-We have used GP to generate the bots, because it provides a good mechanism to generate rules from scratch, giving the possibility to create very different behaviours. The game used is {\em Planet Wars}, as it is simplest game that model an RTS: only one type of resources and units. 
+These approaches have been implemented for the game {\em Planet Wars} (or Galcon
+\cite{wiki:galcon}), as it is a `simple' RTS: with only one type of resources and units. 
 
-The presented paper is an extension of the paper published in \cite{Ares14Cosecivi}. The rest of the paper is structured as follows: after the background and the problem description (Section \ref{section:background}), the State of the Art is presented in Section \ref{sec:soa}. Then, the description of the agents and the used fitness functions are presented in Sections \ref{sec:agent} and \ref{sec:fitness_functions}. Section \ref{sec:experiments} presents the experimental setup, while Section \ref{sec:results} describes the results. Finally, the conclusions and future work are presented.
-
-
+%The presented paper is an extension of the paper published in \cite{Ares14Cosecivi}. 
+% Antonio - Yo esto no lo mencionaría, si acaso en algún punto se puede hacer la referencia, pero sin decir que es una extensión, ya que esto acarrea más problemas que otra cosa. Al decir que es una extensión hay que aclarar bien en qué se extiende y justificar la necesidad de esta extensión. Los revisores ya lo saben y si lo piden lo ponemos. ;D
+The rest of the paper is structured as follows: after the background and the problem description (Section \ref{section:background}), the state of the art is presented in Section \ref{sec:soa}. Then, the description of the GP approach and the considered fitness functions are described respectively in Sections \ref{sec:agent} and \ref{sec:fitness_functions}. Section \ref{sec:experiments} explains the experimental setup, while Section \ref{sec:results} analyzes the obtained results. Finally, the conclusions and future lines work are presented in Section \ref{sec:conclusion}.
 
 
 
@@ -110,15 +131,12 @@ The presented paper is an extension of the paper published in \cite{Ares14Coseci
 \label{section:background}
 \subsection{Genetic Programming}
 
-Genetic Programming (GP) \cite{GP_Koza92} is a kind of Evolutionary Algorithm (EA), that is, a probabilistic search and optimization algorithms gleaned from the model of darwinistic evolution, based on the idea that in nature structures undergo adaptation. EAs work on a population of possible solutions (individuals) for the target problem and use a selection method that favours better solutions and a set of operators that act upon the selected solutions. %coÃ±e, si has dicho que es un tipo de, cÃ³mo no va a compartirlos. Lo cambio.  -JJ
-% AntonioDEF - ok
-However, GP is a structural optimisation technique where the individuals are represented as hierarchical structures (typically tree) and the size and shape of the solutions are not defined a priori as in other methods from the field of evolutionary computation, but they evolve along the generations. So, the main difference with respect to GAs is the individual representation and the genetic operators to apply, which are mainly focused on the management (and improvement) of this kind of structure.
-The flow of a GP algorithm is the same as any other EA: a population is created at random, each individual in the population is evaluated using a fitness function, the individuals that performed better in the evaluation process have a higher probability of being selected as parents for the new population than the rest and a new population is created once the individuals are subjected to the genetic operators of crossover and mutation with a certain probability. The loop is run until a predefined termination criterion is met.
+Genetic Programming (GP) \cite{GP_Koza92} is a type of EA where the individuals are represented as hierarchical structures (typically trees), which size and shape is not defined a priori, as in other evolutionary methods, but they evolve along the generations. Thus, GP performs a structural optimisation, which requires the use of specific genetic operators, focused on the management (and improvement) of this kind of structure.
+The flow of a GP algorithm is the same as any other EA: a population is created at random, each individual in the population is evaluated using a fitness function, the individuals that performed better in the evaluation process have a higher probability of being selected as parents for the new population, and a new population is created by applying crossover and mutation operators with a certain probability. This process is repeated until a predefined termination criterion is met.
 
 % ----------------------------------------------------------------------
 
 \subsection{Planet Wars Game}
-%FERGU2: quitar subsecciones si falta espacio. O vamos, quitarlas aunque haya.
 In this paper we work with a %simplified
 version of the game Galcon, aimed at performing bot's fights which was used as base for the Google AI Challenge 2010 (GAIC)\footnote{http://ai-contest.com}.
 

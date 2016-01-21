@@ -58,7 +58,7 @@
 
 }
 
-@inproceedings{wilcoxon:ga,
+@inproceedings{merelo15:uncertainty,
   author    = {Juan J. Merelo and
                Federico Liberatore and
                Antonio Fern{\'{a}}ndez{-}Ares and
@@ -77,6 +77,21 @@
   publisher = {SciTePress},
   year      = {2015},
 
+}
+
+@Book{EAs_Back96,
+  author =    "T. Bäck",
+  title =     "Evolutionary algorithms in theory and practice",
+  publisher = "Oxford University Press",
+  year =      1996
+}
+
+@book{GAs_Goldberg89,
+  author = 	 "David E. Goldberg",
+  title = 	 "Genetic Algorithms in search, optimization and
+		  machine learning",
+  publisher = 	 "Addison Wesley",
+  year = 	 1989
 }
 
 @book{GP_Koza92,
@@ -461,4 +476,55 @@ source={Scopus},
   timestamp = {Fri, 18 Dec 2015 13:50:20 +0100},
   biburl    = {http://dblp.uni-trier.de/rec/bib/conf/ijcci/2015ecta},
   bibsource = {dblp computer science bibliography, http://dblp.org}
+}
+
+@InProceedings{merelo14:noisy,
+  author = 	 {J. J. Merelo and Pedro A. Castillo and Antonio Mora and Antonio Fern{\'a}ndez-Ares and
+Anna I. Esparcia-Alc{\'a}zar and Carlos Cotta and Nuria Rico},
+  title = 	 {Studying and Tackling Noisy Fitness in Evolutionary Design of Game
+Characters},
+  booktitle = {ECTA 2014 - Proceedings of the International Conference on Evolutionary Computation Theory and Applications},
+  year = 	 2014,
+  editor = 	 {Agostinho Rosa and Juan Juli{\'a}n Merelo and Joaquim Filipe},
+  pages = 	 {76--85}}
+
+@ARTICLE{Kostler2013:MO_StarCraftII,
+author="K{\"o}stler, Harald
+and Gmeiner, Bj{\"o}rn",
+title="A Multi-objective Genetic Algorithm for Build Order Optimization in StarCraft II",
+journal="KI - K{\"u}nstliche Intelligenz",
+year="2013",
+volume="27",
+number="3",
+pages="221--233",
+abstract="This article presents a modified version of the multi-objective genetic algorithm NSGA II in order to find optimal opening strategies in the real-time strategy game StarCraft II. Based on an event-driven simulator capable of performing an accurate estimate of in-game build-times the quality of different build lists can be judged. These build lists are used as chromosomes within the genetic algorithm. Procedural constraints e.g. given by the Tech-Tree or other game mechanisms, are implicitly encoded into them. Typical goals are to find the build list producing most units of one or more certain types up to a certain time (Rush) or to produce one unit as early as possible (Tech-Push). Here, the number of entries in a build list varies and the objective values have in contrast to the search space a very small diversity. We introduce our game simulator including its graphical user interface, the modifications necessary to fit the genetic algorithm to our problem, test our algorithm on different Tech-Pushes and Rushes for all three races, and validate it with empirical data of expert StarCraft II players.",
+issn="1610-1987",
+doi="10.1007/s13218-013-0263-2",
+url="http://dx.doi.org/10.1007/s13218-013-0263-2"
+}
+
+@INPROCEEDINGS{Barriga2014:BuildingOrder_GA,
+	author = {Nicolas Barriga and Marius Stanescu and Michael Buro},
+	title = {Building Placement Optimization in Real-Time Strategy Games},
+	BOOKTITLE = {Proceedings of the AAAI Conference on Artificial Intelligence and Interactive Digital Entertainment},
+	year = {2014},
+	keywords = {Real-time Strategy Games; Genetic Algorithms},
+	abstract = {In this paper we propose using a Genetic Algorithm to optimize the placement of buildings in Real-Time Strategy games. Candidate solutions are evaluated by running base assault simulations.  We present experimental results in SparCraft — a StarCraft combat simulator --- using battle setups extracted from human and bot StarCraft games.  We show that our system is able to turn base assaults that are  losses for the defenders into wins, as well as reduce the number of surviving attackers. Performance is heavily dependent on the quality of the prediction of the attacker army composition used for training, and its similarity to the army used for evaluation. These results apply to both human and bot games.},
+	url = {https://www.aaai.org/ocs/index.php/AIIDE/AIIDE14/paper/view/9050}
+}
+
+ @misc{wiki:galcon,
+   author = "Wikipedia",
+   title = "Galcon --- {Wikipedia{,} The Free Encyclopedia}",
+   year = "2010",
+   url = "http://en.wikipedia.org/w/index.php?title=Galcon&oldid=399245028"
+ }
+
+@TECHREPORT{bistrom_GP_StarCraft,
+	AUTHOR       = {Bistr{\"o}m, Frans and H{\aa}kansson, Marcus},
+	TITLE        = {Using Genetic Programming to evolve an AI for StarCraft},
+	INSTITUTION  = {School of Computing, Blekinge Institute of Technology},
+	YEAR         = "2012",
+	TYPE         = "Student thesis",
+	NOTE         = "http://bth.diva-portal.org/smash/get/diva2:832485/FULLTEXT01.pdf"
 }

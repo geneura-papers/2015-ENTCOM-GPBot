@@ -107,9 +107,7 @@ We have applied GP to generate the bots because it provides a good mechanism to 
 
 Three fitness functions have been tested in the paper:
 \begin{itemize}
-\item A {\em victory-based fitness}, that only considers the number of battles won in the evaluation. %ANTARES: Tambi√©n tiene en cuenta los turnos, pero para desempatar...
-% Antonio - mejor decirlo cuando se describa en detalle, para no liar aquÌ. ;)
-% Antares: Ok
+\item A {\em victory-based fitness}, that only considers the number of battles won in the evaluation. 
 \item A {\em slope-based fitness}: that measures the behaviour during all the game (not only at the end, as in the previous one), using the slope of the number of generated units during the game.
 \item An {\em area-based fitness}: which computes an integral as the percentage of units possessed by the bot divided by the number of turns the battle has taken. 
 %PABLO: por qu? esta diferenciaci?n en estas dos ultimas?
@@ -120,9 +118,6 @@ Three fitness functions have been tested in the paper:
 
 These approaches have been implemented for the game {\em Planet Wars} (or Galcon
 \cite{wiki:galcon}), as it is a `simple' RTS: with only one type of resources and units. 
-
-%The presented paper is an extension of the paper published in \cite{Ares14Cosecivi}. 
-% Antonio - Yo esto no lo mencionarÌa, si acaso en alg˙n punto se puede hacer la referencia, pero sin decir que es una extensiÛn, ya que esto acarrea m·s problemas que otra cosa. Al decir que es una extensiÛn hay que aclarar bien en quÈ se extiende y justificar la necesidad de esta extensiÛn. Los revisores ya lo saben y si lo piden lo ponemos. ;D
 The rest of the paper is structured as follows: after the background and the problem description (Section \ref{section:background}), the state of the art is presented in Section \ref{sec:soa}. Then, the description of the GP approach and the considered fitness functions are described respectively in Sections \ref{sec:agent} and \ref{sec:fitness_functions}. Section \ref{sec:experiments} explains the experimental setup, while Section \ref{sec:results} analyses the obtained results. Finally, the conclusions and future lines work are presented in Section \ref{sec:conclusion}.
 
 
@@ -199,8 +194,6 @@ The present work means a new step in this research line, which tries to avoid th
 The use of GP here will provide us with a new tool for completely redefine the bot's AI engine, which could also get better results than previous bots.
 Thus GP has been applied to create the Decision Tree that the bot will use to make decisions during the game.
 In order to prove the method value, the resulting agents will be compared with a competitive bot previously presented: GeneBot \cite{Genebot_CEC11}, our initial bot improved by means of Genetic Algorithms. This bot also proved (in that work) to be better than a human-defined bot (AresBot).
-% AntonioDEF - He completado esto un poco para justificar mejor el trabajo. Comento adem√°s que Genebot era mejor que uno definido por un humano, Aresbot.
-
 
 
 %-------------------------------------------------------------
@@ -293,29 +286,8 @@ else
 
 
 
-%\COMMENT {In each turn}
-%\LOOP
-	
-%	\STATE calculateGlobalPlanets()
-%	\COMMENT{{\em for example Base, Enemy Base...}}
-%	\STATE calculateGlobalRatios ()
-%	\COMMENT {{\em for example myPlanetEnemyRatio, myShipsEnemyRatio...}}
-%		\FOR{each Planet: p}
-%			\STATE calculateLocalPlanets (p)
-%			\COMMENT{{\em for example NearestNeutralPlanet to planet p}}
-%			\STATE calculateLocalRatios (p)
-%			\COMMENT{{\em for example actualMyShipsRatio}}
-%			\STATE executeTree(p,tree)
-%			\COMMENT{{\em Send a percentage of the ships to another planet}}
-%		\ENDFOR
-%\ENDLOOP
-
 Next section explains one of the main components of the evolutionary process, i.e. the fitness function. As previously stated, three different functions have been implemented, which are used to evaluate the agent's performance during the matches. 
-%FERGU: el "devoted to" no me mola xD Tampoco s√© si el fitness es el "main component". Ah, no usar el "we"
-% Antonio - arreglado
-% la funci√≥n de fitness es muy importante, pero ¬ømucho mucho m√°s que tipos de nodos que componen los √°rboles?
-% ¬øno quedar√≠a mejor diciendo "...explains one of the main components of the..." ?     [pedro]
-% AntonioDEF - hecho
+
 
 %-----------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%% FITNESS FUNCTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -333,8 +305,6 @@ Next section explains one of the main components of the evolutionary process, i.
 % they are only three because...  - JJ
 
 \subsection{Fitness based in Victories}
-% "Turn based fitness"  [pedro] FERGU3: arreglado. Habr√≠a que llamarlo fitness basado en VICTORIAS, que es lo importante!!!!! (de hecho, el valor de las tablas muestra las VICTORIAS)
-% ANTARES: De hecho en todos lados se llama as√≠...
 \label{subsec:fitness_turns}
 
 %In previous works \cite{Genebot_CEC11}, a bot was evaluated always versus the same enemy (a reference bot), several times (in different maps), using a \textit{hierarchical fitness function}. FERGU4: comento esto que no sirve para nada.
@@ -343,9 +313,6 @@ Next section explains one of the main components of the evolutionary process, i.
 % as possible, that is why... - JJ
 This a variation of the hierarchical fitness considered in \cite{Genebot_CEC11}.
 In this approach, an individual is better than another if it wins in a larger number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. the stronger one) is considered as better. The maximum fitness in this work is, therefore, 5 victories and 0 turns. 
-%FERGU: mover la ultima frase a cuando se hable de los parametros
-% AntonioDEF - ¬øc√≥mo que 0 turns? ¬øC√≥mo se va a ganar en 0 turnos?
-% Antares - Es un m√°ximo te√≥rico, y por tanto inalcanzable en la realidad.
 For two bots, A and B, the fitness comparison (and therefore, their order inside the population) is defined as Algorithm \ref{alg:fitness_turns_positions} shows.
 
 \begin{algorithm}[ht]
@@ -368,8 +335,6 @@ For two bots, A and B, the fitness comparison (and therefore, their order inside
 
 \end{algorithmic}
 \caption{Comparison between two individuals using hierarchical fitness.}
-% AntonioDEF - ¬ødejamos hierachical o victories?
-% ANTARES: Creo que basado en victorias. Lo otros dos son basados en recursos.
 \label{alg:fitness_turns_positions}
 \end{algorithm}
 
@@ -382,17 +347,7 @@ Thus, in this work two additional evaluation functions have been proposed in ord
 %FERGU: he puesto un therefore para enlazar
 % Antonio - lo he cambiado todo. XD
 Both of them are based in the percentage of ships belonging to each player in every turn. They are normalised considering the total amount of ships in the game for that turn (including neutrals ships in neutral planets), so for each player, there is a different {$cloud$} of ships.
-% as Fig.\ref{figura:nubecita} shows. 
-%FERGU: explicar la figura, que no queda na claro.
-% Antonio - Eso digo yo... la voy a quitar
-%
-%\begin{figure}[ht]
-%\begin{center}
-%  \epsfig{file=imags/nubecita.eps,width=8cm}
-%\end{center}
-%\caption{Representation of the number of ships of each bot in each turn} 
-%\label{figura:nubecita}
-%\end{figure}
+
 Below, are described the two alternatives to deal with this cloud of points for the fitness function: the use of slopes and areas.
 
 % ---------------------------------------------------------------------
@@ -460,6 +415,8 @@ Then, the bot with the highest value will be the best is each turn or battle.
 
 %Several evaluations in different maps was using, so it's need operate with fitness. In that case, only sum the slope of all the evaluations of the bot. Maribel, esto ya lo has dicho antes y adem√°s l√≠a m√°s la cosa as√≠ que lo he eliminado. Adem√°s expresiones como "was using" est√°n mal, qu√© quieres decir? fue usando? eso en ingl√©s no se dice.
 
+% ANTARES: Este mÈtodo es el que mejor permite puntuar un invidiuo al menos teÛricamente. Un invidiuo que consiga la vitoria de la contienda conseguir· una puntuaciÛn positiva (pendiente mayor que cero), y ser· m·s alta cuanto mejor haya sido. Si pierde obtendr· una puntuaciÛn negativa (pendiente menor que cero) y ser· perder· m·s "puntos" cuanto peor haya sido el resultado de la contienda.
+
 % ---------------------------------------------------------------------
 
 \subsection{Fitness based in Area}
@@ -506,6 +463,7 @@ In this function, the integral of the curve of the bot's live-line is used for c
 As in previous case, maximum and minimum values has been set for this fitness. If an optimal bot wins in the first turn, the area of each live-line is close to {$1$}, so this is the maximum value of the fitness. Otherwise, if a bot loses in the first turn, its live-line area is close to {$0$}. In this case, we do not extract additional about which bot wins the battle, because the area of the live-line is not related with the winner of the battle. Thus, we are losing some information. 
 %FERGU: y por lo tanto... blablabla. No usar el we.
 % AntonioDEF - completar esto (ANTARES escribe y FERGU revisa) :D
+% ANTARES: Este mÈtodo no permite conocer si un individuo ha ganado o perdido la contienda, ya que el valor n˙merico del mismo no lo refleja de ninguna manera. A pesar de esta pÈrdida de informaciÛn, es el mÈtodo que mejor puede romper casos donde un fitness jer·rquico pueda parecer injusto. øEs mejor un individuo que solo gana una vez y el resto de veces pierde muy r·pidamente? øO uno que pierde pero tarda mucho tiempo, pues no le resulta sencillo al rival vencerle?
 
 %-----------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -517,6 +475,8 @@ As in previous case, maximum and minimum values has been set for this fitness. I
 % in order to ensure a fair comparison of the three fitness functions
 % we have decided to compare an equal number of evaluations - equal
 % time what??? - JJ
+% Est· descrito anteriormente, todos los fitness realizan el mismo n˙mero de simulaciones (en este caso 5) y tiene re-evaluaciÛn de indivuos tal y como se concluyÛ en el artÌculo del ECTA. øLo volvemos a poner aquÌ? No sÈ si queda claro o no.
+
 Sub-tree crossover and 1-node mutation evolutionary operators have
 been used, following other researchers' proposals that have used these
 operators obtaining good results \cite{Esparcia2013GPunreal}. In this
@@ -559,12 +519,7 @@ Stop criterion & 50 generations \\ \hline
 Maximum Tree Depth & 7  \\ \hline %FERGU: quitados distintos tama√±os
 Runs per configuration & 30 \\ \hline
 Evaluation & Playing versus GeneBot \cite{Genebot_CEC11}  \\ \hline 
-%FERGU: Antares, confirmalo
-% Antonio - Al final creo que s√≥lo Genebot %FERGU2: quitado
-% Antares: Si
 Maps used in each evaluation & map76, map69, map7, map11, map26 
-% AntonioDEF - los mapas han sido esos, ¬øno?
-% Antares: Si
 \\ \hline
 \end{tabular}
 \caption{Parameters used in the experiments.}
@@ -578,9 +533,6 @@ Maps used in each evaluation & map76, map69, map7, map11, map26
  
 
 After all the executions we have evaluated the obtained best individuals in all runs confronting to the other bots in a larger set of maps to study the behaviour of the algorithm and how good are the obtained bots versus enemies and maps that have not been used for training.
-
-%FERGU3: ANTARES, confirma como has hecho esto ANTARES: Confirmo, se ha hecho la prueba en 4 mapas adicionales desconocidos y frente a oponentes desconocidos a su vez (los que han generado los m√©todos)
-
 
 The used framework is OSGiLiath, a service-oriented evolutionary framework. %\cite{Garcia13Service}. 
 The generated tree is compiled in real-time and injected in the agent's code using Javassist \footnote{\url{www.javassist.org}} library. All the source code used in this work is available under a LGPL V3 License in \url{http://www.osgiliath.org}.
@@ -686,8 +638,6 @@ as they depend on more information ranges (variation in the number of ships).
 		& Average best fitness	&	Average population fitness	\\ \hline \hline
 Victory	& 4,761 $\pm$	0,624	&	4,345	$\pm$	0,78 \\ \hline
 Slope	& 2,296	$\pm$	0,486	&	2,103	$\pm$	0,434 \\ \hline
-% AntonioDEF - la misma desv. t√≠pica? huele a copy-paste mal hecho. XD
-% Antares: Comprobado, hab√≠a un error en el copy paste, corregido.
 Area	& 2,838	$\pm$	1,198	&	2,347	$\pm$	0,949 \\ \hline
 
 
@@ -710,6 +660,7 @@ best bots obtained with each configuration (one per run) against
 GeneBot. However these matches have been performed in 9 maps that were
 different to the ones used to evolve the bots. These % cuales? Los 9?
                                 % - JJ
+				% PodrÌamos aquÌ citar el artÌculo del ExGenebot, que es donde se estudiÛ la topologÌa de los mapas y de donde se han sacado estos 9 representativos.
 maps, provided by Google, are considered as representative, because they have different features to promote a wide set of strategies, i.e. different distributions of planets, sizes and number of initial ships. 
 
 This experiment has been conducted in order to validate if the bots obtained by the proposed approaches can be competitive in terms of quality in maps not used for evolution/evaluation. Results are shown in Figure \ref{figura:boxplotvictoriesgenebot}. As it can be seen, again the \textit{Victory-based} fitness achieves significantly better results than the other methods.
@@ -900,65 +851,6 @@ values.
 
 %ANTARES: NOTA. Con regla me refiero tanto a accioens como condiciones.
 
-
-%% DE AQU√ç PARA ABAJO ES TEXTO ANTIGUO DEL EVO QUE NO TIENE QUE VER CON ESTE ART√çCULO
-
-%FERGU: he borrado las tablas, que aqu√≠ no se usan. Dejo el resto comentado, por si quer√©is "inspiraros". Vamos, que no se reutiliza nada del trabajo del Evostar
-
-%As can be seen, the average population fitness versus Genebot is nearest to the optimum than versus Exp-Genebot, even with the lowest depth. Highest performance in the population is also with the depth of 3 levels. On the contrary, confronting with Exp-Genebot the configuration with unlimited depth achieves better results. This make sense as more decisions should be taken because the enemy can be different in each map.
-
-%In the second experiment, we have confronted the 30 bots obtained in each configuration again with Genebot and Exp-Genebot, but in the 100 maps provided by Google. This experiment has been used to validate if the obtained individuals of the proposed method can be competitive in terms of quality in maps not used for evaluation. Results are shown in Table \ref{tab:allmaps} and boxplots in Figure \ref{fig:victories}. %FERGU: si se va a hacer esto, esta frase se puede usar
-
-%It can be seen that in average, the bots produced by the proposed algorithm perform equal or better than the best obtained by the previous authors. Note that, even obtaining individuals with maximum fitness (5 victories) that have been kept in the population several generations (as presented before in Tables \ref{tab:resultsGenebot} and \ref{tab:resultsExpgenebot}) cannot be representative of a extremely good bot in a wider set of maps that have not been used for training. As the distributions are not normalized, a Kruskal-Wallis test has been used, obtaining significant differences in turns for the experiment versus Genebot (p-value = 0.0028) and victories in Exp-genebot (p-value = 0.02681). Therefore, there are differences using a maximum depth in the generation of bots. In both configurations, the trees created with 7 levels of depth as maximum have obtained the better results.
-
-%To explain why results versus Genebot (a weaker bot than Exp-Genebot) are slightly worse than versus Exp-Genebot, even when the best individuals produced by the GP have higher fitness, it is necessary to analyse how the best individual and the population are being evolved. Figure \ref{fig:gens} shows that best individual using Genebot reaches the optimal before Exp-Genebot, and also the average population converges quicker. This could lead to over-specialization: the generated bots are over-trained to win in the five maps. This is due because these individuals are being re-evaluated, and therefore, they are still changing after they have reached the optimal.
-
-
-
-%\begin{table*}
-%\centering{
-%\begin{tabular}{|c|c|c|c|c|c|c|} \hline
-   
-%{\em Configuration}     &    {\em Average maps won}  &    {\em Average turns}     \\ \hline
-%                   \multicolumn{3}{|c|}{Versus Genebot}    \\ \hline
-% Depth 3          &   47.033 $\pm$ 10.001 &   133.371 $\pm$   16.34    \\ \hline
-% Depth 7          &   48.9 $\pm$ 10.21    &   \textbf{141.386} $\pm$  15.54   \\ \hline
-% Unlimited Depth  &   50.23 $\pm$ 11.40   &   133.916   $\pm$   10.55    \\ \hline
-%       \multicolumn{3}{|c|}{Versus Exp-Genebot}                          \\ \hline              
-% Depth 3          &   52.367 $\pm$ 13.39 &  191.051 $\pm$ 67.79 \\ \hline
-% Depth 7          &   \textbf{58.867} $\pm$ 7.35  &  174.694$\pm$ 47.50 \\ \hline
-% Unlimited Depth  &   52.3 $\pm$ 11.57   &  197.492 $\pm$ 72.30 \\ \hline 
-
-%\end{tabular}
-
-
-%\caption{Results confronting the 30 best bots attained from each configuration in the 100 maps each.}
-%\label{tab:allmaps}
-%}
-%\end{table*}
-
-%\begin{figure}[htb]
-%\centering
-
-%\subfigure[Victories]{
-%   \includegraphics[scale =0.30] {imags/victories.eps}
-%   \label{fig:subfig1}
-% }
-%\subfigure[Turns]{
-%   \includegraphics[scale =0.30] {imags/turns.eps}
-%   \label{fig:subfig2}
-% }
-%\caption{Average of executing the 30 best bots in each configuration (3, 7 and U) versus Genebot (G) and Exp-Genebot (E).}
-
-%\label{fig:victories}
-%\end{figure}
-
-%\begin{figure}[htb]
-%\centering
-%\includegraphics[scale =0.60] {imags/generations.eps}
-%\caption{Evolution of the best individual and the average population during one run for depth 7 versus Genebot and Exp-Genebot.}
-%\label{fig:gens}
-%\end{figure}
 
 
 %-----------------------------------------------------------------

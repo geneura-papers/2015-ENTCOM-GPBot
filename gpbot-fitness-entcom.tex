@@ -137,7 +137,9 @@ The flow of a GP algorithm is the same as any other EA: a population is created 
 
 \subsection{Planet Wars Game}
 In this paper we work with a %simplified
-version of the game Galcon, aimed at performing bot's fights which was used for the Google AI Challenge 2010 (GAIC)\footnote{http://planetwars.aichallenge.org/}.
+version of the game Galcon designed as an arena where programmed bots
+can fight. This version was used for the Google AI Challenge 2010
+(GAIC)\footnote{http://planetwars.aichallenge.org/}. 
 
  \begin{figure}[ht]
  \begin{center}
@@ -148,14 +150,30 @@ version of the game Galcon, aimed at performing bot's fights which was used for 
  \end{figure}
 
 A Planet Wars match takes place on a map (see Fig. \ref{figura:PlanetWars1})
-that contains several planets (neutral, enemies, or owned), each one of them with a number assigned to it that represents the amount of ships that the planet is currently hosting. 
+that contains several planets (neutral, enemies, or own), each one of
+them with a number assigned to it. This number represents the amount of ships
+that the planet is currently hosting. 
 
-The aim of the game is to defeat all the ships in the opponent's planets. Although Planet Wars is a RTS game, this implementation has transformed it into a turn-based game, in which each player has a maximum number of turns to accomplish the objective. At the end of the match, the winner is the player that remains alive, or that which owns more ships if more than one survives. 
+The aim of the game is to destroy all the ships in planets owned by
+the opponent. Although Planet Wars is a RTS game, this implementation
+has transformed it into a turn-based game, in which each player has a
+maximum number of turns to accomplish the objective. At the end of the
+match, the winner is the player that remains alive, or that which owns
+more ships if more than one survives.  
 
-There are two strong constraints which determine the possible methods to apply to design a bot: the time for making a decision is \textit{just one second}, 
-and the bot is \textit{not allowed to store any kind of information} about its former actions, about the opponent's actions or about the state of the game (i.e., the game's map). 
+There are two strong constraints that determine the possible methods
+to apply to design a bot: the time for making a decision is
+\textit{just one second},  
+and the bot is \textit{not allowed to store any kind of information}
+about its former actions, about the opponent's actions or about the
+state of the game (i.e., the game's map).  % Is this used any way in
+                                % this context? 
 
-Therefore, the objective of this paper is to generate a reliable DT for a bot, which, according to the state of the map in every simulated turn (input), returns a set of actions to perform in order to fight the enemy, conquer its resources, and finally, win the game. 
+Therefore, the objective of this paper is to generate a reliable DT
+% DT? - JJ
+for a bot, which, according to the state of the map in every simulated
+turn (input), returns a set of actions to perform in order to fight
+the enemy, conquer its resources, and finally, win the game.  
 
 
 %-----------------------------------------------------------------------

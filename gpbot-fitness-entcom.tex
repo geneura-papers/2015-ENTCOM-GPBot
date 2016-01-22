@@ -114,6 +114,7 @@ Three fitness functions have been tested in the paper:
 %ANTARES: Realmente se calcula el nÃºmero promedio de recursos en el nÃºmero de turnos, y esto se calcula con la integral (sumatoria de valores discretos) dividido por el nÃºmero de turnos
 % Antonio - mirad si lo he descrito bien. ;)
 %ANTARES: No es del número ''generado'' sino el número total en juego. Lo intento corregir.
+% Antonio - Ok
 \end{itemize}
 
 These approaches have been implemented for the game {\em Planet Wars} (or Galcon
@@ -173,27 +174,25 @@ With respect to RTS games, it has not been extremely exploited, so there are jus
 In this paper, the aim is to apply GP inside a `simple' RTS, Planet Wars, in order to define the whole behavioural engine for bot.
  
 Planet Wars, the game used in this work, has also been used in other researches as an experimental framework for agent testing. 
-We have considered this game in some previous studies \cite{Genebot-IWANN2011,Genebot_CEC11,genebot-evo12,ExpGenebot_CIG2012,Co-Genebot_EVO2014}, mainly applying Genetic Algorithms for evolving (the parameters of) a behavioural engine previously defined by a human expert from scratch. Those works have respectively defined a first approach, compared different implementations, analysed the noise influence, defined expert bots, and implemented co-evolutionary approaches.
+We have considered this game in some previous studies \cite{Genebot_CEC11,genebot-evo12,Co-Genebot_EVO2014}, mainly applying Genetic Algorithms for evolving (the parameters of) a behavioural engine previously defined by a human expert from scratch. 
 
 % TODO: *** METER COSAS DE EN QUÉ AVANZA ESTE ARTÍCULO EL SotA: 
 % - Estudio en profundidad de los árboles (que antes no se había hecho)
 % - ¿Mejora en los resultados?
 % - ¿Algo del ruido?
 % ANTARES: Lo del estudio de profundidad se hizo en el primer artículo de GP-BOT del EVOSTAR, y se hizo mejor que aquí.
+% Antonio - No es un estudio DE profundidad, sino EN profundidad. XD
+%           Vamos, que se van a mirar los árboles generados con detenimiento 
+%           (me refiero a lo de las condiciones y acciones utilizadas. ;)
 
-%For example, in
-%\cite{Mora2012Genebot} the authors programmed the behaviour of a {\em bot} (a computer-controlled player) with a decision tree of 3 levels. Then, the values of these rules were optimized using a genetic algorithm to tune the strategy rates and percentages.  
-%  Results showed a good performance confronting with other bots
-%  provided by the Google AI Challenge. %In our next work
-%  In \cite{FernandezAres2012adaptive} the authors improved this agent optimizing it in different types of maps and selecting the set of optimized
-%  parameters depending on the map where the game was taking place,
-%  using a tree of 5 levels. These results outperformed the previous
-%  version of the bot with 87\% of victories. 
+We used GP in a previous approach for Planet Wars bots \cite{Garcia14Treedepth}, as a following step to those works, to avoid the strict limitations that the initial bots had, such as the fixed behavioural structure (a Finite State Machine), which just offers a few degrees of improvement, namely the evolved set of eight parameters.
+Thus, GP was applied to create the Decision Tree (DT) that the bots used to make decisions during the game, and the resulting bots were able to beat GeneBot \cite{Genebot_CEC11}, our initial bot improved by means of GAs.
+This paper goes a bit further and analyses the evolution of the DTs themselves along generations, in order to show how do they change. Moreover, this study let us to identify the type of strategies that the best bots follow, i.e. we can extract some `automatically generated knowledge' that could help us to improve our skills as players of this game.
 
-The present work means a new step in this research line, which tries to avoid the strict limitations that the initial bot had, i.e. since it was defined by a human expert, it had a fixed structure (a Finite State Machine) which just offers a few degrees of improvement, namely a set of eight parameters.
-The use of GP here will provide us with a new tool for completely redefine the bot's AI engine, which could also get better results than previous bots.
-Thus GP has been applied to create the Decision Tree that the bot will use to make decisions during the game.
-In order to prove the method value, the resulting agents will be compared with a competitive bot previously presented: GeneBot \cite{Genebot_CEC11}, our initial bot improved by means of Genetic Algorithms. This bot also proved (in that work) to be better than a human-defined bot (AresBot).
+However, as it is usual when EAs are applied \cite{Jin2005303,QianYZ13}, and also due to the pseudostochastic nature of games, the evolution of bots is sensitive to {\em uncertainty} or {\em noise} \cite{merelo14:noisy}, even in a `simple' game as Planet Wars \cite{Mora_noisy_jcst}.
+Basic strategies to handle noisy fitness functions include using a larger population size, averaging to filter out the noise (re-sampling) \cite{Branke98_robust}, thresholding (employing a threshold value to be used in a selection operator for noisy fitness functions) \cite{Markon2001_thresholding}, or changing the selection criteria.
+
+In this paper we propose testing three different fitness functions, with the aim of checking, in addition to just their raw performance, which one if less sensitive to this kind of noise.
 
 
 %-------------------------------------------------------------
@@ -766,7 +765,6 @@ values.
 % \end{table*}
 
 % Antares: esta tabla se va fuera, porque estoy intentando hacerlo de otra manera y ahora mismo no aporta mucho, para que decir lo contrario.
-
 \subsection{-- TO DO -- Estudio acciones y condiciones}
 
 %ANTARES
@@ -852,7 +850,6 @@ values.
 %ANTARES: NOTA. Con regla me refiero tanto a accioens como condiciones.
 
 
-
 %-----------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%% CONCLUSIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %----------------------------------------------------------------- 
@@ -907,8 +904,6 @@ This can
 %Results show that it is important to choose carefully the fitness that is going to be used to evaluate the evolved bots and to validate it using some kind of benchmark. % Some kind? Which kind? - JJ
 % Â¿Eso es lo Ãºnico que muestran? - JJ FERGU4: joer, menuda mierda de frase he escrito...
 
-
-
 As future lines of work, other rules will be added to the proposed algorithm
 (for example, ones analysing the map) and more competitive enemies
 will be used. In addition, the approach could be implemented and
@@ -917,8 +912,6 @@ different videogames like Unreal\texttrademark~ or Super
 Mario\texttrademark~. We will also use other ways of taking into
 account the uncertainty in the fitness, such as using a Wilcoxon-based
 method to compare them \cite{merelo2016statistical}. 
-
-%ANTARES: Se me ha ocurrido que como trabajo futuro se podría estudiar las "condiciones" y "acciones" de forma junta. Es decir, estudiar si una acción concreta tiene como predileción un conjunto de condiciones para que cupla concreta. Puede ser costoso de computar (no se me ocurre una manera snecilla de hacerlo), pero croe que puede ser interesante al menos citarlo como futuro trabajo.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ACKNOWLEDGEMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO: actualizar con los nuevos proyectos

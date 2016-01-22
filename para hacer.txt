@@ -1,0 +1,5 @@
+VERSIÓN FINAL O TRABAJO FUTURO
+------------------------------
+- Hacer un estudio de las acciones separado para cada tipo de fitness, para ver si hay cambios segun cada función.
+- Incluir en el estudio de acciones toda la población, para ver cómo cambian todos, no sólo los mejores, que ya serán 'buenos' de por sí. O, en su defecto, incluir una población inicial (aleatoria) para ver el gran cambio que se produce en los árboles tras la primera generación.
+- Aplicar la función SCORE como Fitness y comparar sus resultados con los otros.

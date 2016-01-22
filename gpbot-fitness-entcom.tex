@@ -327,21 +327,32 @@ Next section explains one of the main components of the evolutionary process, i.
 
 % ---------------------------------------------------------------------
 
-%Fitness should have these characteristics: create a smooth landscape,
-%without plateaus, being readily available and  
-%
-%Eventually, we have
-%these different scores to evaluate an individual: foo and bar. In the
-%next subsections we describe three different ways of...
-% they are only three because...  - JJ
+Fitness should have some characteristic in order to ensure a good performance of the algorithm where they are used: 
+\begin{itemize}
+\item create a smooth landscape: yield similar results in the evaluation of similar individuals.
+\item being readily available: every correct individual can always be evaluated.
+\item being robust: the evaluation of one individual should be always the same (or similar, at least).
+\item being reliable: a good individual (according to the problem objective) must get a higher fitness value that a bad one.
+\end{itemize}
+% Antonio - estas son las características que hemos pensado, si hay alguna más, por favor, metedla. ;)
+
+This section describes three different fitness functions to be used in the GP algorithm described in Section \ref{sec:agent} in order to generate competitive bots for Planet Wars.
+Thus, subsection \ref{subsec:fitness_turns} presents a hierarchical fitness based in the number of victories, and turns of the battles for tie-breaks. 
+
+Subsections \ref{subsec:fitness_slope} and \ref{subsec:fitness_area} show two fitness functions based on the behaviour of the agents during the battles, considering the percentage of resources (ships) gathered by the bot and computing, respectively, a slope or an area as its evaluation value.
+% Antonio - He reescrito esta intro, creo que ahora está mejor.
+
+% ---------------------------------------------
 
 \subsection{Fitness based in Victories}
 \label{subsec:fitness_turns}
 
 %In previous works \cite{Genebot_CEC11}, a bot was evaluated always versus the same enemy (a reference bot), several times (in different maps), using a \textit{hierarchical fitness function}. FERGU4: comento esto que no sirve para nada.
 
+The justification of this fitness is to reach the main objective we pursuit with this method: generate bots able to win as many times as possible.
 % We are mainly interested in a bot that is able to win as many times
 % as possible, that is why... - JJ
+% Antonio - dicho
 This is a variation of the hierarchical fitness considered in \cite{Genebot_CEC11}.
 In this approach, an individual is better than another if it wins in a larger number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. the stronger one) is considered as better. The maximum fitness in this work is, therefore, 5 victories and 0 turns. 
 For two bots, A and B, the fitness comparison (and therefore, their order inside the population) is defined as Algorithm \ref{alg:fitness_turns_positions} shows.
@@ -369,17 +380,12 @@ For two bots, A and B, the fitness comparison (and therefore, their order inside
 \label{alg:fitness_turns_positions}
 \end{algorithm}
 
-% Antonio - Lo de 'is better' Â¿quÃ© significa a efectos de puntuaciÃ³n? Â¿no serÃ­a mejor poner en lugar de "A is better than B" otra cosa?. Es que no queda claro cÃ³mo se calcula el fitness, que es un nÃºmero con este algoritmo,que es mÃ¡s bien una comparativa entre individuos... Â¿?
-%FERGU2: esto sirve a la hora de ordenar los individuos, por ejemplo. He cambiado el pie de pÃ¡gina y la frase de justo arriba.
-
 In this fitness, we are only interested in the final result (position and number of turns). We do not include in the analysis how the bot has reached them. The problem of this function is that the consideration of two different terms makes it difficult the comparison between different evaluations. 
 
 Thus, in this work two additional evaluation functions have been proposed in order to let easier and fairer comparison methods between bots, trying to add another factor in order to reduce the influence of noise \cite{Mora_noisy_jcst}.
-%FERGU: he puesto un therefore para enlazar
-% Antonio - lo he cambiado todo. XD
 Both of them are based in the percentage of ships belonging to each player in every turn. They are normalised considering the total amount of ships in the game for that turn (including neutrals ships in neutral planets), so for each player, there is a different {$cloud$} of ships.
 
-Below, are described the two alternatives to deal with this cloud of points for the fitness function: the use of slopes and areas.
+In the next subsections there are described the two alternatives to deal with this cloud of points for the fitness function: the use of slopes and areas.
 
 % ---------------------------------------------------------------------
 
@@ -446,13 +452,13 @@ Then, the bot with the highest value will be the best is each turn or battle.
 
 %Several evaluations in different maps was using, so it's need operate with fitness. In that case, only sum the slope of all the evaluations of the bot. Maribel, esto ya lo has dicho antes y ademÃ¡s lÃ­a mÃ¡s la cosa asÃ­ que lo he eliminado. AdemÃ¡s expresiones como "was using" estÃ¡n mal, quÃ© quieres decir? fue usando? eso en inglÃ©s no se dice.
 
-% ANTARES: Este método es el que mejor permite puntuar un invidiuo al menos teóricamente. Un invidiuo que consiga la vitoria de la contienda conseguirá una puntuación positiva (pendiente mayor que cero), y será más alta cuanto mejor haya sido. Si pierde obtendrá una puntuación negativa (pendiente menor que cero) y será perderá más "puntos" cuanto peor haya sido el resultado de la contienda.
+% ANTARES: Este método es el que mejor permite puntuar un invidiuo al menos teóricamente. Un invidiuo que consiga la vitoria de la contienda conseguirá una puntuación positiva (pendiente mayor que cero), y será más alta cuanto mejor haya sido. Si pierde obtendrá una puntuación negativa (pendiente menor que cero) y se perderá más "puntos" (en el fitness) cuanto peor haya sido el resultado de la contienda.
 
 % ---------------------------------------------------------------------
 
 \subsection{Fitness based in Area}
 % "area based fitness"    [pedro]
-\label{sec:fitness}
+\label{subsec:fitness_area}
 
 In this function, the integral of the curve of the bot's live-line is used for calculating the area that is `covered' by the fitness cloud of points (see Equation \ref{eq:area}). This {$area$} is normalised considering the number of turns, and thus it represents the average percentage of ships during the battle for each player. 
 %An example is shown in Fig. \ref{figura:nubecita:area}.

@@ -190,11 +190,11 @@ We have considered this game in some previous studies \cite{Genebot_CEC11,genebo
 %           Vamos, que se van a mirar los ·rboles generados con detenimiento 
 %           (me refiero a lo de las condiciones y acciones utilizadas. ;)
 
-We used GP in a previous approach for Planet Wars bots \cite{Garcia14Treedepth}, as a following step which avoided the strict limitations that the initial bots had, such as the fixed behavioural structure (a Finite State Machine) which just offers a few degrees of improvement, namely the evolved set of eight parameters.
+We used GP in a previous approach for Planet Wars bots \cite{Garcia14Treedepth}, as a following step to those works, to avoid the strict limitations that the initial bots had, such as the fixed behavioural structure (a Finite State Machine), which just offers a few degrees of improvement, namely the evolved set of eight parameters.
 Thus, GP was applied to create the Decision Tree (DT) that the bots used to make decisions during the game, and the resulting bots were able to beat GeneBot \cite{Genebot_CEC11}, our initial bot improved by means of GAs.
-This paper goes a bit further and analyses the evolution of the DTs themselves along generations, in order to show how do they change. Moreover, this study let us to identify the type of strategies that the best bots follow, i.e. extracting some generated knowledge that could help us to improve our skills as players of this game.
+This paper goes a bit further and analyses the evolution of the DTs themselves along generations, in order to show how do they change. Moreover, this study let us to identify the type of strategies that the best bots follow, i.e. we can extract some `automatically generated knowledge' that could help us to improve our skills as players of this game.
 
-However, as it is usual when EAs are applied \cite{Jin2005303,QianYZ13}, and also due to the pseudostochastic nature of the games, the evolution of bots is sensitive to {\em uncertainty} or {\em noise} \cite{merelo14:noisy}, even in a `simple' game as Planet Wars \cite{Mora_noisy_jcst}.
+However, as it is usual when EAs are applied \cite{Jin2005303,QianYZ13}, and also due to the pseudostochastic nature of games, the evolution of bots is sensitive to {\em uncertainty} or {\em noise} \cite{merelo14:noisy}, even in a `simple' game as Planet Wars \cite{Mora_noisy_jcst}.
 Basic strategies to handle noisy fitness functions include using a larger population size, averaging to filter out the noise (re-sampling) \cite{Branke98_robust}, thresholding (employing a threshold value to be used in a selection operator for noisy fitness functions) \cite{Markon2001_thresholding}, or changing the selection criteria.
 
 In this paper we propose testing three different fitness functions, with the aim of checking, in addition to just their raw performance, which one if less sensitive to this kind of noise.
@@ -815,16 +815,6 @@ values.
 
 \subsection{-- TO DO -- Estudio acciones y condiciones}
 
-%ANTARES
-
-%Hay que comentar que se ha realizado un estudio de que acciones y condiciones de las descritas en la secciÛn 4 del artÌculo, que han sido definidas por un experto. Esto permite discernir que elementos del juego que ha definido el experto son m·s "˙tiles" dentro del desarrollo del juego, estudiando que aciones y condiciones son m·s empleadas por los bots que han sido generados y optimizados mediante programaciÛn genÈtica.
-
-%Est· informaciÛn puede ser ˙til para redefinir las informaciÛn proporcionada por el experto. Para ello se han estudiado los ·rboles que se han generado como mejor individuo de cada generaciÛn, de cada ejecuciÛn, de cada uno de los tres mÈtodos de fitness propuestos anteriormente. Se estudia, en concreto, el porcentaje utilizaciÛn de un "nodo del ·rbol" concreto en el total de nodos del mismo tipo empleados por los inviduos que comparten esa misma generaciÛn.
-
-%Un nodo m·s "˙til" para conseguir la victoria tendr· una mayor presencia a medida que el algoritmo evolutivo avanza generaciones. De igual manera, un nodo "poco ˙til" o "menos ˙til" para conseguir la victoria tendr· menos presencia en los mejores individuos a media que converge el algoritmo evolutivo a mejores soluciones.
-
-%En primer lugar en la figura \ref{figura:e_number_nodes} se muestra el crecimiento del n˙mero promedio de condiciones y acciones a medida que evolucionan los individuos. Este hecho ya se habÌa mostrado en la figura \ref{figura:evolutionDEPTH} en el que se presenta la profundidad el ·rbol generado. Dado que los ·rboles de decisiones son binarios perfectos, un crecimiento de la profundidad del ·rbol implica un aumento de las condiciones (nodos internos del ·rbol) y las acciones (nodos externos del ·rbol)
-
  \begin{figure}[ht]
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_number_nodes.pdf}
@@ -833,10 +823,6 @@ values.
  \label{figura:e_number_nodes}
  \end{figure}
 
-%Existen seis tipos de condiciones que han sido descritas en la secciÛn 4. La figura \ref{figura:e_conditions} muestra la evoluciÛn del porcentaje de condiciones empleadas en cada generaciÛn. Se muestra como la regla \emph{actualMyShipsRatio} tiene un aumento de presencia en los mejores individuos frente a las otras condiciones, que se mantienen constantes en su uso o decrecen.
-
-%Esta informaciÛn puede servir para un diseÒador experto para discernir que reglas son m·s interesante explotar.
-
  \begin{figure}[ht]
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_CONDITIONS.pdf}
@@ -844,8 +830,6 @@ values.
  \caption{Evolution of the percentage of every conditions over the total of conditions used by the best individual by generation of every execution.}
  \label{figura:e_conditions}
  \end{figure}
-
-%La figura \ref{figura:e_actions} muestra entre los tres tipos de acciones posibles (attack, reinforce or doNothing) que puede elegir realizar el agente, la que tiene una mayor presencia es la de realizar ataque, que tiene un crecimiento constante en decrimento de doNothing. La acciÛn de refuerzo sufre un decrecimiento a medida que mejoran los nodos aunque permaneciendo constante al final, por lo que sigue siendo empleada. La acciÛn de doNothing, que era experable que terminase convergiendo a cero, sigue teniendo presencia incluso en las ˙ltimas generaciones del algoritmo. Esto es debido, a que en ocasiones, no hacer nada y experar (por ejemplo, cuando no se puede conquistar ning˙n planeta) puede ser una estrategia ˙til.
 
  \begin{figure}[ht]
  \begin{center}
@@ -856,8 +840,6 @@ values.
  \label{figura:e_actions}
  \end{figure}
 
-%La figura \ref{figura:e_attacks} muestra la evoluciÛn de uso de los tipos de ataques. Se muestra obvio que el tipo de ataque m·s empleado a media que mejoran los bots es el de \emph{attack_Nearest}. Atacar un planeta cercano suele ser una excelente acciÛn, ya que se necesitan menos tiempos para "capturar el planeta" y se da menos tiempo al rival para poder contra-atacar. Es necesario entender que el tiempo que est·n las "naves" volando de un planeta a otro no est·n "aportando nada al juego", asÌ que tiene sentido que los mejores bots intenten minizar el tiempo que las naves vuelan de un sitio a otro. Sin embargo acciones como \emph{attack_Weakest} or \emph{attack_Quickest} tienen a ser menos empleadas a medida que mejoran los invidiuos, aunque resultan muy similares a \emph{attack_Nearest}. Se puede extraer que es m·s beneficioso conquistar un planeta muy cercano (attack_nearest) que uno que sea muy sencillo de conquistar (attack_Quickest) o muy debil (attack_Weakest). %Estrategias como \emph{attack_Wealthiest} y \emph{attack_Beneficial} tienen presencia constante, ya que realizar este tipo de acciones en el momento oportuno supone una gran ventaja para un agente. El \empha{attack_base} atacar la base enemiga sufre un decrecimiento en las primeras generaciones, aunque luego se mantiene constante. De igual manera que en los anteriores casos, el que no desaparezca indica que tiene su utilidad, aunque es necesario encontrar la condiciÛn que permite hacer uso de un tipo de ataque en el momento preciso. Por ˙ltimo, destacar que realizar un \emph{attack_Random} tiene una presencia m·s o menos constante. Aunque serÌa esperable que este tipo de ataques fuese decreciendo a medida que los individuos mejoran, no sucede asÌ. Puede ser interesante estudiar hasta que punto beneficia a un jugador "hacer algo al azar" frente a realizar una acciÛn m·s determinista.
-
  \begin{figure}[ht]
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/estudio_ATTACKS.pdf}
@@ -866,8 +848,6 @@ values.
  }
  \label{figura:e_attacks}
  \end{figure}
-
-%La figura \ref{figura:e_targets} se presentan los tipos de blancos elegidos al realizar un ataque. Aunque \emph{Target_notMyPlanet} incluye a los otros dos objetivos (\emph{Target_EnemyPlanet} and \emph{Target_NeutralPlanet}, su uso no se incremente a medida que mejoran los individuos. Se puede justificar este comportamiento entendiendo que los planetas neutrales y enemigos requieren mec·nicas distintas para ser abordados. El mayor uso de nodos de ataques \emph{Target_EnemyPlanet} en el ·rbol de decisiÛn de los mejores individuos, muestra que se requieren m·s reglas para hacer frente al jugador enemigo (que es realmente el oponente y lucha contra nosotros) que para la conquista de planetas neutrales (que no participan activamente en el juego). De igual manera que con el tipo de ataque, el \emph{attack_Random} se mantiene constante.
 
   \begin{figure}[ht]
  \begin{center}
@@ -878,7 +858,6 @@ values.
  \label{figura:e_targets}
  \end{figure}
 
-%La figura \ref{figura:e_targetsReinforce} muestra el objetivo de las acciones de tipo re-fuerzo. El refuerzo es un tipo de acciÛn con caracter defensivo u ofensivo en funciÛn del objetivo del mimso. Un \emph{reinforce_Wealthiest} puede servir para hacer nuestros planetas m·s dÈbiles m·s dificiles de conquistar. Esta estrategia permanece constante aunque no es la prioritaria. Un experto puede justificar que aunque para conseguir la victoria no se deben de dejar descubiertos los planetas m·s debiles, no es la principal necesidad. El realizar un \emph{reinforce_Base} es menos empleado a media que avanzan las generaciones, aunque hacia la mitad de las generaciones se produce un punto de inflexiÛn que mantiene constante el uso de este tipo de refuerzo. Sin embargo \emph{Reinforce_Nearest} resulta el m·s empleado por los mejores agentes, llegando a ser cerca del 50% de los tipos de refuerzo realizados. Un experto puede entender que realizar una estrategia que comparta los naves con los planetas m·s cercanos puede ser muy ˙til. CÛmo se ha comentado anteriormente, mientras las naves se desplazan "de un sitio a otro" no aportan nada al juego, asÌ que una estregia que miniza el tiempo en el que las naves se est·n desplazando puede resultar m·s eficiente.
 
    \begin{figure}[ht]
  \begin{center}
@@ -891,11 +870,6 @@ values.
  \label{figura:e_targetsReinforce}
  \end{figure}
 
-%Para terminar esta secciÛn, indicar que el realizar un algoritmo de programaciÛn genÈtica basado en las reglas decidadas por un jugador experto puede servir tambiÈn para realimentar el conocimiento del experto sobre el juego. Mediante el estudio de los nodos m·s empleados por los mejores individuos, nos puede servir para saber que estrategias resultan m·s "beneficiosas" para conseguir la victoria en el juego.
-
-%Esto puede servir para que el experto diseÒe nuevas acciones y condiciones basadas en el conocimiento arrojado por estos mejores individuos. En este caso concreto, se ha descubierto que las acciones que minimizan el tiempo que las naves est·n volando son m·s empleadas por los mejores individuos. DiseÒar nuevas acciones y condiciones que hagan uso de este criterio puede servir para diversificar y especializar a˙n m·s este tipo de reglas. De igual manera, que ninga regla se haya "extinguido" a media que los invidiuos mejoran por el algoritmo genÈtico refleja que el conocimiento del experto que ha sideÒado las reglas es bastante bueno, ya que no ha diseÒado ninguna relga que resulte useless para conseguir la victoria del juego, como por ejemplo, realizar alguna decisiÛn "est˙pida" o que perjudique en lugar de beneficiar al jugador.
-
-%ANTARES: NOTA. Con regla me refiero tanto a accioens como condiciones.
 
 
 %% DE AQU√ç PARA ABAJO ES TEXTO ANTIGUO DEL EVO QUE NO TIENE QUE VER CON ESTE ART√çCULO
@@ -1012,8 +986,6 @@ This can
 %Results show that it is important to choose carefully the fitness that is going to be used to evaluate the evolved bots and to validate it using some kind of benchmark. % Some kind? Which kind? - JJ
 % ¬øEso es lo √∫nico que muestran? - JJ FERGU4: joer, menuda mierda de frase he escrito...
 
-
-
 As future lines of work, other rules will be added to the proposed algorithm
 (for example, ones analysing the map) and more competitive enemies
 will be used. In addition, the approach could be implemented and
@@ -1022,8 +994,6 @@ different videogames like Unreal\texttrademark~ or Super
 Mario\texttrademark~. We will also use other ways of taking into
 account the uncertainty in the fitness, such as using a Wilcoxon-based
 method to compare them \cite{merelo2016statistical}. 
-
-%ANTARES: Se me ha ocurrido que como trabajo futuro se podrÌa estudiar las "condiciones" y "acciones" de forma junta. Es decir, estudiar si una acciÛn concreta tiene como predileciÛn un conjunto de condiciones para que cupla concreta. Puede ser costoso de computar (no se me ocurre una manera snecilla de hacerlo), pero croe que puede ser interesante al menos citarlo como futuro trabajo.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ACKNOWLEDGEMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO: actualizar con los nuevos proyectos

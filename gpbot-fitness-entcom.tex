@@ -208,14 +208,14 @@ few degrees of improvement, namely the evolved set of eight
 parameters.
 Thus, GP was applied to create the Decision Tree (DT) that the bots used to make decisions during the game, and the resulting bots were able to beat ANONIMOUSBOT, %GeneBot \cite{Genebot_CEC11}, 
 our initial bot improved by means of GAs.
-This paper goes a bit further and analyses the evolution of the DTs themselves along generations, in order to show how do they change. Moreover, this study let us to identify the type of strategies that the best bots follow, i.e. we can extract some `automatically generated knowledge' that could help us to improve our skills as players of this game.
+This paper goes a bit further and analyses the evolution of the DTs themselves along generations, in order to show how do they change and how the conditions and actions are distributed on the trees. Moreover, this study lets us identify the type of strategies that the best bots follow, i.e. we can extract some {\em automatically generated knowledge} (or tips) that could help other players to improve their skills in the game.
 
 However, as it is usual when EAs are applied \cite{Jin2005303,QianYZ13}, and also due to the pseudostochastic nature of games, the evolution of bots is sensitive to {\em uncertainty} or {\em noise} \cite{merelo14:noisy}, even in a `simple' game as Planet Wars \cite{Mora_noisy_jcst}.
 Basic strategies to handle noisy fitness functions include using a larger population size, averaging to filter out the noise (re-sampling) \cite{Branke98_robust}, thresholding (employing a threshold value to be used in a selection operator for noisy fitness functions) \cite{Markon2001_thresholding}, or changing the selection criteria.
 
-In this paper we propose testing three different fitness functions,
+In this paper we also propose testing three different fitness functions,
 with the aim of checking, in addition to just their raw performance,
-which one if less sensitive to this kind of noise. This study would help to other researchers to select the best type of evaluation function for other evolutionary methods working on RTSs.
+which one if less sensitive to this kind of noise. This study will be useful to other researchers in order to select the best type of evaluation function, when defining other evolutionary methods working on RTSs.
 
 %This is not a state of the art. A state of the art says where the
 %current best result in this area is in order to prove that this one
@@ -246,7 +246,7 @@ Thus, during the match the tree will be used (by the bot) in order to select the
 \item {\em Action}: a leave of the tree (therefore, a ``terminal''). Each decision is the name of the method to call from the planet that executes the tree. This method indicates to which planet send a percentage of available ships (from 0 to 1). 
 \end{itemize}
 
-\noindent The decisions are based in the values of different \textit{variables} which are computed considering some other variables in the game. They are defined by a human expert, and are:
+\noindent The decisions are based on the values of different \textit{variables} which are computed considering some other variables in the game. They are defined by a human expert, and are:
 
 \begin{itemize}
 \item {\em myShipsEnemyRatio}: Ratio between the player's ships and enemy's ships.
@@ -315,7 +315,7 @@ else
 \end{algorithm}
 
 
-Next section explains one of the main components of the evolutionary process, i.e. the fitness function. As previously stated, three different functions have been implemented, which are used to evaluate the agent's performance during the matches. 
+Next section explains the three different fitness functions that have been implemented to evaluate the agents' performance during the battles. 
 
 
 %-----------------------------------------------------------------------
@@ -327,34 +327,33 @@ Next section explains one of the main components of the evolutionary process, i.
 
 % ---------------------------------------------------------------------
 
-Fitness should have some characteristic in order to ensure a good performance of the algorithm where they are used: 
+Fitness function should have some characteristic in order to ensure a good performance of the algorithm where it is used: 
 \begin{itemize}
-\item create a smooth landscape: yield similar results in the evaluation of similar individuals.
+\item create a smooth landscape: yield close values in the evaluation of close/similar individuals.
 \item being readily available: every correct individual can always be evaluated.
-\item being robust: the evaluation of one individual should be always the same (or similar, at least).
-\item being reliable: a good individual (according to the problem objective) must get a higher fitness value that a bad one.
+\item being robust: the evaluation of a specific individual should be always the same (or similar, at least).
+\item being reliable: a good individual (according to the problem objective) must get a higher fitness value than a bad one.
 \end{itemize}
 % Antonio - estas son las características que hemos pensado, si hay alguna más, por favor, metedla. ;)
 
-This section describes three different fitness functions to be used in the GP algorithm described in Section \ref{sec:agent} in order to generate competitive bots for Planet Wars.
-Thus, subsection \ref{subsec:fitness_turns} presents a hierarchical fitness based in the number of victories, and turns of the battles for tie-breaks. 
+This section describes three different fitness functions to be applied in the GP algorithm described in Section \ref{sec:agent}, in order to generate competitive bots for Planet Wars.
 
-Subsections \ref{subsec:fitness_slope} and \ref{subsec:fitness_area} show two fitness functions based on the behaviour of the agents during the battles, considering the percentage of resources (ships) gathered by the bot and computing, respectively, a slope or an area as its evaluation value.
+Thus, subsection \ref{subsec:fitness_turns} presents a hierarchical fitness based on the number of victories, and also the number of turns of the battles for tiebreaks. 
+Subsections \ref{subsec:fitness_slope} and \ref{subsec:fitness_area} show two fitness functions which take into account the behaviour of the agents during the battles, i.e. they consider the percentage of resources (ships) gathered by the bot, and compute, respectively, a slope or an area as its evaluation value.
 % Antonio - He reescrito esta intro, creo que ahora está mejor.
 
 % ---------------------------------------------
 
-\subsection{Fitness based in Victories}
+\subsection{Fitness based on Victories}
 \label{subsec:fitness_turns}
-
-%In previous works \cite{Genebot_CEC11}, a bot was evaluated always versus the same enemy (a reference bot), several times (in different maps), using a \textit{hierarchical fitness function}. FERGU4: comento esto que no sirve para nada.
 
 The justification of this fitness is to reach the main objective we pursuit with this method: generate bots able to win as many times as possible.
 % We are mainly interested in a bot that is able to win as many times
 % as possible, that is why... - JJ
 % Antonio - dicho
 This is a variation of the hierarchical fitness considered in \cite{Genebot_CEC11}.
-In this approach, an individual is better than another if it wins in a larger number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. the stronger one) is considered as better. The maximum fitness in this work is, therefore, 5 victories and 0 turns. 
+In this approach, an individual is better than another if it wins in a larger number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. the stronger one) is considered as better. 
+Every evaluation consists in five battles against the same enemy, GeneBot \cite{Genebot_CEC11}, so the maximum fitness value with this approach is 5 victories and 0 turns. 
 For two bots, A and B, the fitness comparison (and therefore, their order inside the population) is defined as Algorithm \ref{alg:fitness_turns_positions} shows.
 
 \begin{algorithm}[ht]
@@ -376,29 +375,26 @@ For two bots, A and B, the fitness comparison (and therefore, their order inside
 \ENDIF
 
 \end{algorithmic}
-\caption{Comparison between two individuals using hierarchical fitness.}
+\caption{Comparison between two individuals using fitness based on victories}
 \label{alg:fitness_turns_positions}
 \end{algorithm}
 
-In this fitness, we are only interested in the final result (position and number of turns). We do not include in the analysis how the bot has reached them. The problem of this function is that the consideration of two different terms makes it difficult the comparison between different evaluations. 
+In this fitness, we are only interested in the final result of the battles (position and number of turns). We do not include in the computation how the bot has reached them. The problem of this function is that the consideration of two different terms (victories and turns) makes it difficult the comparison between different evaluations. 
 
-Thus, in this work two additional evaluation functions have been proposed in order to let easier and fairer comparison methods between bots, trying to add another factor in order to reduce the influence of noise \cite{Mora_noisy_jcst}.
-Both of them are based in the percentage of ships belonging to each player in every turn. They are normalised considering the total amount of ships in the game for that turn (including neutrals ships in neutral planets), so for each player, there is a different {$cloud$} of ships.
-
+Thus, in this work, two additional evaluation functions have been proposed in order to make a, in principle, fairer comparison between bots, trying to add another factor in order to be less sensitive to noise \cite{Mora_noisy_jcst}. 
+Both of them are based on the percentage of ships belonging to each player in every turn. They are normalised considering the total amount of ships in the game for that turn (including neutrals ships in neutral planets), so for each player, there is a different {\em cloud of ships}.
 In the next subsections there are described the two alternatives to deal with this cloud of points for the fitness function: the use of slopes and areas.
 
 % ---------------------------------------------------------------------
 
-\subsection{Fitness based in Slope}
+\subsection{Fitness based on Slope}
 %  "slope based fitness"   [pedro]
 \label{subsec:fitness_slope}
 
-% In this case, a square regression .......      [pedro]
 In this case, a square regression analysis is computed in order to transform the cloud of points into a simple line. The line is represented as {$y = \alpha \times x + \beta $}, where {$\alpha$} and {$\beta$} are calculated as shown in Equations \ref{eq:alpha} and \ref{eq:beta}, computing a least squares regression. For every bot in the simulation we calculate $\alpha$ and ($slope$). This $slope$ is the fitness of every bot for that simulation. 
 
-%A graphical example can be seen in Fig. \ref{figura:nubecita:pendiente}.
+%A graphical example can be seen in Figure \ref{figura:nubecita:pendiente}.
 
-%%Antonio, pon esto junto si puedes, en la misma fila, que con subfigure no funciona :(
 \begin{equation}
 \label{eq:alpha}
         \alpha = \frac{\sum_{i=1}^{n}(X_{i} - \bar{X_{i}})(Y_{i} - \bar{Y_{i}})}{\sum_{i=1}^{n}(X_{i} - \bar{X_{i}})^{2}}
@@ -410,12 +406,12 @@ In this case, a square regression analysis is computed in order to transform the
 \end{equation}
 
 
-%\begin{figure}[h]
+%\begin{figure}[ht]
 %\centering
 %\hspace*{-1in}
-%  \epsfig{file=imags/nubecita_pendiente.eps,width=0.6
+%  \epsfig{file=imags/nubecita_pendiente.pdf,width=0.6
 %  \textwidth}
-%\caption{Fitness based in Slope: number of ships of every bot in each turn}
+%\caption{Fitness based on Slope: number of ships of every bot in each turn}
 %\label{figura:nubecita:pendiente}
 %\end{figure}
 
@@ -443,20 +439,21 @@ In this case, a square regression analysis is computed in order to transform the
 % \caption{Number of ships of every bot in each turn} %Maribel, cambio if por of
 % \label{figura:nubecita:pendiente}
 % \end{subfigure}
-% \caption{Fitness based in Slope}
+% \caption{Fitness based on Slope}
 % \end{figure}
 
 Theoretical maximum and minimum values are set for this fitness. An optimum bot that wins in the first turn, has an ideal slope of {$1$}, so this is the maximum value of our fitness. On the other hand, a bot that loses in the first turn,  has a slope of {$-1$}. Thus, if we calculate the $slope$, we know if the bot {$WINs$} ({$slope>0$}) or {$LOSEs$} {$slope<0$}. 
-The values of the different battles are summed to compute the global $slope$. %FERGU: por quÃ© las mayÃºsculas? Explicar mejor esta Ãºltima frase
-Then, the bot with the highest value will be the best is each turn or battle. 
-
-%Several evaluations in different maps was using, so it's need operate with fitness. In that case, only sum the slope of all the evaluations of the bot. Maribel, esto ya lo has dicho antes y ademÃ¡s lÃ­a mÃ¡s la cosa asÃ­ que lo he eliminado. AdemÃ¡s expresiones como "was using" estÃ¡n mal, quÃ© quieres decir? fue usando? eso en inglÃ©s no se dice.
+The values of the five different battles are summed to compute the global $slope$. Then, the bot with the highest value will be the best is each turn or battle. 
 
 % ANTARES: Este método es el que mejor permite puntuar un invidiuo al menos teóricamente. Un invidiuo que consiga la vitoria de la contienda conseguirá una puntuación positiva (pendiente mayor que cero), y será más alta cuanto mejor haya sido. Si pierde obtendrá una puntuación negativa (pendiente menor que cero) y se perderá más "puntos" (en el fitness) cuanto peor haya sido el resultado de la contienda.
 
+% Antonio - Traducido lo que dice Antares
+This method, theoretically, assigns the fairest value to an individual, since the obtained result is highly correlated with the victory or lose in the battle, being it positive or negative, respectively. Moreover, the value will be higher if the number of resources/ships gathered has been higher, and the other way round. 
+
+
 % ---------------------------------------------------------------------
 
-\subsection{Fitness based in Area}
+\subsection{Fitness based on Area}
 % "area based fitness"    [pedro]
 \label{subsec:fitness_area}
 
@@ -472,7 +469,7 @@ In this function, the integral of the curve of the bot's live-line is used for c
 % \begin{center}
 %   \epsfig{file=imagenes/nubecita_integral.eps,width=0.7\textwidth}
 % \end{center}
-% \caption{Fitness based in Area. Example of area under the live-line curve.}
+% \caption{Fitness based on Area. Example of area under the live-line curve.}
 % \label{figura:nubecita:area}
 % \end{figure}
 
@@ -494,13 +491,16 @@ In this function, the integral of the curve of the bot's live-line is used for c
 %\caption{Example of area under the live-line curve.} 
 %\label{figura:nubecita:area}
 %\end{subfigure}
-%\caption{Fitness based in Area}
+%\caption{Fitness based on Area}
 %\end{figure}
 
-As in previous case, maximum and minimum values has been set for this fitness. If an optimal bot wins in the first turn, the area of each live-line is close to {$1$}, so this is the maximum value of the fitness. Otherwise, if a bot loses in the first turn, its live-line area is close to {$0$}. In this case, we do not extract additional about which bot wins the battle, because the area of the live-line is not related with the winner of the battle. Thus, we are losing some information. 
-%FERGU: y por lo tanto... blablabla. No usar el we.
-% AntonioDEF - completar esto (ANTARES escribe y FERGU revisa) :D
+As in previous case, maximum and minimum values have been set for this fitness. If an optimal bot wins in the first turn, the area of each live-line is close to {$1$}, so this is the maximum value of the fitness. Otherwise, if a bot loses in the first turn, its live-line area is close to {$0$}. 
+
+In this case, we do not extract additional information about which bot wins the battle, because the area of the live-line is not related with the winner of the battle. Thus, some information is lost. 
 % ANTARES: Este método no permite conocer si un individuo ha ganado o perdido la contienda, ya que el valor númerico del mismo no lo refleja de ninguna manera. A pesar de esta pérdida de información, es el método que mejor puede romper casos donde un fitness jerárquico pueda parecer injusto. ¿Es mejor un individuo que solo gana una vez y el resto de veces pierde muy rápidamente? ¿O uno que pierde pero tarda mucho tiempo, pues no le resulta sencillo al rival vencerle?
+% Antonio - Traduzco
+However, in spite of the missed information, this method is better than slope in order to differentiate between bots which have an intermediate value for the hierarchical fitness. Thus, the assigned value with this function is useful to decide if it is better a bot which wins sometimes but when it loses, the match last just a few turns; or a bot which loses many times, but the matches takes a large number of turns.
+
 
 %-----------------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%% EXPERIMENTAL SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%%

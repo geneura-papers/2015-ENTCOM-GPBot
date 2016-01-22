@@ -191,8 +191,13 @@ With respect to RTS games, it has not been extremely exploited, so there are jus
 % Antonio - Fergu, mira a ver si quieres añadir algo a esto. ;)
 In this paper, the aim is to apply GP inside a `simple' RTS, Planet Wars, in order to define the whole behavioural engine for bot.
  
-Planet Wars, the game used in this work, has also been used in other researches as an experimental framework for agent testing. 
-We have considered this game in some previous studies \cite{Genebot_CEC11,genebot-evo12,Co-Genebot_EVO2014}, mainly applying Genetic Algorithms for evolving (the parameters of) a behavioural engine previously defined by a human expert from scratch. 
+Planet Wars, the game used in this work, has also been used in other
+researches as an experimental framework for agent testing.  % references! - JJ
+We have worked on this game in some previous studies
+\cite{Genebot_CEC11,genebot-evo12,Co-Genebot_EVO2014}, mainly applying
+Genetic Algorithms for evolving (the parameters of) a behavioural
+engine previously defined by a human expert from scratch.   % Nobody else has ever used Plante Wars? You have to prove
+            % it is popular - JJ
 
 % TODO: *** METER COSAS DE EN QUÉ AVANZA ESTE ARTÍCULO EL SotA: 
 % - Estudio en profundidad de los árboles (que antes no se había hecho)
@@ -203,14 +208,25 @@ We have considered this game in some previous studies \cite{Genebot_CEC11,genebo
 %           Vamos, que se van a mirar los árboles generados con detenimiento 
 %           (me refiero a lo de las condiciones y acciones utilizadas. ;)
 
-We used GP in a previous approach for Planet Wars bots \cite{Garcia14Treedepth}, as a following step to those works, to avoid the strict limitations that the initial bots had, such as the fixed behavioural structure (a Finite State Machine), which just offers a few degrees of improvement, namely the evolved set of eight parameters.
+We used GP in a previous approach for Planet Wars bots
+\cite{Garcia14Treedepth}, as a following step to those works, to avoid
+the strict limitations that the initial bots had, such as the fixed
+behavioural structure (a Finite State Machine), which just offers a
+few degrees of improvement, namely the evolved set of eight
+parameters.
 Thus, GP was applied to create the Decision Tree (DT) that the bots used to make decisions during the game, and the resulting bots were able to beat GeneBot \cite{Genebot_CEC11}, our initial bot improved by means of GAs.
 This paper goes a bit further and analyses the evolution of the DTs themselves along generations, in order to show how do they change. Moreover, this study let us to identify the type of strategies that the best bots follow, i.e. we can extract some `automatically generated knowledge' that could help us to improve our skills as players of this game.
 
 However, as it is usual when EAs are applied \cite{Jin2005303,QianYZ13}, and also due to the pseudostochastic nature of games, the evolution of bots is sensitive to {\em uncertainty} or {\em noise} \cite{merelo14:noisy}, even in a `simple' game as Planet Wars \cite{Mora_noisy_jcst}.
 Basic strategies to handle noisy fitness functions include using a larger population size, averaging to filter out the noise (re-sampling) \cite{Branke98_robust}, thresholding (employing a threshold value to be used in a selection operator for noisy fitness functions) \cite{Markon2001_thresholding}, or changing the selection criteria.
 
-In this paper we propose testing three different fitness functions, with the aim of checking, in addition to just their raw performance, which one if less sensitive to this kind of noise.
+In this paper we propose testing three different fitness functions,
+with the aim of checking, in addition to just their raw performance,
+which one if less sensitive to this kind of noise.
+
+%This is not a state of the art. A state of the art says where the
+%current best result in this area is in order to prove that this one
+%is better. What is the current best result in this area? - JJ
 
 
 %-------------------------------------------------------------

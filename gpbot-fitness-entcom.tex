@@ -863,7 +863,17 @@ With respect to the action type that an agent can chose, Figure \ref{figura:e_ac
  \label{figura:e_actions}
  \end{figure}
 
-Focusing in the type of attacks, Figure \ref{figura:e_attacks} shows that the \emph{attack_Nearest} action is the most used one in the Victory Fitness. On the contrary, in Slope and Area Fitness, attacking the enemy planets with the highest growing ratio (wealthiest) and the ones with high growing ratio but low number of ships (beneficial) imply less ships for the enemy and more for the player in next turns, and therefore, higher fitness score. However, attacking random planets do not seem to be a good strategy in any of the methods compared. Attacking the base is not a good strategy neither, even it was considered as one of the more important actions in previous works that do not use Genetic Programming \cite{Mora_noisy_jcs}.
+Focusing in the type of attacks, Figure \ref{figura:e_attacks} shows that the
+\emph{attack\_Nearest} action is the most used one in the Victory Fitness. On
+the contrary, in Slope and Area Fitness, attacking the enemy planets with the 
+highest growing ratio (wealthiest) and the ones with high growing ratio but 
+low number of ships (beneficial) imply less ships for the enemy and more for 
+the player in next turns, and therefore, higher fitness score. However, 
+attacking random planets do not seem to be a good strategy in any of the 
+methods compared. Attacking the base is not a good strategy neither, even it 
+was considered as one of the more important actions in previous works that do 
+not use Genetic Programming \cite{Mora_noisy_jcs}.
+
 %La figura \ref{figura:e_attacks} muestra la evolución de uso de los tipos de ataques. Se muestra obvio que el tipo de ataque más empleado a media que mejoran los bots es el de \emph{attack_Nearest}. Atacar un planeta cercano suele ser una excelente acción, ya que se necesitan menos tiempos para "capturar el planeta" y se da menos tiempo al rival para poder contra-atacar. Es necesario entender que el tiempo que están las "naves" volando de un planeta a otro no están "aportando nada al juego", así que tiene sentido que los mejores bots intenten minizar el tiempo que las naves vuelan de un sitio a otro. Sin embargo acciones como \emph{attack_Weakest} or \emph{attack_Quickest} tienen a ser menos empleadas a medida que mejoran los invidiuos, aunque resultan muy similares a \emph{attack_Nearest}. Se puede extraer que es más beneficioso conquistar un planeta muy cercano (attack_nearest) que uno que sea muy sencillo de conquistar (attack_Quickest) o muy debil (attack_Weakest). %Estrategias como \emph{attack_Wealthiest} y \emph{attack_Beneficial} tienen presencia constante, ya que realizar este tipo de acciones en el momento oportuno supone una gran ventaja para un agente. El \empha{attack_base} atacar la base enemiga sufre un decrecimiento en las primeras generaciones, aunque luego se mantiene constante. De igual manera que en los anteriores casos, el que no desaparezca indica que tiene su utilidad, aunque es necesario encontrar la condición que permite hacer uso de un tipo de ataque en el momento preciso. Por último, destacar que realizar un \emph{attack_Random} tiene una presencia más o menos constante. Aunque sería esperable que este tipo de ataques fuese decreciendo a medida que los individuos mejoran, no sucede así. Puede ser interesante estudiar hasta que punto beneficia a un jugador "hacer algo al azar" frente a realizar una acción más determinista.
 
  \begin{figure}[ht]

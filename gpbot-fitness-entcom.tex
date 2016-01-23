@@ -177,12 +177,16 @@ Among other techniques, EAs have been widely used as a CI method in RTS games, f
 
 GP has also proved to be a very good tool for developing strategies in games, achieving results comparable to human, or human-based competitors \cite{Sipper2007gameplaying}. They also have obtained higher ranking than solvers produced by other techniques or even beating expert human players \cite{Elyasaf2012FreeCell}. GP has also been used in different kind of games, such as board-games \cite{Benbassat2012Reversi}, (apparently) `simple' games like Ms. Pac-Man \cite{Brandstetter2012PacMan} or Spoof \cite{Wittkamp2007spoof}, and even in modern videogames such as First Person Shooters (FPS) as Unreal\texttrademark~ \cite{Mora_UnrealBots10,Esparcia2013GPunreal}. 
 
-With respect to RTS games, it has not been extremely exploited, so there are just a few applications, such as pathfinding \cite{pathfinding_GP_RTS}, definition of tactics in an abstract tactical game \cite{KeaveneyO09_GP_RTS},and recently to the automatic generation of strategies for a bot \cite{Garcia15Starcraft}.
+With respect to RTS games, it has not been extremely exploited, so
+there are just a few applications, such as pathfinding
+\cite{pathfinding_GP_RTS}, definition of tactics in an abstract
+tactical game \cite{KeaveneyO09_GP_RTS}, and recently to the automatic generation of strategies for a bot \cite{Garcia15Starcraft}.
 % Antonio - Fergu, mira a ver si quieres añadir algo a esto. ;)
-In this paper, the aim is to apply GP inside a `simple' RTS, Planet Wars, in order to define the whole behavioural engine for bot.
+In this paper, the aim is to apply GP inside a `simple' RTS, Planet
+Wars, in order to define the whole behavioural engine for bot. %why? - JJ
  
-Planet Wars, the game used in this work, has also been used in other
-researches as an experimental framework for agent testing \cite{ZiolkoK12_PW_Reasoning}.  
+Planet Wars, the game used in this work, has also been used by other researchers
+as an experimental framework for agent testing \cite{ZiolkoK12_PW_Reasoning}.  
 % references! - JJ
 % Antonio - vienen ahora
 % Antonio - TODO: Anonimizar las referencias. Lo demás se puede dejar así, si se quiere
@@ -192,16 +196,27 @@ Genetic Algorithms for evolving (the parameters of) a behavioural
 engine previously defined by a human expert from scratch.   
 % Nobody else has ever used Plante Wars? You have to prove it is popular - JJ
 % Antonio - He encontrado sólo a ese hombre, pero es una IA hecha a manubrio. Que yo sepa, sólo los de Málaga y nosotros trabajamos actívamente y ellos en PCG, no en agentes.
-% Por otra parte, ¿por qué hay que demostrar que es popular? Es un RTS simple y nos sirve de banco de pruebas, con eso creo que basta...
+% Por otra parte, ¿por qué hay que demostrar que es popular? Es un RTS
+% simple y nos sirve de banco de pruebas, con eso creo que basta... 
+% No, no basta. Tienes que tratar de ser lo más general posible. Si lo
+% usas como banco de pruebas, tienes que decir a qué se puede
+% generalizar - JJ
 
 % Antonio - TODO: anonimizar referencias
 We used GP in a previous approach for Planet Wars bots
-\cite{Garcia14Treedepth}, as a following step to those works, to avoid
+\cite{Garcia14Treedepth}, as a next step to those works, to avoid
 the strict limitations that the initial bots had, such as the fixed
 behavioural structure (a Finite State Machine), which just offers a
 few degrees of improvement, namely the evolved set of eight
-parameters.
-Thus, GP was applied to create the Decision Tree (DT) that the bots used to make decisions during the game, and the resulting bots were able to beat ANONIMOUSBOT, %GeneBot \cite{Genebot_CEC11}, 
+parameters. % This sentence should be rewritten. - JJ
+Thus, GP was applied to create the Decision Tree (DT) that the bots
+used to decide on different courses of action during the game. 
+% You have already presented GP for this particular game. You cannot
+% say this paper is about "testing the validity of GP to create
+% competitive bots". Please rewrite that - JJ
+The
+resulting bots were able to beat ANONIMOUSBOT, %GeneBot
+                                %\cite{Genebot_CEC11},  
 our initial bot improved by means of GAs.
 This paper goes a bit further and analyses the evolution of the DTs themselves along generations, in order to show how do they change and how the conditions and actions are distributed on the trees. Moreover, this study lets us identify the type of strategies that the best bots follow, i.e. we can extract some {\em automatically generated knowledge} (or tips) that could help other players to improve their skills in the game.
 

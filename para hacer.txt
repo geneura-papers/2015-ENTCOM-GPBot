@@ -1,6 +1,7 @@
 VERSIÓN FINAL O TRABAJO FUTURO
 ------------------------------
-- Figuras de ejmeplo de Slope y Area con 2 bots
+- Cambiar de orden Slope y Area en su definición o en las gráficas. No es sólo copiar pegar, hay que revisar el texto, ya que en el del área se hace referencia a lo comentado antes en Slope...
+- Figuras de ejemplo de Slope y Area con 2 bots
 - Hacer un estudio de las acciones separado para cada tipo de fitness, para ver si hay cambios segun cada función.
 - Incluir en el estudio de acciones toda la población, para ver cómo cambian todos, no sólo los mejores, que ya serán 'buenos' de por sí. O, en su defecto, incluir una población inicial (aleatoria) para ver el gran cambio que se produce en los árboles tras la primera generación.
 - Aplicar la función SCORE como Fitness y comparar sus resultados con los otros.

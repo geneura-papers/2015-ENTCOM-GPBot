@@ -91,28 +91,22 @@ Thus, deciding the best evaluation function is a key factor for the success of t
 
 The aforementioned works apply GAs \cite{Genebot_CEC11,ExpGenebot_CIG2012,Barriga2014:BuildingOrder_GA}, and GP \cite{bistrom_GP_StarCraft,Garcia14Treedepth,Garcia15Starcraft}. 
 All these approaches have in common the consideration of an evaluation function which measures the quality of the behaviour of the bots being evolved. 
-Different fitness functions have been used in the past, for example the {\em game score}, or the {\em number of victories} against the rivals during the evaluation. However, these functions have to deal with the uncertainty, also called {\em noise} \cite{merelo14:noisy,merelo15:uncertainty}, present due to the stochastic nature of the bots or to the game itself. 
+Different fitness functions have been used in the past, for example the {\em game score}, or the {\em number of victories} against the rivals during the evaluation. However, these functions have to deal with the uncertainty, also called {\em noise} \cite{merelo14:noisy,merelo15:uncertainty}, present due to the stochastic nature of the opponent bots or to the game itself (rules or maps) . 
 
 In addition, the selection of a fitness function or another, may generate different behaviours for the generated bots. For example, an evolutionary process using a victory-based fitness function would create `aggressive' bots, while one function, that also takes into account the number of different structures created, may generate a more `strategic' bot. 
 
 Therefore, this paper aims to choose the best type of fitness function for a Genetic Programming-based approach, which generates {\em Decision Trees} - or rule-based systems - (DTs), as Artificial Intelligence engines for bots in the scope of RTSs.
-To this end, we compare the bots created using different types of fitness, studying both, the generated DTs, and the performance of the bots in battles against unknown enemies. 
+To this end, we compare the bots created using different types of fitness, studying both, the generated DTs, and the performance of the bots in battles against unknown enemies and maps. 
 We have applied GP to generate the bots because it provides a good mechanism to create rules from scratch, giving the possibility to define very different behaviours. 
 
 Three fitness functions have been tested in the paper:
 \begin{itemize}
-\item A {\em victory-based fitness}, that only considers the number of battles won in the evaluation. 
-\item A {\em slope-based fitness}: that measures the behaviour during all the game (not only at the end, as in the previous one), using the slope of the number of generated units during the game.
+\item A {\em victory-based fitness}, that mainly considers the number of battles won in the evaluation. Turns are also considered if there is a draw.
+\item A {\em slope-based fitness}: that measures the behaviour during all the game (not only at the end, as in the previous one), using the slope of the percentage of possessed units in a turn of the game.
 \item An {\em area-based fitness}: which computes an integral as the percentage of units possessed by the bot divided by the number of turns the battle has taken. 
-%PABLO: por qu? esta diferenciaci?n en estas dos ultimas?
-%ANTARES: Realmente se calcula el nÃºmero promedio de recursos en el nÃºmero de turnos, y esto se calcula con la integral (sumatoria de valores discretos) dividido por el nÃºmero de turnos
-% Antonio - mirad si lo he descrito bien. ;)
-%ANTARES: No es del número ''generado'' sino el número total en juego. Lo intento corregir.
-% Antonio - Ok
 \end{itemize}
 
-These approaches have been implemented for the game {\em Planet Wars} (or Galcon
-\cite{wiki:galcon}), as it is a `simple' RTS: with only one type of resources and units. 
+These approaches have been implemented for the game {\em Planet Wars}, as it is a `simple' RTS: with only one type of resources and units. 
 The rest of the paper is structured as follows: after the background and the problem description (Section \ref{section:background}), the state of the art is presented in Section \ref{sec:soa}. Then, the description of the GP approach and the considered fitness functions are described respectively in Sections \ref{sec:agent} and \ref{sec:fitness_functions}. Section \ref{sec:experiments} explains the experimental setup, while Section \ref{sec:results} analyses the obtained results. Finally, the conclusions and future lines work are presented in Section \ref{sec:conclusion}.
 
 
@@ -131,7 +125,7 @@ The flow of a GP algorithm is the same as any other EA: a population is created 
 
 \subsection{Planet Wars Game}
 In this paper we work with a %simplified
-version of the game Galcon designed as an arena where programmed bots
+version of the game Galcon \cite{wiki:galcon} designed as an arena where programmed bots
 can fight. This version was used for the Google AI Challenge 2010
 (GAIC)\footnote{http://planetwars.aichallenge.org/}. 
 
@@ -156,8 +150,7 @@ match, the winner is the player that remains alive, or that which owns
 more ships if more than one survives.  
 
 There are two strong constraints that determine the possible methods
-to apply to design a bot: the time for making a decision is
-\textit{just one second},  
+to apply in order to design a bot that can play and win this game: the time for making a decision is \textit{just one second},  
 and the bot is \textit{not allowed to store any kind of information}
 about its former actions, about the opponent's actions or about the
 state of the game (i.e., the game's map).  
@@ -192,6 +185,7 @@ Planet Wars, the game used in this work, has also been used in other
 researches as an experimental framework for agent testing \cite{ZiolkoK12_PW_Reasoning}.  
 % references! - JJ
 % Antonio - vienen ahora
+% Antonio - TODO: Anonimizar las referencias. Lo demás se puede dejar así, si se quiere
 We have worked on this game in some previous studies
 \cite{Genebot_CEC11,genebot-evo12,Co-Genebot_EVO2014}, mainly applying
 Genetic Algorithms for evolving (the parameters of) a behavioural
@@ -200,6 +194,7 @@ engine previously defined by a human expert from scratch.
 % Antonio - He encontrado sólo a ese hombre, pero es una IA hecha a manubrio. Que yo sepa, sólo los de Málaga y nosotros trabajamos actívamente y ellos en PCG, no en agentes.
 % Por otra parte, ¿por qué hay que demostrar que es popular? Es un RTS simple y nos sirve de banco de pruebas, con eso creo que basta...
 
+% Antonio - TODO: anonimizar referencias
 We used GP in a previous approach for Planet Wars bots
 \cite{Garcia14Treedepth}, as a following step to those works, to avoid
 the strict limitations that the initial bots had, such as the fixed
@@ -351,9 +346,11 @@ The justification of this fitness is to reach the main objective we pursuit with
 % We are mainly interested in a bot that is able to win as many times
 % as possible, that is why... - JJ
 % Antonio - dicho
-This is a variation of the hierarchical fitness considered in \cite{Genebot_CEC11}.
+This is an improvement of the hierarchical fitness considered in \cite{Genebot_CEC11}.
 In this approach, an individual is better than another if it wins in a larger number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. the stronger one) is considered as better. 
-Every evaluation consists in five battles against the same enemy, GeneBot \cite{Genebot_CEC11}, so the maximum fitness value with this approach is 5 victories and 0 turns. 
+Every evaluation consists in five battles against the same enemy, ANONIMOUSBOT
+% Antonio - TODO: anonimizar referencia
+ \cite{Genebot_CEC11}, so the maximum fitness value with this approach is 5 victories and 0 turns. 
 For two bots, A and B, the fitness comparison (and therefore, their order inside the population) is defined as Algorithm \ref{alg:fitness_turns_positions} shows.
 
 \begin{algorithm}[ht]
@@ -379,11 +376,11 @@ For two bots, A and B, the fitness comparison (and therefore, their order inside
 \label{alg:fitness_turns_positions}
 \end{algorithm}
 
-In this fitness, we are only interested in the final result of the battles (position and number of turns). We do not include in the computation how the bot has reached them. The problem of this function is that the consideration of two different terms (victories and turns) makes it difficult the comparison between different evaluations. 
+In this fitness, we are only interested in the final result of the battles (position and number of turns). We do not include in the computation how the bot has reached them. The problem of this function is that the consideration of two different terms (victories and turns) makes it difficult the comparison between different evaluations, and it is hard to decide which individual is better if both have won just some of the battles. 
 
 Thus, in this work, two additional evaluation functions have been proposed in order to make a, in principle, fairer comparison between bots, trying to add another factor in order to be less sensitive to noise \cite{Mora_noisy_jcst}. 
 Both of them are based on the percentage of ships belonging to each player in every turn. They are normalised considering the total amount of ships in the game for that turn (including neutrals ships in neutral planets), so for each player, there is a different {\em cloud of ships}.
-In the next subsections there are described the two alternatives to deal with this cloud of points for the fitness function: the use of slopes and areas.
+In the next subsections there are described the two alternatives to transform this cloud of points into a singular value for the fitness function: the use of slopes (statistical method) and areas (numerical method).
 
 % ---------------------------------------------------------------------
 
@@ -443,7 +440,7 @@ In this case, a square regression analysis is computed in order to transform the
 % \end{figure}
 
 Theoretical maximum and minimum values are set for this fitness. An optimum bot that wins in the first turn, has an ideal slope of {$1$}, so this is the maximum value of our fitness. On the other hand, a bot that loses in the first turn,  has a slope of {$-1$}. Thus, if we calculate the $slope$, we know if the bot {$WINs$} ({$slope>0$}) or {$LOSEs$} {$slope<0$}. 
-The values of the five different battles are summed to compute the global $slope$. Then, the bot with the highest value will be the best is each turn or battle. 
+The values of the five different battles are summed to compute the global $slope$. Then, the bot with the highest value will be the best is each simulation or battle. 
 
 % ANTARES: Este método es el que mejor permite puntuar un invidiuo al menos teóricamente. Un invidiuo que consiga la vitoria de la contienda conseguirá una puntuación positiva (pendiente mayor que cero), y será más alta cuanto mejor haya sido. Si pierde obtendrá una puntuación negativa (pendiente menor que cero) y se perderá más "puntos" (en el fitness) cuanto peor haya sido el resultado de la contienda.
 
@@ -457,7 +454,7 @@ This method, theoretically, assigns the fairest value to an individual, since th
 % "area based fitness"    [pedro]
 \label{subsec:fitness_area}
 
-In this function, the integral of the curve of the bot's live-line is used for calculating the area that is `covered' by the fitness cloud of points (see Equation \ref{eq:area}). This {$area$} is normalised considering the number of turns, and thus it represents the average percentage of ships during the battle for each player. 
+In this function, the integral of the curve of the bot's live-line is used for calculating the area that is `covered' by the fitness cloud of points (see Equation \ref{eq:area}). This {$area$} is normalised considering the number of turns, and thus it represents the average percentage of owned ships during the battle for each player. 
 %An example is shown in Fig. \ref{figura:nubecita:area}.
 
 \begin{equation}
@@ -509,36 +506,31 @@ However, in spite of the missed information, this method is better than slope in
 \section{Experimental Setup}
 \label{sec:experiments}
 
-% in order to ensure a fair comparison of the three fitness functions
-% we have decided to compare an equal number of evaluations - equal
-% time what??? - JJ
-% Está descrito anteriormente, todos los fitness realizan el mismo número de simulaciones (en este caso 5) y tiene re-evaluación de indivuos tal y como se concluyó en el artículo del ECTA. ¿Lo volvemos a poner aquí? No sé si queda claro o no.
-
 Sub-tree crossover and 1-node mutation evolutionary operators have
 been used, following other researchers' proposals that have used these
 operators obtaining good results \cite{Esparcia2013GPunreal}. In this
 case, the mutation randomly changes the decision of a node or mutate
 the value with a step-size of 0.25 (an adequate value empirically
-tested). Each configuration is executed 30 times, with a population of
+tested). Each configuration is executed 21 times, with a population of
 32 individuals and a 2-tournament selector for a pool of 16
 parents.
 
 %This is not experimental setup, it is description of
 %parameters used in the algorithm. Experimental setup is
 %number of runs, which conditions, so on - JJ
+% Antonio - se describe también eso
 
-To test each individual during the evolution, a battle with a previously created bot is performed in 5 different (but representative) maps provided by Google is played. 
+To evaluate every individual during the evolution, a battle with a previously created bot is performed in 5 different (but representative) maps provided by Google. 
 %Hierarchical fitness is used, as proposed in \cite{Genebot_CEC11}. Thus, an individual is better than another if it wins in a higher number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. the stronger one) is considered better. The maximum fitness is, therefore 5 victories and 0 turns. 
-Also, as proposed by \cite{Genebot_CEC11}, and due to the fact that
-different evaluations will yield different values, all individuals are
-re-evaluated in every generation, constituting an implicit averaging
- \cite{Jin2005303,DBLP:conf/ijcci/MereloLFGCCRMG15}.
+Also, and due to the presence of noise (different evaluations will yield different values), all individuals are re-evaluated in every generation, constituting an implicit averaging as it is suggested by the authors in \cite{Jin2005303,DBLP:conf/ijcci/MereloLFGCCRMG15}.
 % 1. You could cite our papers on noise
 % 2. You could USE the conclusions of those papers. In this case: ?use
 % all evaluations in all generations! - JJ
+% Antonio - ya está citado. ;)
 
-
-A publicly available bot has been chosen for our experiments\footnote{It can be downloaded from \url{https://github.com/deantares/genebot}}. The bot to confront is {\em GeneBot}, proposed in \cite{Genebot_CEC11}. As stated, this bot was trained using a GA to optimise the 8 parameters that conforms a set of hand-made rules, obtained from an expert human player experience.  Table \ref{tab:parameters} summarises all the parameters used.
+A publicly available bot has been chosen for the
+% Antonio - TODO: anonimizar
+experiments\footnote{It can be downloaded from \url{https://github.com/deantares/genebot}}. The bot to confront is {\em ANONIMOUSBOT}, proposed in \cite{Genebot_CEC11}. As stated, this bot was trained using a GA to optimise the eight parameters that conforms a set of hand-made rules, obtained from the experience of an expert human player.  Table \ref{tab:parameters} shows the values of the parameters considered.
 
 \begin{table}
 \begin{center}
@@ -555,132 +547,48 @@ Replacement & Steady-state\\ \hline
 Stop criterion & 50 generations \\ \hline
 Maximum Tree Depth & 7  \\ \hline %FERGU: quitados distintos tamaÃ±os
 Runs per configuration & 30 \\ \hline
-Evaluation & Playing versus GeneBot \cite{Genebot_CEC11}  \\ \hline 
-Maps used in each evaluation & map76, map69, map7, map11, map26 
+Evaluation & Playing versus ANONIMOUSBOT \cite{Genebot_CEC11}  \\ \hline 
+Maps used for evaluation & map76, map69, map7, map11, map26 
 \\ \hline
 \end{tabular}
-\caption{Parameters used in the experiments.}
+\caption{Parameters used in the experiments}
 \label{tab:parameters}
 \end{center}
 \end{table}
 
-% Â¿cÃ³mo se han obtenido los valores de esos parÃ¡metros?   [pedro]
-% AntonioDEF - habla un poco de los parÃ¡metros Fergu. DÃ­ que se ahn obtenido por systematic experimentation y justifica la profundidad de 7, pero sin decir nada del artÃ­culo del EVO*. XD
-% que es un valor habitual, que dado el nÃºmero de antecedentes es un valor justo, no sÃ©...
- 
 
-After all the executions we have evaluated the obtained best individuals in all runs confronting to the other bots in a larger set of maps to study the behaviour of the algorithm and how good are the obtained bots versus enemies and maps that have not been used for training.
+After all the executions we have evaluated the obtained best individuals in all runs confronting to the other bots in a larger set of maps, 
+% Antonio - ¿en cuántos mapas? Poner el número concreto
+in order to study the behaviour of the algorithm and how good are the obtained bots versus enemies and maps that have not been used for training.
 
-The used framework is OSGiLiath, a service-oriented evolutionary framework. %\cite{Garcia13Service}. 
-The generated tree is compiled in real-time and injected in the agent's code using Javassist \footnote{\url{www.javassist.org}} library. All the source code used in this work is available under a LGPL V3 License in \url{http://www.osgiliath.org}.
+The algorithm has been implemented using the OSGiLiath, a service-oriented evolutionary framework \cite{Garcia13Service}. 
+The generated tree is compiled in real-time and injected in the agent's code using Javassist \footnote{\url{www.javassist.org}} library. All the source code used in this work is available under a LGPL V3 License in 
+% Antonio - TODO: anonimizar
+\url{http://www.osgiliath.org}.
 
 
 %-------------------------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%% RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %-------------------------------------------------------------
-\section{Results}
+\section{Analysis of Results}
 \label{sec:results}
-\subsection{-- EA --}
+\subsection{Study of the GP algorithm and Fitness Functions}
 
 Table \ref{tab:results3config} shows the obtained results after
-executing each approach 21 times, i.e. GP algorithm using every fitness implementation. 
-% AntonioDEF - aclaro un poco mÃ¡s
-% la frase estÃ¡ mal construida despuÃ©s de i. e. - JJ
-Although these fitness are not comparable, as they obviously apply different metrics, the \textit{Victory-based} fitness achieves values near to the optimum (5) at the end of the run (look at the best individual and average population values). The \textit{Slope} and \textit{Area} fitness yield results under their theoretical optimum, 
-% AntonioDEF - Â¿cuÃ¡l es su Ã³ptimo teÃ³rico?
-% Antares: Esto ya lo he comentado varias veces, todos tienen como rango de valores entre 0 y 5.
-as they depend on more information ranges (variation in the number of ships).
-\textit{Area} obtains slightly better values than \textit{Slope}. 
-%Fig.\ref{fig:evolutionFitness} shows how --TO DO COMENTADO-- %BÃ¡sicamente quiero decir que en la figura 2 se muestra como el fitness del mejor individuo de la poblaciÃ³n mejora a medida que transcurren las generaciones, que es lo que debe suceder en un EA. De igual manera, la figura 3 muestra como el promedio de la poblaciÃ³n tambiÃ©n mejora a medida que van transcurriendo las generaciones.
-
-%La figura 4 muestra el tamaÃ±o del Ã¡rbol de los mejores individuos de cada generaciÃ³n. Los tres mÃ©todos de fitness estudiados producen Ã¡rboles cada vez mÃ¡s grandes (o complejos) en las sucesivas generaciones. El fitness basado en victorias es el que menor crecimiento tiene, llegando a tener Ã¡rboles de poco tamaÃ±o que aÃºn asÃ­ consiguen ser el mejor individuo de la poblaciÃ³n.
-
-%La figura 5 muestra la antiguedad promedida de la poblaciÃ³n durante cada generaciÃ³n de todas las ejecuciones de cada mÃ©todo. Un crecimiento constante indicarÃ­a que la poblaciÃ³n es cada vez mÃ¡s vieja, por lo que no se estÃ¡n produciendo reemplazamos de nuevos individuos. Esto indicarÃ­a que no se estÃ¡n generando nuevos individuos con fitness mejores a los de sus ancentros. En los tres mÃ©todos estudiados, no se aprecia un crecimiento constante, por lo que el algoritmo estÃ¡ generando nuevos individuos que superan a sus padres constantemente. Los individuos estÃ¡n de media 4-5 generaciones antes de ser sacados del pool de la poblaciÃ³n reemplazados por individuos mejores que ellos.
-
-% NI IDEA PORQUE NO LOS ENTIENDO XDD (FERGU3). ARREGLADLO
-% AntonioDEF - yo tampoco sabrÃ­a justificarlo. ANTARES dÃ­ algo y lo traduce Fergu. ;D
-
-% ANTARES: CÃ³mo he re-ajustado las figuras para hacer comparaciones "entre mismo tipos de fitness" ha cambiado un poco las grÃ¡ficas.
-% las grÃ¡ficas de convergencia del algoritmo sirven para demostrar que realmente el algoritmo esta convergiendo hacia mejores soluciones segÃºn el fitness.
-
-
-\begin{figure}[ht]
- \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/estudio_turns.pdf}
- \end{center} % no podÃ©is empezar una frase con "for
-              % individuals". Empezad con Boxplot - JJ TambiÃ©n es
-              % inÃºtil un boxplot sÃ³lo, sÃ³lo sirve para comparar. - JJ
- \caption{\textbf{Victories Fitness Method} individuals: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
- \label{figura:fitness_turns}
- \end{figure}
-
-   \begin{figure}[ht]
- \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/estudio_area.pdf}
- \end{center}
- \caption{\textbf{Area Fitness Method} individuals: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
- \label{figura:fitness_area}
- \end{figure}
-
-    \begin{figure}[ht]
- \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/estudio_slope.pdf}
- \end{center}
- \caption{\textbf{Slope Fitness Method} individuals: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots, single points and locally weighted polynomial curve (loess) are shown.}
- \label{figura:e_fitness_slope}
- \end{figure}
-
-
- % \begin{figure}[ht]
- % \begin{center}
- %   \includegraphics[width=12cm]{nuevas_imgs/evolution_BEST_FITNESS.pdf}
- % \end{center}
- % \caption{Evolution of the fitness of the best individual of every execution by fitness method.}
- % \label{fig:evolutionFitness}
- % \end{figure}
-
- % \begin{figure}[ht]
- % \begin{center}
- %   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_FITNESS.pdf}
- % \end{center}
- % \caption{Evolution of the average fitness of every execution by fitness method.}
- % \label{figura:evolutionFitnessAverage}
- % \end{figure}
-
- \begin{figure}[ht]
- \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_DEPTH.pdf}
- \end{center}
- \caption{Evolution of the average depth of every exectuion by fitness
-   method. -- TO DO --} % What is this for? - JJ
- \label{figura:evolutionDEPTH}
- \end{figure}
-
- \begin{figure}[ht]
- \begin{center}
-   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_AGE.pdf}
- \end{center}
- \caption{Evolution of the average age of every execution by fitness
-   method. -- TO DO -- Un crecimiento constante de la edad indicar?
-   que el algoritmo no est?generando individuos que sean mejores que
-   los anteriores, por lo que se habr? ...} %don't use Spanish!!!!! 
-% Where did you see that method of evaluating different fitness
-% functions? - JJ
- \label{figura:evolutionAGE}
- \end{figure}
+executing each approach (GP + fitness function) 21 times. 
+Although the fitness are not comparable, as they obviously apply different metrics, the \textit{Victory}-based fitness achieves values near to the optimum (5) at the end of the run (look at the best individual and average population values). The \textit{Area}-based and \textit{Slope}-based fitness yield results under their theoretical optimum, as they depend on more information ranges (variation in the number of ships). 
 
 \begin{table*}
 \centering{
 \begin{tabular}{|c|c|c|} \hline            
 		& Average best fitness	&	Average population fitness	\\ \hline \hline
-Victory	& 4,761 $\pm$	0,624	&	4,345	$\pm$	0,78 \\ \hline
-Slope	& 2,296	$\pm$	0,486	&	2,103	$\pm$	0,434 \\ \hline
-Area	& 2,838	$\pm$	1,198	&	2,347	$\pm$	0,949 \\ \hline
-
+Victory	& 4.761 $\pm$	0.624	&	4.345	$\pm$	0.78 \\ \hline
+Area	& 2.838	$\pm$	1.198	&	2.347	$\pm$	0.949 \\ \hline
+Slope	& 2.296	$\pm$	0.486	&	2.103	$\pm$	0.434 \\ \hline
 
 \end{tabular}
-\caption{Average results obtained for each approach at the end of the
-  runs. Everyone has been tested 21 times.}
+\caption{Average results obtained for each approach at the end of the 21
+  runs}
 %Don't understand this. How do you compare fitnesses if they are
 %computed in a different way? Shouldn't you call it score? Or
 %victories? Or something else? - JJ
@@ -689,16 +597,82 @@ Area	& 2,838	$\pm$	1,198	&	2,347	$\pm$	0,949 \\ \hline
 }
 \end{table*}
 
-\subsection{-- TO DO -- Fitness Benchmark}
+However, as these values are not comparable, we have conducted a graphical study of the evolution of fitness on the runs.
+Figure \ref{figura:fitness_turns} shows how the fitness of the best individuals and also the average fitness of the population are improved along generations, as it is desired in an EA. Figures \ref{figura:fitness_area} and \ref{figura:fitness_slope} show the same tendencies. Moreover, as expected, the fitness of the best individuals have a higher progression than averages.
+These facts mean that the fitness function are correctly defined and properly working.
 
-Even though the \textit{Victory-based} fitness yields better results
+Comparing the results for every fitness with the rest, it can be seen that Victory fitness shows a higher progression than the others. This is due to the range of the dominions of values in these functions. However, it can be noted that the variability of values is higher in area than in Slope, because of the negative values that can be yield in the latter.
+% Antonio - es por esto? Que estoy medio dormido. :(
+
+As it can be seen in the dispersion of the cloud of points, the noise if present in all the functions, but Area shows a better tolerance to it, since the cloud is a bit narrower than the others.
+% Antonio - Y esto? :D
+
+% Antonio - TODO: comentar más cosas si se os ocurren
+
+\begin{figure}[ht]
+ \begin{center}
+   \includegraphics[width=12cm]{nuevas_imgs/estudio_turns.pdf}
+ \end{center} % no podÃ©is empezar una frase con "for
+              % individuals". Empezad con Boxplot - JJ TambiÃ©n es
+              % inÃºtil un boxplot sÃ³lo, sÃ³lo sirve para comparar. - JJ
+ \caption{\textbf{Victory-based Fitness} individuals: Boxplot of the fitness of the \emph{Best individuals}, one per run, and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In the evolution plots (centre and right), single points and locally weighted polynomial curve (loess) are shown.}
+ \label{figura:fitness_turns}
+ \end{figure}
+% Antonio - 'Loess' es correcto?
+
+   \begin{figure}[ht]
+ \begin{center}
+   \includegraphics[width=12cm]{nuevas_imgs/estudio_area.pdf}
+ \end{center}
+ \caption{\textbf{Area-based Fitness} individuals: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots (centre and right), single points and locally weighted polynomial curve (loess) are shown.}
+ \label{figura:fitness_area}
+ \end{figure}
+
+    \begin{figure}[ht]
+ \begin{center}
+   \includegraphics[width=12cm]{nuevas_imgs/estudio_slope.pdf}
+ \end{center}
+ \caption{\textbf{Slope-based Fitness} individuals: Boxplot of the fitness of the \emph{Best individuals} of every execution and evolution of the \emph{Best fitness} and \emph{Average population fitness} of every execution. In evolution plots (centre and right), single points and locally weighted polynomial curve (loess) are shown.}
+ \label{figura:fitness_slope}
+ \end{figure}
+
+
+
+Looking at the evolution of individuals (trees), Figure \ref{figura:evolutionDEPTH} shows the average depth of the trees along the generations. % Antonio - muestra la profundidad media o la de los mejores?
+The three approaches show a similar behaviour in this respect, i.e. the average depth grows in every generation. Victory fitness approach is the one with a smaller growing. Thus, it obtains smaller trees that are very good individuals anyway.
+
+ \begin{figure}[ht]
+ \begin{center}
+   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_DEPTH.pdf}
+ \end{center}
+ \caption{Evolution of the average depth of every run by fitness
+   method}
+ \label{figura:evolutionDEPTH}
+ \end{figure}
+
+Figure \ref{figura:evolutionAGE} plots the average age of the individuals in the population, i.e. the number of generations they survive. A constant growth in this graph will mean that the individuals are growing in age, so they are not being replaced, and the population is not being improved properly.
+In the graphs we cannot appreciate a growing tendency after generation 10 for Victory and Slope, which means these functions a working well. However, Area behaves a bit different and there is present a slightly progression. This is another evidence that this method is less sensitive to noise, and good individuals continue being good along generations. 
+% Antonio - Yo creo que esto es así, ¿qué opináis? :P
+
+ \begin{figure}[ht]
+ \begin{center}
+   \includegraphics[width=12cm]{nuevas_imgs/evolution_AVERAGE_AGE.pdf}
+ \end{center}
+ \caption{Evolution of the average age of the population in every run by fitness
+   method} 
+ \label{figura:evolutionAGE}
+ \end{figure}
+
+
+% -----------------------------------------------------------
+
+\subsection{Fitness Benchmark}
+
+Even though the Victory-based fitness yields better results
 (near optimal), to do a fair comparison, we have confronted the 21
 best bots obtained with each configuration (one per run) against
-GeneBot. However these matches have been performed in 9 maps that were
-different to the ones used to evolve the bots. These % cuales? Los 9?
-                                % - JJ
-				% Podríamos aquí citar el artículo del ExGenebot, que es donde se estudió la topología de los mapas y de donde se han sacado estos 9 representativos.
-maps, provided by Google, are considered as representative, because they have different features to promote a wide set of strategies, i.e. different distributions of planets, sizes and number of initial ships. 
+ANONIMOUSBOT. However these battles have been performed in 9 maps that were
+different to the ones used to evolve the bots. These maps, provided by Google, are considered as representative \cite{ExpGenebot_CIG2012}, because they have different features to promote a wide set of strategies, i.e. different distributions of planets, sizes and number of initial ships. 
 
 This experiment has been conducted in order to validate if the bots obtained by the proposed approaches can be competitive in terms of quality in maps not used for evolution/evaluation. Results are shown in Figure \ref{figura:boxplotvictoriesgenebot}. As it can be seen, again the \textit{Victory-based} fitness achieves significantly better results than the other methods.
 
@@ -707,7 +681,7 @@ This experiment has been conducted in order to validate if the bots obtained by 
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/vsGENEBOT_Boxplot.pdf}
  \end{center}
- \caption{Boxplot of average percentage of victories of the bots obtained by each approach vs. GeneBot. 9 different matches have been performed per bot in different maps.} 
+ \caption{Boxplot of average percentage of victories of the bots obtained by each approach vs ANONIMOUSBOT. 9 different matches have been performed per bot in different maps.} 
 % AntonioDEF - Â¿average percentage o sÃ³lo percentage? (ANTARES)
 % Toy un poco dormÃ­o ya para pensar. :/
 % Antares: No, a ver. Se coge cada individuo y se le evalÃºa contra Genebot. Ese gana pues digamos un 90%. Se coge otro y se prueba, gana el 70%.... Con todos esos valores se hace un bloxplot. AsÃ­ que no es el promedio.
@@ -872,7 +846,7 @@ the player in next turns, and therefore, higher fitness score. However,
 attacking random planets do not seem to be a good strategy in any of the 
 methods compared. Attacking the base is not a good strategy neither, even it 
 was considered as one of the more important actions in previous works that do 
-not use Genetic Programming \cite{Mora_noisy_jcs}.
+not use Genetic Programming \cite{Mora_noisy_jcst}.
 
 %La figura \ref{figura:e_attacks} muestra la evolución de uso de los tipos de ataques. Se muestra obvio que el tipo de ataque más empleado a media que mejoran los bots es el de \emph{attack_Nearest}. Atacar un planeta cercano suele ser una excelente acción, ya que se necesitan menos tiempos para "capturar el planeta" y se da menos tiempo al rival para poder contra-atacar. Es necesario entender que el tiempo que están las "naves" volando de un planeta a otro no están "aportando nada al juego", así que tiene sentido que los mejores bots intenten minizar el tiempo que las naves vuelan de un sitio a otro. Sin embargo acciones como \emph{attack_Weakest} or \emph{attack_Quickest} tienen a ser menos empleadas a medida que mejoran los invidiuos, aunque resultan muy similares a \emph{attack_Nearest}. Se puede extraer que es más beneficioso conquistar un planeta muy cercano (attack_nearest) que uno que sea muy sencillo de conquistar (attack_Quickest) o muy debil (attack_Weakest). %Estrategias como \emph{attack_Wealthiest} y \emph{attack_Beneficial} tienen presencia constante, ya que realizar este tipo de acciones en el momento oportuno supone una gran ventaja para un agente. El \empha{attack_base} atacar la base enemiga sufre un decrecimiento en las primeras generaciones, aunque luego se mantiene constante. De igual manera que en los anteriores casos, el que no desaparezca indica que tiene su utilidad, aunque es necesario encontrar la condición que permite hacer uso de un tipo de ataque en el momento preciso. Por último, destacar que realizar un \emph{attack_Random} tiene una presencia más o menos constante. Aunque sería esperable que este tipo de ataques fuese decreciendo a medida que los individuos mejoran, no sucede así. Puede ser interesante estudiar hasta que punto beneficia a un jugador "hacer algo al azar" frente a realizar una acción más determinista.
 
@@ -925,7 +899,7 @@ With respect to the target chosen in every attack, Victory Fitness is again focu
 \section{Conclusions}
 \label{sec:conclusion}
 
-%This work presents a Genetic Programming algorithm that generates agents for playing the Planet Wars game. A number of possible actions to perform and decision variables have been presented. A competitive bot available in the literature (Genebot) has been used to calculate the fitness of the generated individuals. This bot was the best obtained from several runs and the behaviour to be optimized was extracted from human expertise. %FERGU: confirmarlo %FERGU2: quitado exp-genebot y reescrito a continuaciÃ³n
+%This work presents a Genetic Programming algorithm that generates agents for playing the Planet Wars game. A number of possible actions to perform and decision variables have been presented. A competitive bot available in the literature (ANONIMOUSBOT) has been used to calculate the fitness of the generated individuals. This bot was the best obtained from several runs and the behaviour to be optimized was extracted from human expertise. %FERGU: confirmarlo %FERGU2: quitado exp-genebot y reescrito a continuaciÃ³n
 
 %Genetic programming is a method that can help to create competitive bots for RTS games. % ?Eso es una conclusi?? ?Lo hab?s concluido en el paper? Empezad las conclusiones por "en este trabajo nos propon?mos probar..." - JJ
 The objective of this work is to validate if using Genetic Programming
@@ -937,7 +911,7 @@ can create competitive bots for RTS games, %nobody has done it before?
 different fitness functions, as they can affect directly to the
 creation of these bots. Three different fitness functions have been
 compared to generate bots for the Planet Wars game. A competitive bot
-available in the literature (GeneBot) has been used to evaluate the
+available in the literature (ANONIMOUSBOT) has been used to evaluate the
 generated individuals (fighting against it). %Is this the best way of
                                 %evaluating new bots? - JJ
  This bot was the best one
@@ -955,7 +929,7 @@ obtain a metric to guide the evolution. %Although a turn-based fitness
 
 The results show differences depending on the fitness used: % hey, big
                                 % deal - JJ FERGU: reescrito a continuación TODAS las conclusiones
-the Victory based fitness create more balanced trees in terms of number of nodes and depth, but the actions of the best individuals obtained are more focused in attack the nearest enemy planets, performing a more aggressive and fast play. On the other hand, the methods that take into account the number of ships during the run try to attack the planets with more growth rate (enemies or not) and reinforce their own planet more times than the Victory fitness. Although the Victory fitness bots win more times against the bot used for training (GeneBot), when confronting all the generated bots between them, the Area fitness wins more times, as there exist a higher variation in depth and number of nodes in the Victory fitness bots, implying more behavioural differences, and maybe, than keeping a high number of ships during all the match implies the bot can resist fast and aggressive attacks.
+the Victory based fitness create more balanced trees in terms of number of nodes and depth, but the actions of the best individuals obtained are more focused in attack the nearest enemy planets, performing a more aggressive and fast play. On the other hand, the methods that take into account the number of ships during the run try to attack the planets with more growth rate (enemies or not) and reinforce their own planet more times than the Victory fitness. Although the Victory fitness bots win more times against the bot used for training (ANONIMOUSBOT), when confronting all the generated bots between them, the Area fitness wins more times, as there exist a higher variation in depth and number of nodes in the Victory fitness bots, implying more behavioural differences, and maybe, than keeping a high number of ships during all the match implies the bot can resist fast and aggressive attacks.
 
 
 % La conclusiÃ³n tiene que estar relacionada con el tÃ­tulo. Â¿QuÃ© habÃ©is concluido con respecto a GP? Â¿QuÃ© tipo de GP? Â¿QuÃ© poblaciÃ³n? Â¿No decÃ­s nada mÃ¡s que del fitness? - JJ FERGU

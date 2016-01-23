@@ -49,19 +49,79 @@
 %
 \begin{abstract}
 % una o dos frases dando una breve introduccion general al area
-Real-Time Strategy games (RTSs) are one of the common testbeds for research in the Computational Intelligence field.
+% ESO no es un abstract. La primera frase debe introducir el problema
+% que quieres resolver, como "Finding the global best strategy in a RTS game
+% is a hard problem that can be generalized to logistics decision
+% making and task allotment" 
+Real-Time Strategy games (RTSs) are one of the common testbeds for
+research in the Computational Intelligence field. % why? - JJ
 % dos o tres frases mas detallando el background
-The automatic generation of autonomous agents (bots) to play this kind of games is also a very prolific research line. However, the applied techniques to do this, must deal with uncertainty and real-time planning in order to control the game agents.
-% una frase muy directa indicando el problema general a resolver en este trabajo
-This work presents a Genetic Programming (GP) algorithm to create the behavioural engine of bots able to play an RTS. Three different fitness functions are proposed and a detailed analysis of their performance has been conducted. The aim is to get a better deal with this uncertainty. 
+% This justification is very weak - JJ
+The automatic generation of autonomous agents (bots) to play this kind
+of games is also a very prolific research line. % so what? - JJ 
+However, the techniques applied to do this must deal with uncertainty
+and real-time planning in order to control the game agents. 
+% una frase muy directa indicando el problema general a resolver en
+% este trabajo
+% GP deals with uncertainty and real-time planning? - JJ
+This work presents a Genetic Programming (GP) algorithm to create the
+behavioural engine of bots able to play an RTS.  
+% 1. It does not present. It has been used before.
+% 2. You have mentinoed the issues before: uncertainty and real
+% time. Can GP deal with this?
+% Why don't you say something like "it is impossible to know in
+% advance what kind of strategies will be the best in the most general
+% case. So GP, which searches the general decision tree space, has
+% been introduced and used succesfully. However, it is not
+% straightforward what fitness function to use... - JJ
+Three different
+fitness functions are proposed % WHY? OH Why? Really, you have to TELL
+                               % and JUSTIFY what the paper is about,
+                               % you can't just shoot sentences like
+                               % out of a buzzword-generated
+                               % thing. You haven't mentioned fitness
+                               % so far. Why is now important? Why is
+                               % GP important? Why is Planet Wars
+                               % important? Why are RTS games
+                               % important? You have to justify every
+                               % step of the way to make this paper
+                               % unique, advancing the state of the
+                               % art and relevant to the field at
+                               % large. And why 3 and not 5 or 55?
+                               % Does that exhaust the space of
+                               % possible fitness functions? - JJ
+and a detailed analysis of their
+performance has been conducted. The aim is to deal with
+this uncertainty. % Why? Are they statistically distributed better? If
+                  % you deal with that objective, you have to prove
+                  % you have done so. 
 % una frase muy directa indicando el resultado obtenido en este trabajo (el mas destacable)
-The results show that GP is a suitable method to generate bots to play a `simple' RTS game, Planet Wars. Moreover, it provides a mechanism to generate rules that enable to define very different behaviours.
+The results show that GP is a suitable method to generate bots to play
+a `simple' RTS game, Planet Wars.  % but that was already proved in
+                                % another paper!!! JJ
+ Moreover, it provides a mechanism to generate rules that enable to
+ define very different behaviours. % You were interested in defining
+                                % different behaviors? You should have
+                                % said so before! And why are you
+                                % interested in this thing? - JJ
 % un par de frases indicando lo que aporta este resultado al estado del arte
-The paper analyses several aspects of the bots, in addition to their final performance on battles, such as the evolution of the decision trees themselves, or the influence on the results of noise/uncertainty always present in the context of games.
+The paper analyses several aspects of the bots, in addition to their
+final performance on battles, such as the evolution of the decision
+trees themselves, or the influence on the results of noise/uncertainty
+always present in the context of games. % Why????? Why are you
+                                % interested in the evolution of the
+                                % decision trees? - JJ
 % una ultima frase poniendo el resultado en un ambito general
-As a general conclusion a victory-based fitness, which prioritises the number of victories, contributes to generate better bots, on average, than other functions based on the numerical aspects of the battles, such as the number of resources gathered, or the number of units generated. 
+As a general conclusion a victory-based fitness, which prioritises the
+number of victories, contributes to generate better bots, on average,
+than other functions based on the numerical aspects of the battles,
+such as the number of resources gathered, or the number of units
+generated.  % that is not a conclusion. That is a result. The
+            % conclusion would be what you deduce from that.
 \end{abstract}
-% Antonio - he hecho una mejora de lo que proponía Pedro, atendiendo también a lo que sugería JJ. A ver si os gusta. ;)
+% Antonio - he hecho una mejora de lo que proponía Pedro, atendiendo
+% también a lo que sugería JJ. A ver si os gusta. ;)
+% No, no me gusta nada - JJ
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   KEYWORDS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -156,7 +216,10 @@ about its former actions, about the opponent's actions or about the
 state of the game (i.e., the game's map).  
 % Is this used any way in this context? 
 % Antonio - claro, son las restricciones que tiene el problema. 
-% Una cosa, ¿no podemos hablar en español entre autores españoles? Vamos a ser pragmáticos.
+% Una cosa, ¿no podemos hablar en español entre autores españoles?
+% Vamos a ser pragmáticos.
+% Why? Don't you want to speak in English? What if some other author
+% comes in? - JJ
 
 Therefore, the objective of this paper is to generate a reliable DT
 % DT? - JJ
@@ -175,7 +238,18 @@ the enemy, conquer its resources, and finally, win the game.
 RTS games have been used extensively in the Computational Intelligence (CI) area (see \cite{Lara2013review} for a survey). 
 Among other techniques, EAs have been widely used as a CI method in RTS games, for example, for parameter optimisation \cite{Genebot_CEC11,ExpGenebot_CIG2012}, building order decision \cite{Kostler2013:MO_StarCraftII,Barriga2014:BuildingOrder_GA}, learning \cite{learning_StarCraft_AAIDE11,Wender_RL_CIG12}, or content generation \cite{Mahlmann2012MapGeneration,Lara_EntComp_PCG_RTS14}. 
 
-GP has also proved to be a very good tool for developing strategies in games, achieving results comparable to human, or human-based competitors \cite{Sipper2007gameplaying}. They also have obtained higher ranking than solvers produced by other techniques or even beating expert human players \cite{Elyasaf2012FreeCell}. GP has also been used in different kind of games, such as board-games \cite{Benbassat2012Reversi}, (apparently) `simple' games like Ms. Pac-Man \cite{Brandstetter2012PacMan} or Spoof \cite{Wittkamp2007spoof}, and even in modern videogames such as First Person Shooters (FPS) as Unreal\texttrademark~ \cite{Mora_UnrealBots10,Esparcia2013GPunreal}. 
+GP has also proved to be a very good tool for developing strategies in
+games, achieving results comparable to human, or human-based
+competitors \cite{Sipper2007gameplaying}. They also have obtained
+higher ranking than solvers produced by other techniques or even
+beating expert human players \cite{Elyasaf2012FreeCell}. GP has also
+been used in different kind of games, such as board-games
+\cite{Benbassat2012Reversi}, (apparently) `simple' games like
+Ms. Pac-Man \cite{Brandstetter2012PacMan} or Spoof
+\cite{Wittkamp2007spoof}, and even in modern videogames such as First
+Person Shooters (FPS) as Unreal\texttrademark~
+\cite{Mora_UnrealBots10,Esparcia2013GPunreal}.  % if that's the case,
+                                % what is the point of this paper? - JJ
 
 With respect to RTS games, it has not been extremely exploited, so
 there are just a few applications, such as pathfinding
@@ -215,7 +289,7 @@ used to decide on different courses of action during the game.
 % say this paper is about "testing the validity of GP to create
 % competitive bots". Please rewrite that - JJ
 The
-resulting bots were able to beat ANONIMOUSBOT, %GeneBot
+resulting bots were able to beat ANONYMOUSBOT, %GeneBot
                                 %\cite{Genebot_CEC11},  
 our initial bot improved by means of GAs.
 This paper goes a bit further and analyses the evolution of the DTs themselves along generations, in order to show how do they change and how the conditions and actions are distributed on the trees. Moreover, this study lets us identify the type of strategies that the best bots follow, i.e. we can extract some {\em automatically generated knowledge} (or tips) that could help other players to improve their skills in the game.
@@ -223,7 +297,10 @@ This paper goes a bit further and analyses the evolution of the DTs themselves a
 However, as it is usual when EAs are applied \cite{Jin2005303,QianYZ13}, and also due to the pseudostochastic nature of games, the evolution of bots is sensitive to {\em uncertainty} or {\em noise} \cite{merelo14:noisy}, even in a `simple' game as Planet Wars \cite{Mora_noisy_jcst}.
 Basic strategies to handle noisy fitness functions include using a larger population size, averaging to filter out the noise (re-sampling) \cite{Branke98_robust}, thresholding (employing a threshold value to be used in a selection operator for noisy fitness functions) \cite{Markon2001_thresholding}, or changing the selection criteria.
 
-In this paper we also propose testing three different fitness functions,
+In this paper we also propose testing three different fitness
+functions,
+% So this paper is about fitness functions in games and this is the
+% only mention in the state of the art, right? - JJ
 with the aim of checking, in addition to just their raw performance,
 which one if less sensitive to this kind of noise. This study will be useful to other researchers in order to select the best type of evaluation function, when defining other evolutionary methods working on RTSs.
 
@@ -363,7 +440,7 @@ The justification of this fitness is to reach the main objective we pursuit with
 % Antonio - dicho
 This is an improvement of the hierarchical fitness considered in \cite{Genebot_CEC11}.
 In this approach, an individual is better than another if it wins in a larger number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. the stronger one) is considered as better. 
-Every evaluation consists in five battles against the same enemy, ANONIMOUSBOT
+Every evaluation consists in five battles against the same enemy, ANONYMOUSBOT
 % Antonio - TODO: anonimizar referencia
  \cite{Genebot_CEC11}, so the maximum fitness value with this approach is 5 victories and 0 turns. 
 For two bots, A and B, the fitness comparison (and therefore, their order inside the population) is defined as Algorithm \ref{alg:fitness_turns_positions} shows.
@@ -545,7 +622,7 @@ Also, and due to the presence of noise (different evaluations will yield differe
 
 A publicly available bot has been chosen for the
 % Antonio - TODO: anonimizar
-experiments\footnote{It can be downloaded from \url{https://github.com/deantares/genebot}}. The bot to confront is {\em ANONIMOUSBOT}, proposed in \cite{Genebot_CEC11}. As stated, this bot was trained using a GA to optimise the eight parameters that conforms a set of hand-made rules, obtained from the experience of an expert human player.  Table \ref{tab:parameters} shows the values of the parameters considered.
+experiments\footnote{It can be downloaded from \url{https://github.com/deantares/genebot}}. The bot to confront is {\em ANONYMOUSBOT}, proposed in \cite{Genebot_CEC11}. As stated, this bot was trained using a GA to optimise the eight parameters that conforms a set of hand-made rules, obtained from the experience of an expert human player.  Table \ref{tab:parameters} shows the values of the parameters considered.
 
 \begin{table}
 \begin{center}
@@ -562,7 +639,7 @@ Replacement & Steady-state\\ \hline
 Stop criterion & 50 generations \\ \hline
 Maximum Tree Depth & 7  \\ \hline %FERGU: quitados distintos tamaÃ±os
 Runs per configuration & 30 \\ \hline
-Evaluation & Playing versus ANONIMOUSBOT \cite{Genebot_CEC11}  \\ \hline 
+Evaluation & Playing versus ANONYMOUSBOT \cite{Genebot_CEC11}  \\ \hline 
 Maps used for evaluation & map76, map69, map7, map11, map26 
 \\ \hline
 \end{tabular}
@@ -689,7 +766,7 @@ In the graphs we cannot appreciate a growing tendency after generation 10 for Vi
 Even though the Victory-based fitness yields better results
 (near optimal), to do a fair comparison, we have confronted the 21
 best bots obtained with each configuration (one per run) against
-ANONIMOUSBOT. However these battles have been performed in 9 maps that were
+ANONYMOUSBOT. However these battles have been performed in 9 maps that were
 different to the ones used to evolve the bots. These maps, provided by Google, are considered as representative \cite{ExpGenebot_CIG2012}, because they have different features to promote a wide set of strategies, i.e. different distributions of planets, sizes and number of initial ships. 
 
 This experiment has been conducted in order to validate if the bots obtained by the proposed approaches can be competitive in terms of quality in maps not used for evolution/evaluation. Results are shown in Figure \ref{figura:boxplotvictoriesgenebot}. As it can be seen, the Victory-based fitness achieves significantly better results than the other methods.
@@ -699,8 +776,8 @@ This could be explained considering the way the fitness is computed, because Vic
  \begin{center}
    \includegraphics[width=12cm]{nuevas_imgs/vsGENEBOT_Boxplot.pdf}
  \end{center}
- \caption{Boxplot of percentage of victories of the bots obtained by each approach vs ANONIMOUSBOT. 9 different battles have been performed per bot in different maps.} 
-% Antonio - la leyenda de la figura no debería mencionar a GeneBot por lo de la anonimización, creo yo. O debemos quitar ANONIMOUSBOT y poner GeneBot en todos los sitios... :_(
+ \caption{Boxplot of percentage of victories of the bots obtained by each approach vs ANONYMOUSBOT. 9 different battles have been performed per bot in different maps.} 
+% Antonio - la leyenda de la figura no debería mencionar a GeneBot por lo de la anonimización, creo yo. O debemos quitar ANONYMOUSBOT y poner GeneBot en todos los sitios... :_(
  \label{figura:boxplotvictoriesgenebot}
  \end{figure}
 
@@ -863,12 +940,19 @@ It can be seen that \emph{Reinforce\_Base} gets less relevant for the best indiv
 
 The objective of this work is to validate if using Genetic Programming
 can create competitive bots for RTS games, and which would be the best fitness function to consider for the evaluation of individuals.
-% study behavior or find whichs fitness function is better? - JJ
+% study behavior or find which fitness function is better? - JJ
 % Nobody is answering my suggestions? - JJ
 % Antonio - respondido
-With this aim, three different evaluation functions have been compared in the  generation of bots for the game Planet Wars,namely: Victory-based, Slope-based and Area-based. For everyone, we have tested both, their tolerance to noise and their influence in the quality and structure of the generated bots, i.e. the type of decision tree that the algorithm generates (conditions and actions).
+With this aim, three different evaluation functions have been compared
+in the  generation of bots for the game Planet Wars, namely:
+% But you mention in the abstract that you propose fitness functions
+% to deal with uncertainty. Have you done so? - JJ
+Victory-based, Slope-based and Area-based. For everyone, we have
+tested both, their tolerance to noise and their influence in the
+quality and structure of the generated bots, i.e. the type of decision
+tree that the algorithm generates (conditions and actions). 
 In order to evaluate the quality of the generated agents, a competitive bot
-available in the literature (ANONIMOUSBOT) has been considered to fight against it. This bot was the best one obtained in an evolutionary process which optimised different parameters inside a human-designed behavioural engine.  
+available in the literature (ANONYMOUSBOT) has been considered to fight against it. This bot was the best one obtained in an evolutionary process which optimised different parameters inside a human-designed behavioural engine.  
 
 With respect to the evolutionary process, all the functions seem to work properly, as there is an average improvement in the population along generations, even in the presence of noise. The Victory-based fitness behaves more robustly than the other methods, while the Area-based fitness seems to be less sensitive to noise, and achieves a better percentage of victories in more produced bots.
 % Antonio - revisar que esto sea verdad, que ya no estoy pa mucho. :/
@@ -878,9 +962,13 @@ On the one hand, the Victory-based fitness creates more balanced trees in terms 
 
 On the other hand, as Slope-based and Area-based are methods that take into account the number of ships during the run, they promote to attack the planets with a higher growth rate (being enemies' or not) and reinforce their own planet more frequently than the Victory-based fitness. 
 
-Although the latter function generates bots able to win more times against the bot used for training (ANONIMOUSBOT), when confronting all the generated bots between them, those generated by the Area-based fitness win more times. The reason is that there exists a higher variation in depth and number of nodes in the Victory-based produced bots, 
+Although the latter function generates bots able to win more times against the bot used for training (ANONYMOUSBOT), when confronting all the generated bots between them, those generated by the Area-based fitness win more times. The reason is that there exists a higher variation in depth and number of nodes in the Victory-based produced bots, 
 % Antonio - esto es cierto? Comprobadlo, porfa.
-implying more behavioural differences, and probably, that keeping a high number of ships during all the match implies the bot can resist better to the fast and aggressive attacks that Victory-based bots tends to do.
+implying more behavioural differences, and probably, that keeping a
+high number of ships during all the match implies the bot can resist
+better to the fast and aggressive attacks that Victory-based bots
+tends to do. 
+% Nothing is said about the tree study? Really? It's just there? - JJ
 
 
 As future lines of work, other rules will be added to the proposed algorithm

@@ -548,6 +548,11 @@ This method, theoretically, assigns the fairest value to an individual, since th
 
 In this function, the integral of the curve of the bot's live-line is used for calculating the area that is `covered' by the fitness cloud of points (see Equation \ref{eq:area}). This {$area$} is normalised considering the number of turns, and thus it represents the average percentage of owned ships during the battle for each player. 
 %An example is shown in Fig. \ref{figura:nubecita:area}.
+% What is a live-line in this context? Please don't invent words! A life-line is a
+% security line attached to something. live-line do not exist except
+% as "live-line working": https://en.wikipedia.org/wiki/Live-line_working Is this
+% what you mean? Your bots are working on maintenance of electrical
+% equipment on top of poles? - JJ
 
 \begin{equation}
         area=\frac{\int_{0}^{t}\%ships(x)dx}{t}

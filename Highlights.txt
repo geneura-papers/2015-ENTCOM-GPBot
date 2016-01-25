@@ -1,0 +1,1 @@
+This work presents a Genetic Programming (GP) algorithm to create the behavioural engine of bots able to play an RTS. Three different fitness functions are proposed and a detailed analysis of their performance has been conducted.

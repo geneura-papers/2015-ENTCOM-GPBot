@@ -1,0 +1,12 @@
+Dear editors:
+
+We have been invited to expand our paper <<Designing Competitive Bots for a Real Time
+Strategy Game using Genetic Programming>> published in "COSECIVI 2014" for the Special Issue about Science in Videogames.
+
+The experimental setup has been expanded, including new experiments and results over the original dataset. The state of art has been updated, including new relevant works about the topic of RTS games and Genetic Programing.
+
+It's for us a great honor to have the possibility of diffuse our work in your publication.
+
+Thanks for your time.
+
+A. Fernández-Ares

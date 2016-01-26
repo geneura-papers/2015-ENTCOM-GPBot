@@ -32,7 +32,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   TITLE   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Analyzing the Influence of the Fitness Function on Genetically Programmed Bots for a Real-Time Strategy Game}
+%\title{Analyzing the Influence of the Fitness Function on Genetically Programmed Bots for a Real-Time Strategy Game}
+\title{Analyzing the Influence of the Fitness Function on Genetic Programming for the Automatic Generation of Bots for Real-Time Strategy Games}
+%ANTARES: Cambiando el título para poner términos más SEO
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   AUTHORS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -59,12 +61,12 @@ research in the Computational Intelligence field. % why? - JJ
 % This justification is very weak - JJ
 The automatic generation of autonomous agents (bots) to play this kind
 of games is also a very prolific research line. % so what? - JJ 
-However, the techniques applied to do this must deal with uncertainty
+However, the techniques applied to do this usually must deal with uncertainty
 and real-time planning in order to control the game agents. 
 % una frase muy directa indicando el problema general a resolver en
 % este trabajo
 % GP deals with uncertainty and real-time planning? - JJ
-This work uses a Genetic Programming (GP) algorithm to create the
+This work uses a Genetic Programming algorithm (GP) to create the
 behavioural engine of bots able to play an RTS. GP is a suitable method to generate bots to play a `simple' RTS game, Planet Wars.
 % 1. It does not present. It has been used before.
 % 2. You have mentinoed the issues before: uncertainty and real
@@ -90,9 +92,9 @@ fitness functions are proposed % WHY? OH Why? Really, you have to TELL
                                % large. And why 3 and not 5 or 55?
                                % Does that exhaust the space of
                                % possible fitness functions? - JJ
-and a detailed analysis of their
-performance has been conducted. The aim is to deal with
-this uncertainty. % Why? Are they statistically distributed better? If
+%and a detailed analysis of their performance has been conducted.
+, conducted a detailed analysis of their performance
+The aim is to deal with this uncertainty. % Why? Are they statistically distributed better? If
                   % you deal with that objective, you have to prove
                   % you have done so. 
 % una frase muy directa indicando el resultado obtenido en este trabajo (el mas destacable)
@@ -112,11 +114,8 @@ always present in the context of games. % Why????? Why are you
                                 % interested in the evolution of the
                                 % decision trees? - JJ
 % una ultima frase poniendo el resultado en un ambito general
-As a general conclusion a victory-based fitness, which prioritises the
-number of victories, contributes to generate better bots, on average,
-than other functions based on the numerical aspects of the battles,
-such as the number of resources gathered, or the number of units
-generated.  % that is not a conclusion. That is a result. The
+As a general conclusion a victory-based fitness, which prioritizes the
+number of victories contributes to generate better bots, on average, than other functions based on the numerical aspects of the battles,such as the number of resources gathered, or the number of units generated.  % that is not a conclusion. That is a result. The
             % conclusion would be what you deduce from that.
 \end{abstract}
 % Antonio - he hecho una mejora de lo que proponía Pedro, atendiendo
@@ -159,6 +158,9 @@ Therefore, this paper aims to choose the best type of fitness function for a Gen
 To this end, we compare the bots created using different types of fitness, studying both, the generated DTs, and the performance of the bots in battles against unknown enemies and maps. 
 We have applied GP to generate the bots because it provides a good mechanism to create rules from scratch, giving the possibility to define very different behaviours. 
 
+These studies can be useful for the selection of a fitness for others games or scenarios and for experts, that can extract knowledge about what it's the priority goal to master the game and what strategies are more profitable for reach these goals.
+%ANTARES: Párrafo añadido. No sé si lo de <to master> está bien dicho en un entorno serio.
+
 Three fitness functions have been tested in the paper:
 \begin{itemize}
 \item A {\em victory-based fitness}, that mainly considers the number of battles won in the evaluation. Turns are also considered if there is a draw.
@@ -178,7 +180,7 @@ The rest of the paper is structured as follows: after the background and the pro
 \label{section:background}
 \subsection{Genetic Programming}
 
-Genetic Programming (GP) \cite{GP_Koza92} is a type of EA where the individuals are represented as hierarchical structures (typically trees), which size and shape is not defined a priori, as in other evolutionary methods, but they evolve along the generations. Thus, GP performs a structural optimisation, which requires the use of specific genetic operators, focused on the management (and improvement) of this kind of structure.
+Genetic Programming (GP) \cite{GP_Koza92} is a type of EA where the individuals are represented as hierarchical structures (typically trees), which size and shape is not defined a priori, as in other evolutionary methods, evolving along the generations. Thus, GP performs a structural optimisation, which requires the use of specific genetic operators, focused on the management (and improvement) of this kind of structure.
 The flow of a GP algorithm is the same as any other EA: a population is created at random, each individual in the population is evaluated using a fitness function, the individuals that performed better in the evaluation process have a higher probability of being selected as parents for the new population, and a new population is created by applying crossover and mutation operators with a certain probability. This process is repeated until a predefined termination criterion is met.
 
 % ----------------------------------------------------------------------
@@ -193,7 +195,7 @@ can fight. This version was used for the Google AI Challenge 2010
  \begin{center}
    \epsfig{file=./imags/naves.pdf,width=7cm}
  \end{center}
- \caption{Simulated screenshot of an early stage of a run in Planet Wars. White planets belong to the player (blue colour in the game), dark grey belong to the opponent (red in the game), and light grey planets belong to no player. The triangles are fleets, and the numbers (in planets and triangles) represent the ships. The planet size means growth rate of the amount of ships in it (the bigger, the higher).}
+ \caption{Simulated screenshot of an early stage of a run in Planet Wars. White planets belong to the player, dark grey belong to the opponent, and light grey planets belong to no player. The triangles are fleets, and the numbers (in planets and triangles) represent the ships. The planet size means growth rate of the amount of ships in it (the bigger, the higher).}
  \label{figura:PlanetWars1}
  \end{figure}
 
@@ -264,8 +266,9 @@ as an experimental framework for agent testing \cite{ZiolkoK12_PW_Reasoning}.
 % references! - JJ
 % Antonio - vienen ahora
 % Antonio - TODO: Anonimizar las referencias. Lo demás se puede dejar así, si se quiere
-We have worked on this game in some previous studies
-\cite{Genebot_CEC11_anonymous,genebot-evo12_anonymous,Co-Genebot_EVO2014_anonymous}, mainly applying
+%We have worked on this game in some previous studies
+Severals authors along the time have worked on this game in some previous studies
+\cite{Genebot_CEC11,genebot-evo12,Co-Genebot_EVO2014}, mainly applying
 Genetic Algorithms for evolving (the parameters of) a behavioural
 engine previously defined by a human expert from scratch.   
 % Nobody else has ever used Plante Wars? You have to prove it is popular - JJ
@@ -320,7 +323,8 @@ which one if less sensitive to this kind of noise. This study will be useful to 
 \label{sec:agent}
 
 
-The Genetic Programming-based bot or {\em GPBot} \cite{Garcia14Treedepth_anonymous} evolves a set of rules which, in turn, models a Decision Tree (DT).
+The Genetic Programming-based bot %or {\em GPBot} \cite{Garcia14Treedepth_anonymous} %
+evolves a set of rules which, in turn, models a Decision Tree (DT).
 
 During the evolution, every individual in the population (a tree) must be evaluated. To do so, the tree is set as the behavioural engine of an agent, which is then placed in a map against a rival in a Planet Wars match. Depending on the obtained results, the agent (i.e. the individual) gets a fitness value, that will be considered in the evolutionary process as a measure of its validity. 
  
@@ -471,7 +475,7 @@ For two bots, A and B, the fitness comparison (and therefore, their order inside
 In this fitness, we are only interested in the final result of the battles (position and number of turns). We do not include in the computation how the bot has reached them. The problem of this function is that the consideration of two different terms (victories and turns) makes it difficult the comparison between different evaluations, and it is hard to decide which individual is better if both have won just some of the battles. 
 
 Thus, in this work, two additional evaluation functions have been proposed in order to make a, in principle, fairer comparison between bots, trying to add another factor in order to be less sensitive to noise \cite{Mora_noisy_jcst_anonymous}. 
-Both of them are based on the percentage of ships belonging to each player in every turn. They are normalised considering the total amount of ships in the game for that turn (including neutrals ships in neutral planets), so for each player, there is a different {\em cloud of ships}.
+Both of them are based on the percentage of ships belonging to each player in every turn. They are normalised considering the total amount of ships in the game for that turn (including neutrals ships in neutral planets), so at the end of a simulated-game for each player there is a different {\em cloud of ships} with a value for every turn of the game.
 In the next subsections there are described the two alternatives to transform this cloud of points into a singular value for the fitness function: the use of slopes (statistical method) and areas (numerical method).
 
 % ---------------------------------------------------------------------
@@ -486,7 +490,7 @@ In this case, a square regression analysis is computed in order to transform the
 
 \begin{equation}
 \label{eq:alpha}
-        \alpha = \frac{\sum_{i=1}^{n}(X_{i} - \bar{X_{i}})(Y_{i} - \bar{Y_{i}})}{\sum_{i=1}^{n}(X_{i} - \bar{X_{i}})^{2}}
+        \alpha = \frac{\sum_{i=1}^{n}(X_{i} - \bar{X_{i}})(Y_{i} - \bar{Y_{i}})}{\sum_{i=1}^{n}(X_{i} - \bar{X_{i}})^{2}} \in [-1,1]
 \end{equation}
 
 \begin{equation}
@@ -555,7 +559,7 @@ In this function, the integral of the curve of the bot's live-line is used for c
 % equipment on top of poles? - JJ
 
 \begin{equation}
-        area=\frac{\int_{0}^{t}\%ships(x)dx}{t}
+        area=\frac{\int_{0}^{t}\%ships(x)dx}{t} \in [0,1]
     \label{eq:area}
 \end{equation}
 
@@ -625,9 +629,9 @@ Also, and due to the presence of noise (different evaluations will yield differe
 % all evaluations in all generations! - JJ
 % Antonio - ya está citado. ;)
 
-A publicly available bot has been chosen for the
-% Antonio - TODO: anonimizar
-experiments\footnote{It can be downloaded from \url{https://github.com/deantares/genebot}}. The bot to confront is {\em ANONYMOUSBOT}, proposed in \cite{Genebot_CEC11_anonymous}. As stated, this bot was trained using a GA to optimise the eight parameters that conforms a set of hand-made rules, obtained from the experience of an expert human player.  Table \ref{tab:parameters} shows the values of the parameters considered.
+A publicly available bot has been chosen for the experiments 
+%\footnote{It can be downloaded from \url{https://github.com/deantares/genebot}}.
+The bot to confront is {\em ANONYMOUSBOT}, proposed in \cite{Genebot_CEC11_anonymous}. As stated, this bot was trained using a GA to optimise the eight parameters that conforms a set of hand-made rules, obtained from the experience of an expert human player.  Table \ref{tab:parameters} shows the values of the parameters considered.
 
 \begin{table}
 \begin{center}
@@ -703,7 +707,7 @@ These facts mean that the fitness function are correctly defined and properly wo
 Comparing the results for every fitness with the rest, it can be seen that Victory fitness shows a higher progression than the others. This is due to the range of the dominions of values in these functions. However, it can be noted that the variability of values is higher in area than in Slope, because of the negative values that can be yield in the latter.
 % Antonio - es por esto? Que estoy medio dormido. :(
 
-As it can be seen in the dispersion of the cloud of points, the noise if present in all the functions, but Area shows a better tolerance to it, since the cloud is a bit narrower than the others.
+As it can be seen in the dispersion of the cloud of points, the noise if present in all the functions, but Slope shows a better tolerance to it, since the cloud is a bit narrower than the others.
 % Antonio - Y esto? :D
 
 % Antonio - TODO: comentar más cosas si se os ocurren
@@ -796,12 +800,17 @@ This allows a comparison with a bigger number of bots, and also,
 allows the analysis of their behaviour against rivals not previously
 used during training (as in the experiment above). 
 
-The boxplots of the percentage of victories from the best bots obtained by each method are shown in Figure \ref{figura:boxplotvictories}. It is clear from the image that the Slope fitness does not get good results with respect to the other methods. This could happen due to this approach is the most sensitive to noise, so, maybe the best individuals generated are not actually so good.
+The boxplots of the percentage of victories from the best bots obtained by each method are shown in Figure \ref{figura:boxplotvictories} and the absolute numbers are shown in Table \ref{tab:allVSall}. It is clear from the image that the Slope fitness does not get good results with respect to the other methods. This could happen due to this approach is the most sensitive to noise, so, maybe the best individuals generated are not actually so good.
 % Antonio - os parece correcta esta justificación?
 
 % Antares: Supongo que lo querrÃ¡ decir, es que el fitness basado en pendiente suma puntos si gana (la pendiente es positiva) o resta si pierde (la pendiente es negativa). AsÃ­ que supongo que lo que se quiere decir es que la puntuaciÃ³n no se sabe cuanto ha sumado y cuando ha restado. Igual a sumado mucho pero ha restado algo. O igual ha sumado muy poco. No sÃ© a que otra cosa se puede referir.
 
-The Victory-based fitness achieves better results in average, being also more robust (small standard deviation). However, looking at the Area fitness results, they outperform several times the Victory results, obtaining more victories.
+The Victory-based fitness achieves better results in average, being also more robust (small standard deviation). However, looking at the Area fitness results, they outperform the Victory results, but it is defeated a 50\% more than the Victory. In addition, the Victory-based fitness has more draws that defeats, unlike the other methods.
+
+%Victory-based fitness have a better better behaviour that the other methods. It's more robust, because all the bots obtained by the method have a similar results in the test. However, Area-based fitness reach more wins, but it lost more times that Victory-based fitness. 
+
+%TODO - ¿Por qué es mejor esto?
+
 % Antonio - ¿Esto cómo se justifica que no se me ocurre?
 % ANTARES: ¿Justificar el qué? ¿Que ha generado un individuo que es el mejor? Es como si hacemos un "random" y resulta que ese sigue mejor.
 
@@ -834,11 +843,13 @@ The Victory-based fitness achieves better results in average, being also more ro
   \hline 
  Fitness Method & Wins & Defeats & Draws \\ 
   \hline \hline
-VICTORIES FITNESS & 12027 & \textbf{4033} & \textbf{7754} \\ 
-  AREA FITNESS & \textbf{13423} & 6047 & 4344 \\ 
-  SLOPE FITNESS & 10976 & 9914 & 2924 \\ 
+VICTORIES FITNESS & 50.50\% & \textbf{16.94\%} & \textbf{32.56\%} \\ 
+  AREA FITNESS & \textbf{56.37\%} & 25.39\% & 18.24\% \\ 
+  SLOPE FITNESS & 46.1\% & 41.63\% & 12.27\% \\ 
    \hline
 \end{tabular}
+ \caption{Percentage of wins, defeats and draws, on test based on each method vs. the rest. Bold numbers indicate the best value.}
+ \label{tab:allVSall}
 \end{table}
 
 
@@ -972,8 +983,9 @@ With respect to the {\em action type} that an agent can choose, Figure \ref{figu
 \section{Conclusions}
 \label{sec:conclusion}
 
-The objective of this work is to validate if using Genetic Programming
-can create competitive bots for RTS games, and which would be the best fitness function to consider for the evaluation of individuals.
+%The objective of this work is to validate if using Genetic Programming can create competitive bots for RTS games, and which would be the best fitness function to consider for the evaluation of individuals.
+The objective of this work is to study how the fitness function affect to a Genetic Programming algorithm able to create competitive bots for RTS games.
+
 % study behavior or find which fitness function is better? - JJ
 % Nobody is answering my suggestions? - JJ
 % Antonio - respondido
@@ -988,8 +1000,7 @@ tree that the algorithm generates (conditions and actions).
 In order to evaluate the quality of the generated agents, a competitive bot
 available in the literature (ANONYMOUSBOT) has been considered to fight against it. This bot was the best one obtained in an evolutionary process which optimised different parameters inside a human-designed behavioural engine.  
 
-With respect to the evolutionary process, all the functions seem to work properly, as there is an average improvement in the population along generations, even in the presence of noise. The Victory-based fitness behaves more robustly than the other methods, while the Area-based fitness seems to be less sensitive to noise, and achieves a better percentage of victories in more produced bots.
-% Antonio - revisar que esto sea verdad, que ya no estoy pa mucho. :/
+With respect to the evolutionary process, all the functions seem to work properly, as there is an average improvement in the population along generations, even in the presence of noise. The Victory-based fitness behaves more robustly than the other methods, while the Area-based fitness seems to be less sensitive to noise, and achieves a better percentage of wins in more produced bots but a worse percentage of defeats that Victory-based bots.
 
 The results also show interesting differences in the generated individuals depending on the fitness considered: 
 On the one hand, the Victory-based fitness creates more balanced trees in terms of number of nodes and depth, but the actions of the best individuals obtained are more focused in a quick win, performing a more aggressive and fast play. 

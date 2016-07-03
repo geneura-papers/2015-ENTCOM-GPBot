@@ -8,13 +8,21 @@ Although I recommend the acceptance of the paper, I have some minor suggestions 
 * Some figures comprises several plots on the same line. The problem is the small size of these plots. I encourage the authors to increase the size of the figures so it is easier to understand them.
 * There is a typo in the label of Figure 14: 'reinforces' should be 'reinforcements'
 
->> The typo has been fixed. *** ¿PERO ESTA FIGURA NO ESTABA EN LA VERSIÓN ENVIAD, NO????? ***
+>> The typo has been fixed. *** ¿PERO ESTA FIGURA NO ESTABA EN LA VERSIÓN ENVIADA, NO????? ***
 
 * I have found several mistakes among the references (wrong name in [8], wrong characters in [18], ...), I suggest the authors to check them.
+
+>> Following the reviewer's suggestion we have revised all the references, fixing some mistakes. Thank you.
+
+
+*******************************************************************************************
 
 #Reviewer #2:
 An interesting and well-written paper that compares different types of fitness functions for a GP-based approach to a challenging RTS game.
 Some English proofing still needed here and there.
+
+
+*******************************************************************************************
 
 #Reviewer #3:
 ------------------------------------------------------------------------------------------
@@ -42,7 +50,7 @@ Is it simply to compare three model fitness function? This is not a huge scienti
 Others (minors comments):
 * page 5 : "Planet Wars bots [?]"
 
->> The cite has been fixed
+>> The cite has been fixed.
 
 * page 7 : you should include a caption to the code
 * page 21 : the "Acknowledgements" is empty, should be removed
@@ -51,4 +59,4 @@ Others (minors comments):
 
 * references 13 and 26 are not articles, should be included as footnote
 
->> Following the reviewer's suggestion, we have removed those references and included them as footnotes
+>> Following the reviewer's suggestion, we have removed those references and included them as footnotes.

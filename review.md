@@ -7,6 +7,9 @@ Although I recommend the acceptance of the paper, I have some minor suggestions 
 * The authors should go deeper into the explanation of the experimental setup, because Entertainment Computing is not focused on evolutionary algorithms. For instance, the algorithm's crossover and mutation operators lack an explanation, they are just named.
 * Some figures comprises several plots on the same line. The problem is the small size of these plots. I encourage the authors to increase the size of the figures so it is easier to understand them.
 * There is a typo in the label of Figure 14: 'reinforces' should be 'reinforcements'
+
+>> The typo has been fixed. *** ¿PERO ESTA FIGURA NO ESTABA EN LA VERSIÓN ENVIAD, NO????? ***
+
 * I have found several mistakes among the references (wrong name in [8], wrong characters in [18], ...), I suggest the authors to check them.
 
 #Reviewer #2:
@@ -38,6 +41,14 @@ Is it simply to compare three model fitness function? This is not a huge scienti
 
 Others (minors comments):
 * page 5 : "Planet Wars bots [?]"
+
+>> The cite has been fixed
+
 * page 7 : you should include a caption to the code
 * page 21 : the "Acknowledgements" is empty, should be removed
+
+>> Yes, the section was empty due to anonymisation reasons. We have removed it.
+
 * references 13 and 26 are not articles, should be included as footnote
+
+>> Following the reviewer's suggestion, we have removed those references and included them as footnotes

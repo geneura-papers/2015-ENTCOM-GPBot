@@ -36,7 +36,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   AUTHORS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\author{B. Lind and A. Nonimous}
+\author{B. Lind and A. Nonymous}
 %\author{A. Fern{\'a}ndez-Ares, A.M. Mora, P. Garc{\'i}a-S{\'a}nchez, P.A. Castillo, J.J. Merelo}
 %\ead{\{antares, amorag, pgarcia, pedro, jmerelo\}@geneura.ugr.es}
 %\address{Departamento de Arquitectura y TecnologÃ­a de Computadores.\\ ETSIIT - CITIC. University of Granada, Spain}
@@ -48,80 +48,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ABSTRACT   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{abstract}
-% una o dos frases dando una breve introduccion general al area
-% ESO no es un abstract. La primera frase debe introducir el problema
-% que quieres resolver, como "Finding the global best strategy in a RTS game
-% is a hard problem that can be generalized to logistics decision
-% making and task allotment" 
-Real-Time Strategy games (RTSs) are one of the common testbeds for
-research in the Computational Intelligence field. % why? - JJ
-% dos o tres frases mas detallando el background
-% This justification is very weak - JJ
-The automatic generation of autonomous agents (bots) to play this kind
-of games is also a very prolific research line. % so what? - JJ 
-However, the techniques applied to do this must deal with uncertainty
-and real-time planning in order to control the game agents. 
-% una frase muy directa indicando el problema general a resolver en
-% este trabajo
-% GP deals with uncertainty and real-time planning? - JJ
-This work presents a Genetic Programming (GP) algorithm to create the
-behavioural engine of bots able to play an RTS.  
-% 1. It does not present. It has been used before.
-% 2. You have mentinoed the issues before: uncertainty and real
-% time. Can GP deal with this?
-% Why don't you say something like "it is impossible to know in
-% advance what kind of strategies will be the best in the most general
-% case. So GP, which searches the general decision tree space, has
-% been introduced and used succesfully. However, it is not
-% straightforward what fitness function to use... - JJ
-Three different
-fitness functions are proposed % WHY? OH Why? Really, you have to TELL
-                               % and JUSTIFY what the paper is about,
-                               % you can't just shoot sentences like
-                               % out of a buzzword-generated
-                               % thing. You haven't mentioned fitness
-                               % so far. Why is now important? Why is
-                               % GP important? Why is Planet Wars
-                               % important? Why are RTS games
-                               % important? You have to justify every
-                               % step of the way to make this paper
-                               % unique, advancing the state of the
-                               % art and relevant to the field at
-                               % large. And why 3 and not 5 or 55?
-                               % Does that exhaust the space of
-                               % possible fitness functions? - JJ
-and a detailed analysis of their
-performance has been conducted. The aim is to deal with
-this uncertainty. % Why? Are they statistically distributed better? If
-                  % you deal with that objective, you have to prove
-                  % you have done so. 
-% una frase muy directa indicando el resultado obtenido en este trabajo (el mas destacable)
-The results show that GP is a suitable method to generate bots to play
-a `simple' RTS game, Planet Wars.  % but that was already proved in
-                                % another paper!!! JJ
- Moreover, it provides a mechanism to generate rules that enable to
- define very different behaviours. % You were interested in defining
-                                % different behaviors? You should have
-                                % said so before! And why are you
-                                % interested in this thing? - JJ
-% un par de frases indicando lo que aporta este resultado al estado del arte
-The paper analyses several aspects of the bots, in addition to their
-final performance on battles, such as the evolution of the decision
-trees themselves, or the influence on the results of noise/uncertainty
-always present in the context of games. % Why????? Why are you
-                                % interested in the evolution of the
-                                % decision trees? - JJ
-% una ultima frase poniendo el resultado en un ambito general
-As a general conclusion a victory-based fitness, which prioritises the
+Finding the global best strategy for an autonomous agent (bot) in a RTS game is a hard problem, mainly because the techniques applied to do this must deal with uncertainty and real-time planning in order to control the game agents. 
+This work describes an approach applying a Genetic Programming (GP) algorithm to create the behavioural engine of bots able to play a simple RTS. Normally it is impossible to know in advance what kind of strategies will be the best in the most general case of this problem. So GP, which searches the general decision tree space, has been introduced and used successfully. However, it is not
+ straightforward what fitness function would be the most convenient to guide the evolutionary process in order to reach the best solutions and also being less sensitive to the uncertainty present in the context of games. Thus, in this paper three different evaluation functions have been proposed, and a detailed analysis of their performance has been conducted.  
+The paper also analyses several aspects of the obtained bots, in addition to their final performance on battles, such as the evolution of the decision
+trees themselves, or the influence on the results of noise/uncertainty.
+The results show that a victory-based fitness, which prioritises the
 number of victories, contributes to generate better bots, on average,
-than other functions based on the numerical aspects of the battles,
+than other functions based on other numerical aspects of the battles,
 such as the number of resources gathered, or the number of units
-generated.  % that is not a conclusion. That is a result. The
-            % conclusion would be what you deduce from that.
+generated.  
 \end{abstract}
-% Antonio - he hecho una mejora de lo que proponía Pedro, atendiendo
-% también a lo que sugería JJ. A ver si os gusta. ;)
-% No, no me gusta nada - JJ
+% Antonio - reescrito el abstract
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   KEYWORDS   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -140,7 +78,7 @@ Real-time Strategy game \sep Genetic Programming \sep Autonomous agent \sep Bot 
 
 Real-Time Strategy (RTS) games are a genre of videogames where the action takes place in a scenario (or arena) and the contenders must fight, controlling a set of units, in order to monopolise the resources and, eventually, to defeat the opponent. These games are not turn-based, so the players must take decisions in real-time. This kind of games has become an interesting testbed in Computational Intelligence research \cite{Lara2013review}, as they can be seen as a simplification of more complex scenarios, such as road traffic simulation or financial prediction. As in these environments, in addition to the required real-time planning, there is some uncertainty present in RTSs.
 
-In this scope, the automatic generation of agents (also called {\em bots}) to play this kind of games is one of the most prominent areas. For example, Evolutionary Algorithms (EAs) have been previously used for the creation of bots/strategies in RTSs such as {\em Planet Wars} \cite{Genebot_CEC11_anonymous,ExpGenebot_CIG2012_anonymous,Garcia14Treedepth_anonymous} or {\em StarCraft} \cite{bistrom_GP_StarCraft,Barriga2014:BuildingOrder_GA,Garcia15Starcraft}, among others. 
+In this scope, the automatic generation of agents (also called {\em bots}) to play this kind of games is one of the most prominent areas. For example, Evolutionary Algorithms (EAs) have been previously used for the creation of bots/strategies in RTSs such as {\em Planet Wars} \cite{Genebot_CEC11,ExpGenebot_CIG2012,Garcia14Treedepth} or {\em StarCraft} \cite{bistrom_GP_StarCraft,Barriga2014:BuildingOrder_GA,Garcia15Starcraft}, among others. 
 
 % Antonio - introduzco aquí lo que son los EAs, porque viene bien para justificar la importancia del fitness. ;D
 EAs \cite{EAs_Back96} are a class of probabilistic search and optimisation algorithms inspired on the model of Darwinistic evolution. 
@@ -149,9 +87,9 @@ selected solutions. Thus, after an initial population is created (usually random
 If there is defined a correct {\em fitness function}, which assigns a reliable value to every individual, this process guarantees that the average quality of the population increases with the number of generations.
 Thus, deciding the best evaluation function is a key factor for the success of these algorithms.
 
-The aforementioned works apply GAs \cite{Genebot_CEC11_anonymous,ExpGenebot_CIG2012_anonymous,Barriga2014:BuildingOrder_GA}, and GP \cite{bistrom_GP_StarCraft,Garcia14Treedepth_anonymous,Garcia15Starcraft_anonymous}. 
+The aforementioned works apply GAs \cite{Genebot_CEC11,ExpGenebot_CIG2012,Barriga2014:BuildingOrder_GA}, and GP \cite{bistrom_GP_StarCraft,Garcia14Treedepth,Garcia15Starcraft}. 
 All these approaches have in common the consideration of an evaluation function which measures the quality of the behaviour of the bots being evolved. 
-Different fitness functions have been used in the past, for example the {\em game score}, or the {\em number of victories} against the rivals during the evaluation. However, these functions have to deal with the uncertainty, also called {\em noise} \cite{merelo14:noisy_anonymous,merelo15:uncertainty_anonymous}, present due to the stochastic nature of the opponent bots or to the game itself (rules or maps) . 
+Different fitness functions have been used in the past, for example the {\em game score}, or the {\em number of victories} against the rivals during the evaluation. However, these functions have to deal with the uncertainty, also called {\em noise} \cite{merelo14:noisy,merelo15:uncertainty}, present due to the stochastic nature of the opponent bots or to the game itself (rules or maps). 
 
 In addition, the selection of a fitness function or another, may generate different behaviours for the generated bots. For example, an evolutionary process using a victory-based fitness function would create `aggressive' bots, while one function, that also takes into account the number of different structures created, may generate a more `strategic' bot. 
 
@@ -185,7 +123,7 @@ The flow of a GP algorithm is the same as any other EA: a population is created 
 
 \subsection{Planet Wars Game}
 In this paper we work with a %simplified
-version of the game Galcon \cite{wiki:galcon} designed as an arena where programmed bots
+version of the game Galcon \footnote{http://en.wikipedia.org/w/index.php?title=Galcon\&oldid=399245028} designed as an arena where programmed bots
 can fight. This version was used for the Google AI Challenge 2010
 (GAIC)\footnote{http://planetwars.aichallenge.org/}. 
 
@@ -214,16 +152,8 @@ to apply in order to design a bot that can play and win this game: the time for 
 and the bot is \textit{not allowed to store any kind of information}
 about its former actions, about the opponent's actions or about the
 state of the game (i.e., the game's map).  
-% Is this used any way in this context? 
-% Antonio - claro, son las restricciones que tiene el problema. 
-% Una cosa, ¿no podemos hablar en español entre autores españoles?
-% Vamos a ser pragmáticos.
-% Why? Don't you want to speak in English? What if some other author
-% comes in? - JJ
 
 Therefore, the objective of this paper is to generate a reliable DT
-% DT? - JJ
-% Antonio - Decision Tree, lee la intro
 for a bot, which, according to the state of the map in every simulated
 turn (input), returns a set of actions to perform in order to fight
 the enemy, conquer its resources, and finally, win the game.  
@@ -268,15 +198,7 @@ We have worked on this game in some previous studies
 \cite{Genebot_CEC11_anonymous,genebot-evo12_anonymous,Co-Genebot_EVO2014_anonymous}, mainly applying
 Genetic Algorithms for evolving (the parameters of) a behavioural
 engine previously defined by a human expert from scratch.   
-% Nobody else has ever used Plante Wars? You have to prove it is popular - JJ
-% Antonio - He encontrado sólo a ese hombre, pero es una IA hecha a manubrio. Que yo sepa, sólo los de Málaga y nosotros trabajamos actívamente y ellos en PCG, no en agentes.
-% Por otra parte, ¿por qué hay que demostrar que es popular? Es un RTS
-% simple y nos sirve de banco de pruebas, con eso creo que basta... 
-% No, no basta. Tienes que tratar de ser lo más general posible. Si lo
-% usas como banco de pruebas, tienes que decir a qué se puede
-% generalizar - JJ
 
-% Antonio - TODO: anonimizar referencias
 We used GP in a previous approach for Planet Wars bots
 \cite{Garcia14Treedepth_anonymous}, as a next step to those works, to avoid
 the strict limitations that the initial bots had, such as the fixed
@@ -472,7 +394,7 @@ For two bots, A and B, the fitness comparison (and therefore, their order inside
 
 In this fitness, we are only interested in the final result of the battles (position and number of turns). We do not include in the computation how the bot has reached them. The problem of this function is that the consideration of two different terms (victories and turns) makes it difficult the comparison between different evaluations, and it is hard to decide which individual is better if both have won just some of the battles. 
 
-Thus, in this work, two additional evaluation functions have been proposed in order to make a, in principle, fairer comparison between bots, trying to add another factor in order to be less sensitive to noise \cite{Mora_noisy_jcst_anonymous}. 
+Thus, in this work, two additional evaluation functions have been proposed in order to make a, in principle, fairer comparison between bots, trying to add another factor in order to be less sensitive to noise \cite{Mora_noisy_jcst}. 
 Both of them are based on the percentage of ships belonging to each player in every turn. They are normalised considering the total amount of ships in the game for that turn (including neutrals ships in neutral planets), so for each player, there is a different {\em cloud of ships}.
 In the next subsections there are described the two alternatives to transform this cloud of points into a singular value for the fitness function: the use of slopes (statistical method) and areas (numerical method).
 
@@ -926,7 +848,7 @@ The Victory-based fitness achieves better results in average, being also more ro
 %    \includegraphics[width=12cm]{nuevas_imgs/estudio_TARGETS_REINFORCE_s.pdf}
 %  \end{center}
 %  \caption{Evolution of the percentage of every type of reinforce over
-%    the total of reinforces used by the best individual by generation
+%    the total of reinforcements used by the best individual by generation
 %    of every execution}
 % % What do you mean by reinforce? Refresh troops? - JJ 
 % % Antonio - enviar naves a planetas que ya son tuyos, con lo que
@@ -997,13 +919,8 @@ different videogames like Unreal\texttrademark~ or Super Mario\texttrademark~. W
 % Antonio - será dupla. :D
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ACKNOWLEDGEMENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TODO: actualizar con los nuevos proyectos
-\section*{Acknowledgements}
-This work has been supported in part by projects 
-EPHEMECH (TIN2014-56494-C4-3-P, Spanish Ministerio de Econom\'ia y Competitividad), 
-PROY-PP2015-06 (Plan Propio 2015 UGR), 
-PETRA (SPIP2014-01437, funded by Direcci\'on General de Tr\'afico),
-CEI2015-MP-V17 (awarded by CEI BioTIC Granada).
+%\section*{Acknowledgements}
+%This work has been partially funded by projects EPHEMECH (TIN2014-56494-C4-3-P, Spanish Ministry of Economy and Competitiveness), KNOWAVES (TEC2015-68752, Spanish Ministry of Economy and Competitiveness and FEDER), PROY-PP2015-06 (Plan Propio 2015 UGR), and MOSOS (PRY142/14, Fundaci\'on P\'ublica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigaci\'on).
 
 \bibliographystyle{elsarticle-num}
 \bibliography{gpbot-fitness-entcom}

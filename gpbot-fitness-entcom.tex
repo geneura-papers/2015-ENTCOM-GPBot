@@ -325,9 +325,10 @@ Fitness function should have some characteristic in order to ensure a good perfo
 
 This section describes three different fitness functions to be applied in the GP algorithm described in Section \ref{sec:agent}, in order to generate competitive bots for Planet Wars.
 
-Thus, subsection \ref{subsec:fitness_turns} presents a hierarchical fitness based on the number of victories, and also the number of turns of the battles for tiebreaks. 
-Subsections \ref{subsec:fitness_slope} and \ref{subsec:fitness_area} show two fitness functions which take into account the behaviour of the agents during the battles, i.e. they consider the percentage of resources (ships) gathered by the bot, and compute, respectively, a slope or an area as its evaluation value.
-% Antonio - He reescrito esta intro, creo que ahora está mejor.
+Thus, Subsection \ref{subsec:fitness_turns} presents a hierarchical fitness based on the number of victories, and also the number of turns of the battles for tiebreaks. This function is an evolution of the one we used in previous works \cite{Genebot_CEC11_anonymous,genebot-evo12_anonymous,Garcia14Treedepth_anonymous}.
+Subsections \ref{subsec:fitness_slope} and \ref{subsec:fitness_area} show two other fitness functions which take into account the behaviour of the agents during the battles, i.e. they consider the percentage of resources (ships) gathered by the bot, and compute, respectively, a slope or an area as its evaluation value. These are also the improvement (and adaptation to this GP approach) of previous proposals \cite{Co-Genebot_EVO2014_anonymous}. They aim to evaluate other factors of the battle, rather than just consider if the bots win or lose. 
+Thus, we finally want to analyse in the work if these factors are important in order to evolve enough competitive bots.
+
 
 % ---------------------------------------------
 
@@ -335,9 +336,6 @@ Subsections \ref{subsec:fitness_slope} and \ref{subsec:fitness_area} show two fi
 \label{subsec:fitness_turns}
 
 The justification of this fitness is to reach the main objective we pursuit with this method: generate bots able to win as many times as possible.
-% We are mainly interested in a bot that is able to win as many times
-% as possible, that is why... - JJ
-% Antonio - dicho
 This is an improvement of the hierarchical fitness considered in \cite{Genebot_CEC11_anonymous}.
 In this approach, an individual is better than another if it wins in a larger number of maps. In case of equality of victories, then the individual with more turns to be defeated (i.e. the stronger one) is considered as better. 
 Every evaluation consists in five battles against the same enemy, ANONYMOUSBOT

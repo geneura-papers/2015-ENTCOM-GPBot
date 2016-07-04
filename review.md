@@ -69,7 +69,7 @@ Section 4: This section is poorly written. An approach in a table would have bee
 
 Section 5: I have trouble understanding if you propose the fitness functions or if there are already done by others authors? Please articulate the origin of these functions and the associated articles cited if necessary.
 
->> (Now Section 4) *** TO DO ***
+>> We have clarified by the end of the introduction of this section (Now Section 4) that the fitness functions are respectively the evolution of our classical one (used in previous works), and two adaptations (to the new algorithm) and improvements of other previous proposals by us, which aim to evaluate different aspects of the battles, rather than just looking if the bots win or lose.
 
 
 2) Scientific objective :

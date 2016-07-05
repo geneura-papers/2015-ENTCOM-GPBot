@@ -9,6 +9,7 @@
 \usepackage{rotating}
 \usepackage{subfigure}
 \usepackage{multirow}
+\usepackage{fancyvrb}
 %\usepackage[boxed]{algorithm2e}l
 %\usepackage{algpseudocode}
 
@@ -228,42 +229,84 @@ Thus, during the match the tree will be used (by the bot) in order to select the
 
 \begin{itemize}
 \item {\em Decision}: a logical expression formed by a variable, a less than operator ($<$), and a number between 0 and 1. It is the equivalent to a ``primitive'' in the field of GP.
-\item {\em Action}: a leave of the tree (therefore, a ``terminal''). Each decision is the name of the method to call from the planet that executes the tree. This method indicates to which planet send a percentage of available ships (from 0 to 1). 
+\item {\em Action}: a leave of the tree (therefore, a ``terminal''). Each action is the name of the method to call from the planet that executes the tree. This method indicates to which planet send a percentage of available ships (from 0 to 1). 
 \end{itemize}
 
-\noindent The decisions are based on the values of different \textit{variables} which are computed considering some other variables in the game. They are defined by a human expert, and are:
+The decisions are based on the values of different \textit{variables} which are computed as ratios considering all the available data in the game. For example, a possible variable is the ratio between the player ships and the enemy ones ({\em myShipsEnemyRatio}). Therefore, the decision \textit{myShipsEnemyRatio $<$ 0.5} will trigger a \textit{true} if we have less ships than the enemy. All the possible variables are summarized in Table \ref{tab:decisions}.
 
-\begin{itemize}
-\item {\em myShipsEnemyRatio}: Ratio between the player's ships and enemy's ships.
-\item {\em myShipsLandedFlyingRatio}: Ratio between the player's landed and flying ships.
-\item {\em myPlanetsEnemyRatio}: Ratio between the number of player's planets and the enemy's ones.
-\item {\em myPlanetsTotalRatio}: Ratio between the number of player's planet and total planets (neutrals and enemy included).
-\item {\em actualMyShipsRatio}: Ratio between the number of ships in the specific planet that evaluates the tree and player's total ships.
-\item {\em actualLandedFlyingRatio}: Ratio between the number of ships landed and flying from the specific planet that evaluates the tree and player's total ships.
-\end{itemize}
+%\begin{itemize}
+%\item {\em myShipsEnemyRatio}: Ratio between the player's ships and enemy's ships.
+%\item {\em myShipsLandedFlyingRatio}: Ratio between the player's landed and flying ships.
+%\item {\em myPlanetsEnemyRatio}: Ratio between the number of player's planets and the enemy's ones.
+%\item {\em myPlanetsTotalRatio}: Ratio between the number of player's planet and total planets (neutrals and enemy included).
+%\item {\em actualMyShipsRatio}: Ratio between the number of ships in the specific planet that evaluates the tree and player's total ships.
+%\item {\em actualLandedFlyingRatio}: Ratio between the number of ships landed and flying from the specific planet that evaluates the tree and player's total ships.
+%\end{itemize}
 
-\noindent Finally, the possible \textit{decisions} are:
+\begin{table}
+\resizebox{12cm}{!}{
+\begin{tabular}{|l|p{4cm}|p{4cm}|}
+\hline
+{\em Name} & {\em Numerator} & {\em Denominator} \\ \hline \hline
+ myShipsEnemyRatio 			&  player's ships & enemy's ships \\ \hline
+ myShipsLandedFlyingRatio   &  player's landed & flying ships \\ \hline
+ myPlanetsEnemyRatio 		&  number of player's planets & the enemy's ones \\ \hline
+ myPlanetsTotalRatio 		&  number of player's planet & total planets (neutrals and enemy included) \\ \hline
+ actualMyShipsRatio 		&  number of ships in the specific planet that evaluates the tree & player's total ships \\ \hline
+ actualLandedFlyingRatio 	&  number of ships landed and flying from the specific planet that evaluates the tree & player's total ships \\ \hline
+\end{tabular}
+}
+\caption{Possible decisions in a generated tree.}
+\label{tab:decisions}
+\end{table}
 
-\begin{itemize}
-\item {\em Attack Nearest (Neutral|Enemy|NotMy) Planet}: The objective is the nearest planet.
-\item {\em Attack Weakest (Neutral|Enemy|NotMy) Planet}: The objective is the planet with less ships.
-\item {\em Attack Wealthiest (Neutral|Enemy|NotMy) Planet}: The objective is the planet with higher growth rate.
-\item {\em Attack Beneficial (Neutral|Enemy|NotMy) Planet}: The objective is the  more beneficial planet, that is, the one with highest growth rate divided by the number of ships.
-\item {\em Attack Quickest (Neutral|Enemy|NotMy) Planet}: The objective is the planet easier to be conquered: the lowest product between the distance from the planet that executes the tree and the number of  ships in the objective planet.
-\item {\em Attack (Neutral|Enemy|NotMy) Base}: The objective is the planet with more ships (that is, the base).
-\item {\em  Attack Random Planet}.
-\item {\em Reinforce Nearest Planet}: Reinforce the nearest player's planet to the planet that executes the tree.
-\item {\em Reinforce Base}: Reinforce the player's planet with higher number of ships.
-\item {\em Reinforce Wealthiest Planet}: Reinforce the player's planet with higher grown rate.
-\item {\em Do nothing}.
+Finally, the possible \textit{actions} are listed in Table \ref{tab:actions}. Every action sends ships to an objective planet. These planets can be the enemy's, neutral, any of them, or the player ones. For example, the action \textit{AttackNearestNotMyPlanet(0.7)} will send the 70\% of the ships in the planet that executes the tree, to the nearest planet (enemy or neutral).
 
-\end{itemize}
+%\begin{itemize}
+%\item {\em Attack Nearest (Neutral|Enemy|NotMy) Planet}: The objective is the nearest planet.
+%\item {\em Attack Weakest (Neutral|Enemy|NotMy) Planet}: The objective is the planet with less ships.
+%\item {\em Attack Wealthiest (Neutral|Enemy|NotMy) Planet}: The objective is the planet with higher growth rate.
+%\item {\em Attack Beneficial (Neutral|Enemy|NotMy) Planet}: The objective is the  more beneficial planet, that is, the one with highest growth rate divided by the number of ships.
+%\item {\em Attack Quickest (Neutral|Enemy|NotMy) Planet}: The objective is the planet easier to be conquered: the lowest product between the distance from the planet that executes the tree and the number of  ships in the objective planet.
+%\item {\em Attack (Neutral|Enemy|NotMy) Base}: The objective is the planet with more ships (that is, the base).
+%\item {\em  Attack Random Planet}.
+%\item {\em Reinforce Nearest Planet}: Reinforce the nearest player's planet to the planet that executes the tree.
+%\item {\em Reinforce Base}: Reinforce the player's planet with higher number of ships.
+%\item {\em Reinforce Wealthiest Planet}: Reinforce the player's planet with higher grown rate.
+%\item {\em Do nothing}.%
+%\end{itemize}
 
-\noindent An example of a possible DT is shown below. The example tree
+\begin{table}
+\resizebox{12cm}{!}{
+\begin{tabular}{|p{5cm}|p{8cm}|}
+\hline
+{\em Name} & {\em Action} \\ \hline \hline
+AttackNearestNeutralPlanet \newline AttackNearestEnemyPlanet \newline AttackNearestNotMyPlanet & The objective is the nearest (neutral, enemy or either) planet \\ \hline
+AttackWeakestNeutralPlanet \newline AttackWeakestEnemyPlanet \newline AttackWeakestNotMyPlanet & The objective is the (neutral, enemy or either) planet with less ships \\ \hline
+AttackWealthiestNeutralPlanet \newline AttackWealthiestEnemyPlanet \newline AttackWealthiestPlanet & The objective is the planet (enemy, neutral or either) with higher growth rate \\ \hline
+AttackBeneficialNeutralPlanet \newline AttackBeneficialEnemyPlanet \newline AttackBeneficialPlanet & The objective is the  more beneficial planet, that is, the one with highest growth rate divided by the number of ships \\ \hline
+AttackQuickiestNeutralPlanet \newline AttackQuickiestEnemyPlanet \newline AttackQuickiestPlanet & The objective is the planet easier to be conquered: the lowest product between the distance from the planet that executes the tree and the number of  ships in the objective planet \\ \hline
+AttackNearestNeutralBase \newline AttackNearestEnemyBase \newline AttackNearestNotMyBase & The objective is the planet (neutral, enemy or either) with more ships (that is, the base) \\ \hline
+ Attack Random Planet & Send ships to a random enemy or neutral planet\\ \hline
+Reinforce Nearest Planet & Reinforce the nearest player's planet to the planet that executes the tree \\ \hline
+Reinforce Base & Reinforce the player's planet with higher number of ships \\ \hline
+Reinforce Wealthiest Planet & Reinforce the player's planet with higher grown rate \\ \hline
+Do nothing & \\ \hline
+\end{tabular}
+}
+\caption{Possible actions in a generated tree. For example, the action \textit{AttackNearestNotMyPlanet(0.7)} will send the 70\% of the ships in the planet that executes the tree, to the nearest planet (enemy or neutral).}
+\label{tab:actions}
+\end{table}
+
+
+
+\noindent An example of a possible DT is shown in Figure \ref{fig:sourcecode}. The example tree
 shown below has a total of 5 nodes, with 2 decisions and 3 actions, and a
 depth of 3 levels. 
 
-\begin{verbatim}
+\begin{figure}
+
+\begin{Verbatim}[frame=single]
 
 if(myShipsLandedFlyingRatio < 0.796)
    if(actualMyShipsRatio < 0.201)
@@ -273,7 +316,11 @@ if(myShipsLandedFlyingRatio < 0.796)
 else
    attackNearestEnemyPlanet(0.819);
 
-\end{verbatim}\\\\
+\end{Verbatim}
+
+\caption{Example of the generated source of a DT obtained by the algorithm.}
+\label{fig:sourcecode}
+\end{figure}
 
 \noindent The bot's behaviour is explained in Algorithm \ref{alg:turn}.
 

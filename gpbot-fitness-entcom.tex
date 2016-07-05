@@ -181,7 +181,7 @@ Ms. Pac-Man \cite{Brandstetter2012PacMan} or Spoof
 Person Shooters (FPS) as Unreal\texttrademark~
 \cite{Mora_UnrealBots10,Esparcia2013GPunreal}. 
 
-With respect to RTS games, GP has not been extremely exploited, so
+In fact, GP has not been widely used in RTS games, so
 there are just a few applications, such as pathfinding\footnote{http://www.gamasutra.com/view/feature/131147/evolving\_pathfinding\_algorithms\_.php?print=1}, definition of tactics in an abstract
 tactical game \cite{KeaveneyO09_GP_RTS}, and recently to the automatic generation of strategies for a bot in StarCraft \cite{Garcia15Starcraft}.
 % Antonio - Fergu, mira a ver si quieres añadir algo a esto. ;)
@@ -738,7 +738,10 @@ This allows a comparison with a bigger number of bots, and also,
 allows the analysis of their behaviour against rivals not previously
 used during training (as in the experiment above). 
 
-The boxplots of the percentage of victories from the best bots obtained by each method are shown in Figure \ref{figura:boxplotvictories}. It is clear from the image that the Slope fitness does not get good results with respect to the other methods. This could happen due to this approach is \textit{the most sensitive to noise}, so, maybe the best individuals generated are not actually so good.
+The boxplots of the percentage of victories from the best bots
+obtained by each method are shown in Figure
+\ref{figura:boxplotvictories}. It is clear from the image that the
+Slope fitness does not get good results compared with the other methods. This could happen due to this approach is \textit{the most sensitive to noise}, so, maybe the best individuals generated are not actually so good.
 % Antonio - os parece correcta esta justificación?
 
 % Antares: Supongo que lo querrÃ¡ decir, es que el fitness basado en pendiente suma puntos si gana (la pendiente es positiva) o resta si pierde (la pendiente es negativa). AsÃ­ que supongo que lo que se quiere decir es que la puntuaciÃ³n no se sabe cuanto ha sumado y cuando ha restado. Igual a sumado mucho pero ha restado algo. O igual ha sumado muy poco. No sÃ© a que otra cosa se puede referir.
@@ -754,7 +757,11 @@ The Victory-based fitness achieves better results in average, being also more ro
    }
  \end{center}
  \caption{Boxplot of average percentage of victories of the best bots obtained by each method vs. the rest.}
-% Antonio - hay que corregir el título, debería poner algo como "Victories of everyone of the best individuals per execution versus the rest of best", pero no "each best individuals"
+% Antonio - hay que corregir el título, debería poner algo como
+% "Victories of everyone of the best individuals per execution versus
+% the rest of best", pero no "each best individuals"
+% También la figura. Pone "fitness method" y luego "fitness" en cada
+% box. - JJ
  \label{figura:boxplotvictories}
  \end{figure}
 
@@ -776,11 +783,28 @@ In this section, we present a complementary study on the distribution and appear
 % %Para ello se han estudiado los árboles que se han generado como mejor individuo de cada generación, de cada ejecución, de cada uno de los tres métodos de fitness propuestos anteriormente. Se estudia, en concreto, el porcentaje utilización de un "nodo del árbol" concreto en el total de nodos del mismo tipo empleados por los inviduos que comparten esa misma generación.
 % %Un nodo más "útil" para conseguir la victoria tendrá una mayor presencia a medida que el algoritmo evolutivo avanza generaciones. De igual manera, un nodo "poco útil" o "menos útil" para conseguir la victoria tendrá menos presencia en los mejores individuos a media que converge el algoritmo evolutivo a mejores soluciones.
 
-The analysis has been conducted on the best individuals obtained in each generation of the three fitness methods, counting the percentage of use of a decision/action with respect to the total of the same type, taking into account all the best individuals of that generation. Therefore, a more useful node to win the match will have more presence in the best individuals during the algorithm run, and vice versa.
+The analysis has been conducted on the best individuals obtained in
+each generation for the three fitness methods, counting the percentage
+of use of a decision/action in relation with the total of the same
+type and taking into account all the best individuals of that
+generation. Therefore, a more useful node to win the match will occur
+with more frequency  in the best individuals during the algorithm run, and
+vice versa. 
 
 % %En primer lugar en la figura \ref{figura:e_number_nodes} se muestra el crecimiento del número promedio de condiciones y acciones a medida que evolucionan los individuos. Este hecho ya se había mostrado en la figura \ref{figura:evolutionDEPTH} en el que se presenta la profundidad el árbol generado. Dado que los árboles de decisiones son binarios perfectos, un crecimiento de la profundidad del árbol implica un aumento de las condiciones (nodos internos del árbol) y las acciones (nodos externos del árbol)
 
-Figure \ref{figura:e_number_nodes} shows the average growing of conditions and actions during the evolution. As described before in Figure \ref{figura:evolutionDEPTH}, when the number of generations increases, the depth also does, as well as, obviously, the number of nodes. But in this case, in the latter generations of the Victory fitness the number of nodes increases more than in the other two fitness methods, being the depth of this method also lower than the Slope and Area. This indicates that the Victory Fitness is generating more balanced trees than the other methods.
+%Ya empezamos con "la figura 10 muestra esto, la 11 dice
+%aquello". Tienes que contar un argumento - JJ
+Figure \ref{figura:e_number_nodes} shows the average growing of
+conditions and actions during the evolution. As described before in
+Figure \ref{figura:evolutionDEPTH}, when the number of generations
+increases, the depth also does, as well as, obviously, the number of
+nodes. But in this case, in the latter generations of the Victory
+fitness the number of nodes increases more than in the other two
+fitness methods, being the depth of this method also lower than the
+Slope and Area. This indicates that the Victory Fitness is generating
+more balanced trees than the other methods. 
+%Why do you want to show this? - JJ
 
   \begin{figure}[ht]
   \begin{center}
@@ -795,9 +819,25 @@ Figure \ref{figura:e_number_nodes} shows the average growing of conditions and a
 % %Existen seis tipos de condiciones que han sido descritas en la sección 4. La figura \ref{figura:e_conditions} muestra la evolución del porcentaje de condiciones empleadas en cada generación. Se muestra como la regla \emph{actualMyShipsRatio} tiene un aumento de presencia en los mejores individuos frente a las otras condiciones, que se mantienen constantes en su uso o decrecen.
 % %Esta información puede servir para un diseñador experto para discernir que reglas son más interesante explotar.
 
-Regarding the {\em condition or decision type}, Section \ref{sec:agent} described six types of ratios evaluated in every planet to decide which next branch of the tree should be selected. Figure \ref{figura:e_conditions} shows the evolution of these types of ratios. Results show that there is an increase in the Victory fitness in the rule \emph{actualMyShipsRatio}, the one that compares the amount of ships in the planet executing the tree with the player's total amount of ships. This makes sense, as the tree is executed for each player's planet and the percentage of ships used at the end of the tree also depends of that current planet. However, with the other two methods, the most used decision compares the number player's ships with the enemy's. 
+Regarding the {\em condition or decision type}, Section
+\ref{sec:agent} described six types of ratios evaluated in every
+planet to decide which  branch of the tree should be
+selected next. Figure \ref{figura:e_conditions} shows the evolution of
+these types of ratios. Results show that there is an increase in the
+Victory fitness in the rule \emph{actualMyShipsRatio}, the one that
+compares the amount of ships in the planet executing the tree with the
+player's total amount of ships. This makes sense, as the tree is
+executed for each player's planet and the percentage of ships used at
+the end of the tree also depends of that current planet. However, with
+the other two methods, the most used decision compares the number
+player's ships with the enemy's.  
 % % Antonio - esto que he puesto es correcto, verdad? Se comparan las naves del jugador con las del enemigo, no?
-As those fitness try to use the number of ships as a quality measure, they are generating trees to maintain a higher number of ships than the rival during the whole match, instead focusing in a quick victory.
+As those fitness try to use the number of ships as a quality measure,
+they are generating trees to maintain a higher number of ships than
+the rival during the whole match, instead focusing in a quick
+victory. 
+%Para esto no hace falta poner la _evolución_. Estáis analizando los
+%resultados finales. ¿Qué más da el valor que tengan al principio? - JJ
 
   \begin{figure}[ht]
   \begin{center}
@@ -805,18 +845,39 @@ As those fitness try to use the number of ships as a quality measure, they are g
     \includegraphics[width=15cm]{nuevas_imgs/estudio_CONDITIONS_s.pdf}
     }
   \end{center}
-  \caption{Evolution of the percentage of every condition over the total of conditions used by the best individual by generation of every execution.}
+  \caption{Evolution of the percentage of every condition over the
+    total of conditions used by the best individual by generation of
+    every execution.} 
+% Realmente, no veo nada en esta gráfica. En unos casos aumenta, en
+% otros disminuye. ¿Qué conclusión quieres sacar? - JJ
   \label{figura:e_conditions}
   \end{figure}
 
 % %La figura \ref{figura:e_actions} muestra entre los tres tipos de acciones posibles (attack, reinforce or doNothing) que puede elegir realizar el agente, la que tiene una mayor presencia es la de realizar ataque, que tiene un crecimiento constante en decrimento de doNothing. La acción de refuerzo sufre un decrecimiento a medida que mejoran los nodos aunque permaneciendo constante al final, por lo que sigue siendo empleada. La acción de doNothing, que era experable que terminase convergiendo a cero, sigue teniendo presencia incluso en las últimas generaciones del algoritmo. Esto es debido, a que en ocasiones, no hacer nada y experar (por ejemplo, cuando no se puede conquistar ningún planeta) puede ser una estrategia útil.
 
-With respect to the {\em action type} that an agent can choose, Figure \ref{figura:e_actions} shows the percentage of the three types of actions that can be performed by the agent: {\em attack}, {\em reinforce} and {\em doNothing}. Results clearly show that the {\em attack} action is the most used in all fitness methods, but it is interesting to mention that the Victory fitness uses less times than the others the {\em reinforcement} one with respect to attacking. This also can be explained because the number of ships is not measured during the evaluation, unlike the other two methods, where a high amount of ships during all the run yields a higher fitness value.
+After analyzing the condition or decision type, let us examine next
+{\em action type} that an agent can choose. Figure 
+\ref{figura:e_actions} shows the percentage of the three types of
+actions that can be performed by the agent: {\em attack}, {\em
+  reinforce} and {\em doNothing}. Results clearly show that the {\em
+  attack} action is the most used in all fitness methods, but it is
+interesting to mention that the Victory fitness uses less times than
+the others the {\em reinforcement} one with respect to attacking. %No
+                                %entiendo - JJ
+ This
+also can be explained because the number of ships is not measured
+during the evaluation, unlike the other two methods, where a high
+amount of ships during all the run yields a higher fitness value. 
 
 % %This should go to a different paper. This paper is about studying
 % %fitness. If you insert this, you should do it for _every_ fitness - JJ
 % % Antonio - se ha hecho por fitness. ;)
-% % ANTARES: Exacto, he re-hecho todo el estudio para mostrar la eváluación de los individuos pero de cada fitness. De hecho, Fergu ha sacado un par de conclusiones bastante interesantes sobre ese estudio.
+% % ANTARES: Exacto, he re-hecho todo el estudio para mostrar la
+% % eváluación de los individuos pero de cada fitness. De hecho, Fergu
+% % ha sacado un par de conclusiones bastante interesantes sobre ese
+% % estudio.
+% Ya estamos en la segunda vuelta, pero da igual. Si se usa en las
+% conclusiones, lo tenéis qeu decir desde el principio. - JJ
 
   \begin{figure}[ht]
   \begin{center}

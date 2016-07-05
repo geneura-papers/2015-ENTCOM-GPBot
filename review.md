@@ -6,7 +6,8 @@ Although I recommend the acceptance of the paper, I have some minor suggestions 
 
 * The authors should go deeper into the explanation of the experimental setup, because Entertainment Computing is not focused on evolutionary algorithms. For instance, the algorithm's crossover and mutation operators lack an explanation, they are just named.
 
->> *** TO DO ***
+>> The reviewer is right, so following his/her suggestion he have improved the description of operators and parameters in the first subsection of the experiments.
+
 
 * Some figures comprises several plots on the same line. The problem is the small size of these plots. I encourage the authors to increase the size of the figures so it is easier to understand them.
 
@@ -18,7 +19,7 @@ Although I recommend the acceptance of the paper, I have some minor suggestions 
 
 * I have found several mistakes among the references (wrong name in [8], wrong characters in [18], ...), I suggest the authors to check them.
 
->> Following the reviewer's suggestion we have revised all the references, fixing some mistakes. Thank you.
+>> Thank you for the suggestion. We have revised all the references, fixing some mistakes.
 
 
 *******************************************************************************************
@@ -47,7 +48,7 @@ From my point of view, the paper is not ready to be published in a journal :
 The paper is poorly structured.
 The document contains 8 sections, but finally the paper becomes interesting from Section 5.
 
->> The reviewer is right. We have restructured the manuscript, so now, Introduction includes a better description of Genetic Programming (as background), Section 2 presents the problem and comments related work, pointing out the contributions of the paper to the current state of the art in this field. Section 3 and 4 describe the GP agents and the different fitness functions to study, including deeper explanations and justifications of them. The experimental setup and the analysis of results are described in Section 5. A new Section has been included presenting a novel analysis of the produced behavioural models (Decision Trees). Finally, the conclusions are commented in Section 6.
+>> The reviewer is right. We have restructured the manuscript, so now, Introduction includes a better description of Genetic Programming (as background), Section 2 presents the problem and comments related work, pointing out the contributions of the paper to the current state of the art in this field. Section 3 and 4 describe the GP agents and the different fitness functions to study, including a deeper explanation and justification of them. The experimental setup and the analysis of results are described in Section 5. A new Section has been included presenting a novel analysis of the produced behavioural models (Decision Trees). Finally, the conclusions are commented in Section 6.
 
 
 Section 1: This part is interesting, however, you should spend more time explaining the concept of quality in your context. The quality of a Tamagoshi is not the same quality as bot PlanetWar.
@@ -78,7 +79,7 @@ Is it simply to compare three model fitness function? This is not a huge scienti
 >> The reviewer is right regarding it was not clear the scientific contribution of the work.
 The aim of the paper is to present a deep analysis on the influence of different fitness functions (with different natures). This influence is analysed in different ways, including the noise or the raw performance of the generated bots. 
 Moreover, the work akso includes an interesting study about the decision trees (DTs) that the algorithm generates, and how these DTs evolve along the generations.
-Both studies have been conducted using several types of experiments and analyses, so we think that all this content have enough entity to be published as a journal paper.
+Both studies have been performed conducting several types of experiments and analyses, so we think that all these contents have enough entity to be published as a journal paper.
 
 We have tried to clarify this along the whole text, including a few new lines in the abstract, introduction, related works and conclusions; in addition to the whole section (Section 6) devoted to the analysis of the produced rules.
 
@@ -86,6 +87,7 @@ We have tried to clarify this along the whole text, including a few new lines in
 3) References : Spanish teams are leader in the domain of GP for RTS game. So it makes sense to have a large number of references from such teams. But be careful, you always cite the same authors, you should enlarge your references to others teams.
 
 >> *** TO DO *** Añadir citas a otros grupos y trabajos
+
 
 Others (minors comments):
 * page 5 : "Planet Wars bots [?]"

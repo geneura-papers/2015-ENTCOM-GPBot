@@ -86,7 +86,11 @@ We have tried to clarify this along the whole text, including a few new lines in
 
 3) References : Spanish teams are leader in the domain of GP for RTS game. So it makes sense to have a large number of references from such teams. But be careful, you always cite the same authors, you should enlarge your references to others teams.
 
->> *** TO DO *** Añadir citas a otros grupos y trabajos
+>> As reviewer suggests, new references about this topic from other teams outside Spain have been added:
+R. Lara-Cabrera, M. N. Collazo, C. Cotta, A. J. F. Leiva, Procedural content generation for real-time strategy games, IJIMAI 3 (2) (2015) 40–48.
+K. O. Stanley, B. D. Bryant, R. Miikkulainen, Real-time neuroevolution in the NERO video game, IEEE Trans. Evolutionary Computation 9 (6) (2005) 653–668.
+C. Lim, R. Baumgarten, S. Colton, Evolving behaviour trees for the commercial game DEFCON, in: C. D. Chio, S. Cagnoni, et al. (Eds.), Applications of Evolutionary Computation, EvoApplicatons 2010: EvoCOMPLEX, EvoGAMES, EvoIASP, EvoINTELLIGENCE, EvoNUM, and EvoSTOC, Istanbul, Turkey, April 7-9, 2010, Proceedings, Part I, Vol. 6024 of Lecture Notes in Computer Science, Springer, 2010, pp. 100–110. 
+
 
 
 Others (minors comments):
